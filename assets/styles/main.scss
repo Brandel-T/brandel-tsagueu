@@ -1,0 +1,107 @@
+@import url('https://fonts.googleapis.com/css2?family=Cherry+Bomb+One&family=Inter:wght@300;400&family=Poppins:wght@200;300&family=Tsukimi+Rounded&display=swap');
+@import "tailwind.css";
+@import 'colors';
+
+* {
+  font-family: Inter, 'sans-serif';
+  color: #FFFFFF;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: $bg-color;
+
+  &::before, &::after {
+    margin: 0;
+    padding: 0;
+  }
+}
+
+//************* ICON ******************
+.icon {
+  color: $text-color;
+  height: 2rem;
+  width: 2rem;
+
+  &:hover {
+    cursor: pointer;
+    color: $accent;
+  }
+
+  svg {
+    width: 100% !important;
+    height: 100% !important;
+  }
+}
+.icon-gray svg {
+  @apply stroke-soft
+}
+.icon-accent svg {
+  @apply stroke-secondary
+}
+.icon-secondary-accent svg {
+  @apply stroke-accent
+}
+
+
+// ********** HEADINGS ******************
+.heading-1 {
+  @apply text-lg md:text-2xl font-bold my-1
+}
+.heading-2 {
+  @apply text-base md:text-lg font-semibold
+}
+.small {
+  @apply text-xs text-soft
+}
+
+.highlight {
+  @apply text-accent;
+}
+
+.body-text {
+  @apply text-sm sm:text-base text-soft
+}
+
+.hashtag {
+  @apply font-bold text-xl md:text-2xl text-secondary mr-2
+}
+
+.section-title {
+  @apply font-bold text-xl md:text-2xl capitalize
+}
+.page-section {
+  @apply container min-h-screen flex flex-col gap-4 sm:gap-6 md:gap-12
+}
+.section-header {
+  @apply basis-28 md:basis-40 flex items-end
+}
+.section-header__container {
+  @apply h-fit relative capitalize
+}
+.section-header__container::after {
+  content: "";
+  position: absolute;
+  height: 1px;
+  width: 100%;
+  background-color: $secondary;
+  top: 50%;
+  margin-left: 1em;
+}
+.section-body {
+  @apply flex-1
+}
+
+
+// components
+.badge {
+  @apply w-fit
+  rounded-full text-xs md:text-sm
+  text-secondary capitalize
+  bg-tertiary
+  px-4 py-1
+  justify-center items-center gap-2
+}
