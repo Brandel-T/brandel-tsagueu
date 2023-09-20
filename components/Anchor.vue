@@ -6,10 +6,12 @@
     >
         <div class="flex flex-col-reverse items-center gap-1 w-fit">
             <span class="w-fit mb-1">
-                <span v-if="type === 'internal'" class="hashtag">#</span>
-                <span class="text-slate-400 text-xl sm:text-2xl md:text-3xl font-light mr-2">{{ name }}</span>
+                <span v-if="type === 'internal' && hashtagVisible" class="hashtag">#</span>
+                <span class="text-slate-400 text-xl sm:text-2xl md:text-3xl font-light mr-2">
+                    <a :href="url" target="_blank">{{ name }}</a>
+                </span>
                 <span
-                    v-if="type === 'external'"
+                    v-if="type === 'external' && externalIconVisible"
                     class="font-bold text-xl sm:text-2xl md:text-3xl"
                     :class="{'translate-x-1 -translate-y-1': hover}"
                 >↗</span>
@@ -29,6 +31,9 @@ export default {
     props: {
         type: { type: String as PropType<LinkType>, default: 'internal'},
         name: { type: String, required: true },
+        hashtagVisible: { type: Boolean, default: true },
+        externalIconVisible: { type: Boolean, default: true },
+        url: { type: String, }
     },
     setup() {
         const hover = ref<boolean>(false)

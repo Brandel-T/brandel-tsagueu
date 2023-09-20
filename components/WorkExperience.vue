@@ -12,7 +12,6 @@ export default {
         const selectedJob = ref<number>(0)
         function selectJob(accordionIndex: number) {
             selectedJob.value = accordionIndex;
-            console.log(accordionIndex)
         }
         return { selectedJob, selectJob }
     }
@@ -26,8 +25,8 @@ export default {
           <div>
               <div
                   class="accordion"
-                  v-for="(job, index) in jobs" :key="job.startDate"
-              >
+                  v-for="(job, index) in jobs"
+                  :key="job.startDate">
                   <div
                       :class="{'accordion-open': selectedJob === index, 'accordion-close': selectedJob !== index}"
                       class="accordion-header"
@@ -47,7 +46,9 @@ export default {
                               <IconCalendar class="!h-5 !w-5 icon-gray" />
                               {{ useDateFormat(job.startDate) }} - {{ useDateFormat(job.endDate) }}</span>
                           </div>
-                          <div class="heading-1 ">{{ job.company }}</div>
+                          <div class="heading-1 ">
+                              <Anchor :name="job.company" :hashtag-visible="false" url="https://www.bosch.de/" />
+                          </div>
                           <div  class="flex items-center gap-2 text-white font-light text-base">
                               <IconTime class="!h-6 !w-6" />
                               {{ job.workFormat }} <span class="text-secondary">/</span> {{ job.locationFormat }}</div>
@@ -92,37 +93,7 @@ export default {
           </div>
       </div>
   </section>
-
 </template>
 
 <style scoped lang="scss">
-.accordion {
-  @apply flex flex-col mb-2 lg:border-t lg:border-accent-soft lg:rounded-lg lg:shadow-md lg:shadow-accent-soft
-}
-.accordion-open {
-  @apply bg-accent-soft text-accent
-}
-.accordion-close {
-    @apply outline outline-1 outline-accent-soft
-}
-.accordion-header {
-  @apply flex justify-between items-center rounded py-5 px-4
-    hover:cursor-pointer hover:opacity-75
-}
-.accordion .accordion-header {
-    @apply lg:hidden
-}
-.accordion-body {
-    @apply px-4 mb-4 shadow
-    lg:flex-1
-}
-:deep(.section-body) {
-    @apply lg:flex lg:gap-4
-}
-.accordion-header__container--desktop {
-    @apply flex-1 basis-2/4 hidden lg:block;
-}
-.accordion-header__container--desktop .accordion-header {
-    @apply mb-2 w-full
-}
 </style>

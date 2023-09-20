@@ -8,11 +8,13 @@
     </div>
     <About id="about" class="-z-1" />
     <WorkExperience id="work" :jobs="jobs" />
+    <Projects id="projects" :projects="projects" />
+    <TechStack id="tech-stack" :recentTechnologies="recentTechStack" :items="techStack" />
   </div>
 </template>
 
 <script setup lang="ts">
-import { JobType } from "~/utils/models";
+import {JobType, ProjectType, TechStackType} from "~/utils/models";
 
 const jobs: JobType[] = [
     {
@@ -46,6 +48,47 @@ const jobs: JobType[] = [
         startDate: new Date('2023-05-01' ),
         endDate: new Date()
     },
+]
+
+const projects: ProjectType[] = [
+    {
+        title: 'MoneyBack',
+        type: 'mobile',
+        description: 'Mobile application for tracking daily expenses.',
+        asset: 'mobile-app.png',
+        technologies: ['Flutter', 'SQLite',],
+        url: 'https://github.com/Brandel-T/flutter_expenses_app'
+    },
+    {
+        title: 'MoneyBack',
+        type: 'mobile',
+        description: '',
+        asset: 'mobile-app.png',
+        technologies: ['Flutter', 'SQLite',],
+        url: 'https://github.com/Brandel-T/flutter_expenses_app'
+    },
+    {
+        title: 'MoneyBack',
+        type: 'mobile',
+        description: '',
+        asset: 'mobile-app.png',
+        technologies: ['Flutter', 'SQLite',],
+        url: 'https://github.com/Brandel-T/flutter_expenses_app'
+    },
+]
+
+const recentTechStack: string[] = ['NestJS', 'Angular', 'MongoDB', 'Flutter', 'Nuxt', 'SQLite']
+const techStack: TechStackType[] = [
+    {
+        category: 'Backend',
+        technologies: ['Java', 'C++', 'MongoDB', 'PostgresSQL', 'SQLite', 'NodeJS', 'Spring Boot', 'NestJS']
+    }, {
+        category: 'Frontend',
+        technologies: ['Angular', 'Nuxt 3', 'Vue 3 / Composition API', 'TailwindCSS', '(S)CSS', 'Bootstrap']
+    }, {
+        category: 'Others',
+        technologies: ['Linux', 'Windows', 'Mac', 'Bash/Shell Scripting', 'Docker',]
+    }
 ]
 </script>
 

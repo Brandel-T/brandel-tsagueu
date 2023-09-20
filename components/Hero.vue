@@ -20,9 +20,9 @@ export default {
               </div>
           </div>
           <div class="mt-10 flex gap-x-6 justify-center md:justify-start">
-              <Anchor class="!z-1" name="LinkedIn" type="external" />
-              <Anchor class="!z-1" name="Xing" type="external" />
-              <Anchor class="!z-1" name="GitHub" type="external" />
+              <Anchor class="!z-1" name="LinkedIn" type="external" url="https://www.linkedin.com/in/brandel-tsagueu-6a27bb205/" />
+              <Anchor class="!z-1" name="Xing" type="external" url="https://www.xing.com/profile/Brandel_Tsagueu/cv" />
+              <Anchor class="!z-1" name="GitHub" type="external" url="https://github.com/Brandel-T" />
           </div>
       </div>
     </div>

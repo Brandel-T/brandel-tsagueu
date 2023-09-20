@@ -9,3 +9,17 @@ export type JobType = {
     techStack: string[],
     company: string
 }
+
+export type ProjectType = {
+    title: string,
+    asset: string,
+    technologies: string[],
+    description: string,
+    type: 'mobile'|'web'|'branding'|'native app',
+    url: string,
+}
+
+export type TechStackType = {
+    category: 'Backend'|'Frontend'|'DevOps'|'Others',
+    technologies: string[],
+}

@@ -4,3 +4,10 @@ export const useDateFormat = (date: Date) => {
     const monthDate = date.getDate() < 10 ? `0${date.getDate()}` : date.getDate()
     return date.getFullYear() + '.' + month + '.' + monthDate
 }
+
+export const useImage = (pathName: string) => {
+    const assets = import.meta.glob('~/assets/images/*',{
+        eager: true, import: 'default'
+    })
+    return assets['/assets/images/'+pathName]
+}

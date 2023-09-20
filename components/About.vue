@@ -31,7 +31,7 @@
 
 <script lang="ts">
 export default {
-    setup() {
+    setup(props: any, ctx: any) {
         const abouts = ref<string[]>([
             "I study computer science at the Bingen University of Applied Sciences",
             "I’m currently contributing to digitalize a manually working process a Robert Bosch GmbH.",
@@ -45,6 +45,11 @@ export default {
             'software development',
             'drawing'
         ])
+
+        onMounted(() => {
+            console.log(props)
+            console.log(ctx)
+        })
 
         return { abouts, interests }
     }
