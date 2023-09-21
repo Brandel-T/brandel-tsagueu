@@ -1,7 +1,7 @@
 <template>
     <section class="about page-section">
         <SectionHeader title="About Me" />
-        <div class="section-body">
+        <div class="section-body !-z-1">
             <div class="about-content">
                 <ul class="list-disc pl-4">
                     <li
@@ -21,10 +21,12 @@
                     </span>
                 </div>
             </div>
-            <img
-                src="~/assets/images/profil-1.jpeg"
-                class="profile"
-            />
+            <div class="profile img-wrapper rounded-md after:outline after:outline-1 after:outline-tertiary hover:after:bg-tertiary">
+                <img
+                    src="~/assets/images/profil-1.jpeg"
+                    class="w-full h-full rounded-md"
+                />
+            </div>
         </div>
     </section>
 </template>
@@ -59,7 +61,34 @@ export default {
 <style scoped lang="scss">
 .section-body {
     @apply grid grid-cols-12 gap-12 justify-center
-    portrait:flex portrait:flex-col
+    portrait:flex portrait:flex-col relative
+}
+.img-wrapper::after {
+    content: '';
+    width: 100%;
+    height: 100%;
+    display: block;
+    position: absolute;
+    top: 2em;
+    left: 2em;
+    z-index: -1;
+    border-radius: 0.32em;
+    transition: all 1s;
+    mix-blend-mode: darken;
+}
+.img-wrapper:hover {
+    &::after {
+        top: 1em;
+        left: 1em;
+    }
+}
+.img-wrapper img {
+    filter:  brightness(130%);
+    isolation: isolate;
+    transition: all 1s ease-in-out;
+}
+.img-wrapper img:hover {
+    filter: grayscale(0%) ;
 }
 
 .about-content {
@@ -70,7 +99,8 @@ export default {
 }
 
 .profile {
-    @apply col-span-12 mt-16 md:mt-0
+    @apply
+        col-span-12 mt-16 md:mt-0
         w-3/4 md:w-full lg:w-3/4 mx-auto -order-1
         md:order-none md:col-start-8 md:col-span-5
         portrait:-order-1 portrait:w-3/4
@@ -79,13 +109,8 @@ export default {
         md:aspect-auto
         shadow-lg
         rounded-md
-        self-center
-        hover:outline
-        hover:outline-1
         outline-secondary
         relative
-        hover:shadow-lg
-        hover:shadow-secondary
         transition
         duration-300
         ease-in-out
@@ -93,4 +118,3 @@ export default {
         object-cover
 }
 </style>
-

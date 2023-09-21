@@ -1,6 +1,6 @@
 <template>
     <div
-        class="link relative hover:cursor-pointer w-fit"
+        class="anchor link relative hover:cursor-pointer w-fit"
         @mouseenter="hover = true"
         @mouseleave="hover = false"
     >
@@ -8,7 +8,7 @@
             <span class="w-fit mb-1">
                 <span v-if="type === 'internal' && hashtagVisible" class="hashtag">#</span>
                 <span class="text-slate-400 text-xl sm:text-2xl md:text-3xl font-light mr-2">
-                    <a :href="url" target="_blank">{{ name }}</a>
+                    <a :href="`${email ? 'mailto:' : ''}${ url }`" :target="'_blank'">{{ name }}</a>
                 </span>
                 <span
                     v-if="type === 'external' && externalIconVisible"
@@ -33,7 +33,8 @@ export default {
         name: { type: String, required: true },
         hashtagVisible: { type: Boolean, default: true },
         externalIconVisible: { type: Boolean, default: true },
-        url: { type: String, }
+        url: { type: String, },
+        email: { type: Boolean, default: false }
     },
     setup() {
         const hover = ref<boolean>(false)
@@ -54,12 +55,5 @@ export default {
 .link:hover .underline {
     border: none;
     width: 100%;
-}
-
-:deep(.icon) {
-    svg {
-        color: red !important;
-        background-color: red;
-    }
 }
 </style>

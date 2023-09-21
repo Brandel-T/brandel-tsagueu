@@ -44,7 +44,10 @@ export default {
                           <div class="body-text">
                           <span class="small flex items-center gap-2">
                               <IconCalendar class="!h-5 !w-5 icon-gray" />
-                              {{ useDateFormat(job.startDate) }} - {{ useDateFormat(job.endDate) }}</span>
+                              {{ useDateFormat(job.startDate) }} - <span :class="{
+                                  'text-secondary': useDateFormat(job.endDate) == 'Today'
+                              }">{{ useDateFormat(job.endDate) }}</span>
+                          </span>
                           </div>
                           <div class="heading-1 ">
                               <Anchor :name="job.company" :hashtag-visible="false" url="https://www.bosch.de/" />

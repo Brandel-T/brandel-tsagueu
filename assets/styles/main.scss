@@ -24,6 +24,11 @@ body {
   }
 }
 
+// ********** LOGO **********
+.logo {
+  @apply text-secondary font-semibold text-lg sm:text-xl
+}
+
 
 // ********** HEADINGS ******************
 .heading-1 {
@@ -32,6 +37,10 @@ body {
 .heading-2 {
   @apply text-base md:text-lg font-semibold
 }
+.heading-thin {
+  @apply text-base md:text-xl font-thin
+}
+
 .small {
   @apply text-xs text-soft
 }
@@ -152,4 +161,9 @@ body {
 }
 .accordion-header__container--desktop .accordion-header {
   @apply mb-2 w-full
+}
+
+// BACKGROUND GRADIENT
+.bg-gradient {
+  background: $bg-gradient
 }

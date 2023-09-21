@@ -9,7 +9,7 @@ export default {
 <template>
 <div class="hero container h-screen">
     <div class="w-full h-full my-auto grid grid-cols-12 justify-center items-center">
-      <div class="col-span-12 md:col-span-9 lg:col-span-8 xl:col-span-6 lg:col-span-6">
+      <div class="col-span-12 md:col-span-9 lg:col-span-8 xl:col-span-7">
           <div>
               <div class="body-text mb-4 text-center md:text-left">Hey, I’m</div>
               <div class="text-4xl md:text-5xl lg:text-6xl xl:text-7xl text-center md:text-left">

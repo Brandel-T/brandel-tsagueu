@@ -1,5 +1,5 @@
 <template>
-  <div class="app lg:px-10">
+  <div class="app">
     <div class="">
         <NavBar class="fixed left-0 right-0 shadow-lg mx-auto !bg-transparent" />
     </div>
@@ -10,11 +10,16 @@
     <WorkExperience id="work" :jobs="jobs" />
     <Projects id="projects" :projects="projects" />
     <TechStack id="tech-stack" :recentTechnologies="recentTechStack" :items="techStack" />
+    <div class="bg-gradient">
+      <Contact id="contact" />
+    </div>
+    <Footer />
   </div>
 </template>
 
 <script setup lang="ts">
 import {JobType, ProjectType, TechStackType} from "~/utils/models";
+import Footer from "~/components/Footer.vue";
 
 const jobs: JobType[] = [
     {
