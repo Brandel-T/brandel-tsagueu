@@ -1,11 +1,3 @@
-<script lang="ts">
-import {Anchor} from "#components";
-
-export default {
-  components: {Anchor}
-}
-</script>
-
 <template>
 <div class="hero container h-screen">
     <div class="w-full h-full my-auto grid grid-cols-12 justify-center items-center">
@@ -28,7 +20,3 @@ export default {
     </div>
 </div>
 </template>
-
-<style scoped lang="scss">
-
-</style>
