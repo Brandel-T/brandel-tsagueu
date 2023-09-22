@@ -28,7 +28,7 @@
         </div>
       </div>
       <div
-        class="profile img-wrapper rounded-md after:outline after:outline-1 after:outline-tertiary hover:after:bg-tertiary"
+        class="profile img-wrapper rounded-md after:outline after:outline-1 after:outline-tertiary hover:after:bg-tertiary max-h-80 max-w-xs relative md:-top-12"
       >
         <img
           src="~/assets/images/profil-1.jpeg"

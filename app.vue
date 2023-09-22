@@ -25,7 +25,6 @@
 
 <script setup lang="ts">
 import { JobType, ProjectType, TechStackType } from "~/utils/models";
-import Footer from "~/components/Footer.vue";
 
 const jobs: JobType[] = [
   {
@@ -80,7 +79,6 @@ const jobs: JobType[] = [
     endDate: new Date(),
   },
 ];
-
 const projects: ProjectType[] = [
   {
     title: "MoneyBack",
@@ -107,7 +105,6 @@ const projects: ProjectType[] = [
     url: "https://github.com/Brandel-T/flutter_expenses_app",
   },
 ];
-
 const recentTechStack: string[] = [
   "NestJS",
   "Angular",
@@ -123,7 +120,7 @@ const techStack: TechStackType[] = [
       "Java",
       "C++",
       "MongoDB",
-      "PostgresSQL",
+      "PostgreSQL",
       "SQLite",
       "NodeJS",
       "Spring Boot",
@@ -157,27 +154,49 @@ const techStack: TechStackType[] = [
 }
 .hero-wrapper::after {
   content: "";
-  width: 20rem;
-  height: 20rem;
+  width: 10rem;
+  height: 15rem;
   border: 2px solid $primary;
   position: absolute;
   left: 50%;
-  top: -45%;
+  // top: -45%;
+  top: 45%;
   border-radius: 50%;
-  background-color: $accent;
-  filter: blur(400px);
+  background-image: $bg-gradient;
+  background-size: 200%;
+  // filter: blur(400px);
+  filter: blur(110px) brightness(200%) contrast(1);
   z-index: -1;
+  animation: bg-animation 10s infinite alternate;
+  border-radius: 50% 50% 42% 58% / 53% 24% 76% 47%;
+  overflow: hidden;
 }
 .hero-wrapper::before {
   content: "";
-  width: 15rem;
+  width: 10rem;
   height: 5rem;
-  border: 5rem solid $primary;
+  border: 4rem solid $primary;
   position: absolute;
   left: -10%;
   top: 35%;
   border-radius: 50%;
-  filter: blur(250px);
+  filter: blur(300px);
   z-index: -1;
+}
+
+@keyframes bg-animation {
+  0% {
+    background-position: left;
+    background-size: 150%;
+    top: 25%;
+  }
+  50% {
+    background-size: 200%;
+  }
+  100% {
+    background-position: right;
+    background-size: 120%;
+    top: 50%;
+  }
 }
 </style>
