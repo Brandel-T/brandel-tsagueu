@@ -7,7 +7,7 @@ export default {
 </script>
 
 <template>
-  <div class="section-header">
+  <div class="section-header -z-20">
     <div class="section-header__container">
       <span class="hashtag">#</span>
       <span class="section-title">{{ title }}</span>

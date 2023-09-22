@@ -1,9 +1,9 @@
 <template>
-  <section class="about page-section">
+  <section class="about -z-20 page-section">
     <SectionHeader title="About Me" />
-    <div class="section-body !-z-1">
-      <div class="about-content">
-        <ul class="list-disc pl-4">
+    <div class="section-body -z-1">
+      <div class="about-content -z-20">
+        <ul class="list-disc pl-4 -z-20">
           <li
             v-for="(about, index) in abouts"
             :key="index"
@@ -28,11 +28,12 @@
         </div>
       </div>
       <div
-        class="profile img-wrapper rounded-md after:outline after:outline-1 after:outline-tertiary hover:after:bg-tertiary max-h-80 max-w-xs relative md:-top-12"
+        class="profile img-wrapper z-10 rounded-md after:outline after:outline-1 after:outline-tertiary hover:after:bg-tertiary max-h-80 max-w-xs relative md:-top-12"
       >
         <img
           src="~/assets/images/profil-1.jpeg"
           class="w-full h-full rounded-md"
+          alt=""
         />
       </div>
     </div>
@@ -55,12 +56,6 @@ export default {
       "software development",
       "drawing",
     ]);
-
-    onMounted(() => {
-      console.log(props);
-      console.log(ctx);
-    });
-
     return { abouts, interests };
   },
 };

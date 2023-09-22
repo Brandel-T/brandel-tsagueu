@@ -9,7 +9,7 @@
         <div>
           <div class="body-text mb-4 text-center md:text-left">Hey, I’m</div>
           <div
-            class="text-4xl md:text-5xl lg:text-6xl xl:text-7xl text-center md:text-left"
+            class="-z-20 text-4xl md:text-5xl lg:text-6xl xl:text-7xl text-center md:text-left"
           >
             Brandel Tsagueu,
             <span class="highlight">Student and Software developer</span> in
@@ -41,10 +41,10 @@
         </div>
       </div>
       <div
-        class="shapes-container mx-auto items-stretch align-middle justify-self-center left-32 md:-left-12 w-60 !h-60 !-top-52 md:!top-2 md:!h-80 md:!w-80 ld:h-96"
+        class="shapes-container -z-20 mx-auto items-stretch align-middle justify-self-center left-32 md:-left-12 w-60 !h-60 !-top-52 md:!top-2 md:!h-80 md:!w-80 ld:h-96"
       >
-        <div class="shape-1 left-16 top-20 md:top-32 md:left-32"></div>
-        <div class="shape-2"></div>
+        <div class="shape-1 left-16 top-20 -z-20 md:top-32 md:left-32"></div>
+        <div class="shape-2 -z-20"></div>
       </div>
     </div>
   </div>

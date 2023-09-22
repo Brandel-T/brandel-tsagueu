@@ -1,6 +1,6 @@
 <template>
   <div
-    class="anchor link relative hover:cursor-pointer w-fit"
+    class="anchor z-1 link relative hover:cursor-pointer w-fit"
     @mouseenter="hover = true"
     @mouseleave="hover = false"
   >

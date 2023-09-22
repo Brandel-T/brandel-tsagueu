@@ -66,7 +66,7 @@ export default {
 
 <style scoped lang="scss">
 .menu-item {
-  @apply py-3 px-4 sm:text-lg md:text-xl hover:text-secondary transition-all duration-500 ease-in-out;
+  @apply z-50 py-3 px-4 sm:text-lg md:text-xl hover:text-secondary transition-all duration-500 ease-in-out;
 }
 .menu-item {
   display: block;

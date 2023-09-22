@@ -9,7 +9,7 @@
           <div class="heading-thin contact-label">E-mail</div>
           <div class="heading-1">
             <Anchor
-              class="heading-1"
+              class="heading-1 !z-0"
               url="johndoe@gmail.com"
               name="Tsagueubrandel@gmail.com"
               :email="true"
@@ -21,19 +21,19 @@
             class="col-start-2 col-span-2 row-start-2 row-span-2 flex flex-col gap-2"
           >
             <Anchor
-              class="heading-1"
+              class="heading-1 !z-0"
               url="https://www.linkedin.com/in/brandel-tsagueu-6a27bb205/"
               name="LinkedIn"
               type="external"
             />
             <Anchor
-              class="heading-1"
+              class="heading-1 !z-0"
               url="https://www.xing.com/profile/Brandel_Tsagueu/cv"
               name="Xing"
               type="external"
             />
             <Anchor
-              class="heading-1"
+              class="heading-1 !z-0"
               url="https://github.com/Brandel-T"
               name="GitHub"
               type="external"
