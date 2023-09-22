@@ -1,102 +1,134 @@
 <script lang="ts">
-import {PropType} from "@vue/runtime-core";
-import {JobType} from "~/utils/models";
-import {useDateFormat} from "~/components/composables/utils";
+import { PropType } from "vue";
+import { JobType } from "~/utils/models";
+import { useDateFormat } from "~/composables/utils";
 
 export default {
-    methods: {useDateFormat},
-    props: {
-        jobs: { type: Object as PropType<JobType[]>, required: true }
-    },
-    setup() {
-        const selectedJob = ref<number>(0)
-        function selectJob(accordionIndex: number) {
-            selectedJob.value = accordionIndex;
-        }
-        return { selectedJob, selectJob }
+  props: {
+    jobs: { type: Object as PropType<JobType[]>, required: true },
+  },
+  setup() {
+    const selectedJob = ref<number>(0);
+    function selectJob(accordionIndex: number) {
+      selectedJob.value = accordionIndex;
     }
-}
+    return { selectedJob, selectJob };
+  },
+  methods: { useDateFormat },
+};
 </script>
 
 <template>
   <section class="work-experience page-section">
-      <SectionHeader title="Work experience" />
-      <div class="section-body">
-          <div>
-              <div
-                  class="accordion"
-                  v-for="(job, index) in jobs"
-                  :key="job.startDate">
-                  <div
-                      :class="{'accordion-open': selectedJob === index, 'accordion-close': selectedJob !== index}"
-                      class="accordion-header"
-                      @click="selectJob(index)"
-                  >
-                      <span :class="{'text-accent': selectedJob == index}">{{ job.title }}</span>
-                      <IconPlus v-if="!(selectedJob === index)" />
-                      <IconMinus v-else class="icon-secondary-accent" />
-                  </div>
-                  <div v-if="selectedJob === index"
-                       :class="{'hidden': !(selectedJob === index)}"
-                       class="accordion-body transition-all duration-300 ease-in"
-                  >
-                      <div class="mb-6 mt-4">
-                          <div class="body-text">
-                          <span class="small flex items-center gap-2">
-                              <IconCalendar class="!h-5 !w-5 icon-gray" />
-                              {{ useDateFormat(job.startDate) }} - <span :class="{
-                                  'text-secondary': useDateFormat(job.endDate) == 'Today'
-                              }">{{ useDateFormat(job.endDate) }}</span>
-                          </span>
-                          </div>
-                          <div class="heading-1 ">
-                              <Anchor :name="job.company" :hashtag-visible="false" url="https://www.bosch.de/" />
-                          </div>
-                          <div  class="flex items-center gap-2 text-white font-light text-base">
-                              <IconTime class="!h-6 !w-6" />
-                              {{ job.workFormat }} <span class="text-secondary">/</span> {{ job.locationFormat }}</div>
-                      </div>
-                      <div class="mb-4">
-                          <div class="body-text mb-4">{{ job.description }}</div>
-                          <div class="highlight">Requirements</div>
-                          <div class="body-text">
-                              <ul class="list-disc pl-4">
-                                  <li v-for="(requirement, index) in job.requirements"
-                                      :key="index"
-                                      class="body-text"
-                                  >{{ requirement }}</li>
-                              </ul>
-                          </div>
-                      </div>
-                      <div class="">
-                          <div class="highlight mb-2">Technologies used</div>
-                          <div class="body-text">
-                              <ul class="flex flex-wrap gap-2 justify-center md:justify-start">
-                                  <li v-for="(tech, index) in job.techStack"
-                                      :key="index"
-                                      class="badge"
-                                  >{{ tech }}</li>
-                              </ul>
-                          </div>
-                      </div>
-                  </div>
-              </div>
+    <SectionHeader title="Work experience" />
+    <div class="section-body">
+      <div>
+        <div
+          v-for="(job, index) in jobs"
+          :key="job.startDate"
+          class="accordion"
+        >
+          <div
+            :class="{
+              'accordion-open': selectedJob === index,
+              'accordion-close': selectedJob !== index,
+            }"
+            class="accordion-header"
+            @click="selectJob(index)"
+          >
+            <span :class="{ 'text-accent': selectedJob == index }">{{
+              job.title
+            }}</span>
+            <IconPlus v-if="!(selectedJob === index)" />
+            <IconMinus v-else class="icon-secondary-accent" />
           </div>
-          <div class="accordion-header__container--desktop">
+          <div
+            v-if="selectedJob === index"
+            :class="{ hidden: !(selectedJob === index) }"
+            class="accordion-body transition-all duration-300 ease-in"
+          >
+            <div class="mb-6 mt-4">
+              <div class="body-text">
+                <span class="small flex items-center gap-2">
+                  <IconCalendar class="!h-5 !w-5 icon-gray" />
+                  {{ useDateFormat(job.startDate) }} -
+                  <span
+                    :class="{
+                      'text-secondary': useDateFormat(job.endDate) == 'Today',
+                    }"
+                    >{{ useDateFormat(job.endDate) }}</span
+                  >
+                </span>
+              </div>
+              <div class="heading-1">
+                <Anchor
+                  :name="job.company"
+                  :hashtag-visible="false"
+                  url="https://www.bosch.de/"
+                />
+              </div>
               <div
-                  v-for="(job, index) in jobs" :key="job.startDate"
-                  :class="{'accordion-open': selectedJob === index, 'accordion-close': selectedJob !== index}"
-                  class="accordion-header"
-                  @click="selectJob(index)"
+                class="flex items-center gap-2 text-white font-light text-base"
               >
-                  <span :class="{'text-accent': selectedJob == index}">{{ job.title }}</span>
-                  <IconPlus v-if="!(selectedJob === index)" />
-                  <IconMinus v-else class="icon-secondary-accent" />
+                <IconTime class="!h-6 !w-6" />
+                {{ job.workFormat }} <span class="text-secondary">/</span>
+                {{ job.locationFormat }}
               </div>
+            </div>
+            <div class="mb-4">
+              <div class="body-text mb-4">{{ job.description }}</div>
+              <div class="highlight">Requirements</div>
+              <div class="body-text">
+                <ul class="list-disc pl-4">
+                  <li
+                    v-for="(requirement, index) in job.requirements"
+                    :key="index"
+                    class="body-text"
+                  >
+                    {{ requirement }}
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="">
+              <div class="highlight mb-2">Technologies used</div>
+              <div class="body-text">
+                <ul
+                  class="flex flex-wrap gap-2 justify-center md:justify-start"
+                >
+                  <li
+                    v-for="(tech, index) in job.techStack"
+                    :key="index"
+                    class="badge"
+                  >
+                    {{ tech }}
+                  </li>
+                </ul>
+              </div>
+            </div>
           </div>
+        </div>
       </div>
+      <div class="accordion-header__container--desktop">
+        <div
+          v-for="(job, index) in jobs"
+          :key="job.startDate"
+          :class="{
+            'accordion-open': selectedJob === index,
+            'accordion-close': selectedJob !== index,
+          }"
+          class="accordion-header"
+          @click="selectJob(index)"
+        >
+          <span :class="{ 'text-accent': selectedJob == index }">{{
+            job.title
+          }}</span>
+          <IconPlus v-if="!(selectedJob === index)" />
+          <IconMinus v-else class="icon-secondary-accent" />
+        </div>
+      </div>
+    </div>
   </section>
 </template>
 
-<style scoped lang="scss">
-</style>
+<style scoped lang="scss"></style>

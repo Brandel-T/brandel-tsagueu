@@ -1,19 +1,18 @@
 <script lang="ts">
 export default {
-    props: {
-        title: {type: String, required: true}
-    }
-}
+  props: {
+    title: { type: String, required: true },
+  },
+};
 </script>
 
 <template>
-<div class="section-header">
-  <div class="section-header__container">
+  <div class="section-header">
+    <div class="section-header__container">
       <span class="hashtag">#</span>
       <span class="section-title">{{ title }}</span>
+    </div>
   </div>
-</div>
 </template>
 
-<style scoped lang="scss">
-</style>
+<style scoped lang="scss"></style>

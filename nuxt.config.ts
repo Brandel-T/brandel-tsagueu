@@ -1,22 +1,20 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: true },
-  modules: [
-    '@nuxtjs/tailwindcss',
-  ],
-    tailwindcss: {
-    cssPath: '~/assets/styles/main.scss',
-    configPath: 'tailwind.config',
-    exposeConfig: true
+  modules: ["@nuxtjs/tailwindcss"],
+  tailwindcss: {
+    cssPath: "~/assets/styles/main.scss",
+    configPath: "tailwind.config",
+    exposeConfig: true,
   },
   vite: {
     css: {
       preprocessorOptions: {
         scss: {
-          additionalData: '@use "@/assets/styles/_colors.scss" as *;'
-        }
-      }
-    }
+          additionalData: '@use "@/assets/styles/_colors.scss" as *;',
+        },
+      },
+    },
   },
   postcss: {
     plugins: {
@@ -25,6 +23,6 @@ export default defineNuxtConfig({
     },
   },
   build: {
-    transpile: ['gsap']
-  }
-})
+    transpile: ["gsap"],
+  },
+});
