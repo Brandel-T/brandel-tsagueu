@@ -3,8 +3,13 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   modules: [
     '@nuxtjs/tailwindcss',
+    '@nuxtjs/strapi',
   ],
-    tailwindcss: {
+  strapi: {
+    url: process.env.STRAPI_URL || 'http://localhost:1337',
+    prefix: '/api'
+  },
+  tailwindcss: {
     cssPath: '~/assets/styles/main.scss',
     configPath: 'tailwind.config',
     exposeConfig: true

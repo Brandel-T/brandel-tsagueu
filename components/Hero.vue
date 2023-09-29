@@ -1,9 +1,4 @@
 <script lang="ts">
-import {Anchor} from "#components";
-
-export default {
-  components: {Anchor}
-}
 </script>
 
 <template>

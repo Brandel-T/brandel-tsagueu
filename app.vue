@@ -20,6 +20,7 @@
 <script setup lang="ts">
 import {JobType, ProjectType, TechStackType} from "~/utils/models";
 import Footer from "~/components/Footer.vue";
+import {useAsyncData} from "#app";
 
 const jobs: JobType[] = [
     {
@@ -95,6 +96,14 @@ const techStack: TechStackType[] = [
         technologies: ['Linux', 'Windows', 'Mac', 'Bash/Shell Scripting', 'Docker',]
     }
 ]
+
+const { find } = useStrapi()
+useAsyncData(() => find<any[]>('heroes'))
+  .then(({ data, pending, refresh }) => {
+      console.log(data.value)
+      console.log(pending.value)
+      console.log(refresh)
+  })
 </script>
 
 <style lang="scss" scoped>

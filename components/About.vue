@@ -48,11 +48,6 @@ export default {
             'drawing'
         ])
 
-        onMounted(() => {
-            console.log(props)
-            console.log(ctx)
-        })
-
         return { abouts, interests }
     }
 }
