@@ -7,6 +7,10 @@
   color: #FFFFFF;
   box-sizing: border-box;
   scroll-behavior: smooth;
+
+  &::selection {
+    background-color: $secondary;
+  }
 }
 
 * {
@@ -27,6 +31,11 @@ body {
 // ********** LOGO **********
 .logo {
   @apply text-secondary font-semibold text-lg sm:text-xl
+}
+
+// *********** NAV BAR ************
+.active-nav-link {
+  color: $primary;
 }
 
 
@@ -50,7 +59,7 @@ body {
 }
 
 .body-text {
-  @apply text-sm sm:text-base text-soft
+  @apply text-base sm:text-lg text-soft
 }
 
 // ************** HASHTAG ****************
@@ -60,12 +69,12 @@ body {
 
 // *************** SECTIONS ******************
 .section-title {
-  @apply font-bold text-xl md:text-2xl capitalize
+  @apply font-bold text-xl md:text-2xl capitalize -z-10
 }
 .page-section {
   @apply container min-h-screen
   flex flex-col gap-4 justify-center
-  sm:gap-6 md:gap-12
+  sm:gap-6 md:gap-12 relative
 }
 .section-header {
   @apply basis-28 md:basis-40 flex items-end
@@ -95,7 +104,7 @@ body {
   rounded-full text-xs md:text-sm
   text-secondary capitalize
   bg-tertiary
-  px-4 py-1
+  px-4 py-1 -z-10
   justify-center items-center gap-2
   hover:outline-tertiary hover:opacity-75
 }
@@ -114,6 +123,7 @@ body {
   color: $text-color;
   height: 2rem;
   width: 2rem;
+  z-index: -1;
 
   &:hover {
     cursor: pointer;

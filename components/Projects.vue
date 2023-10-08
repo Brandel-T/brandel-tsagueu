@@ -6,13 +6,15 @@ import {useDateFormat, useImage} from "~/components/composables/utils";
 export default {
     methods: {useImage, useDateFormat},
     props: {
-        projects: { type: Object as PropType<ProjectType[]>, required: true }
+        projects: {
+            type: Array<ProjectType>,
+            required: true,
+        }
     },
     setup() {
         const selectedProject = ref<number>(0)
         function selectProject(accordionIndex: number) {
             selectedProject.value = accordionIndex;
-            console.log(accordionIndex)
         }
         return { selectedProject, selectProject }
     }
@@ -39,18 +41,29 @@ export default {
                     <div class="badge-outline">{{ project.type }}</div>
                 </div>
                 <div v-if="selectedProject === index"
-                     :class="{'hidden': !(selectedProject === index)}"
-                     class="accordion-body transition-all duration-300 ease-in"
+                    :class="{'hidden': !(selectedProject === index)}"
+                    class="accordion-body transition-all duration-300 ease-in"
                 >
                     <div class="mb-4">
                         <div class="highlight mx-auto mt-6 w-fit">Description</div>
                         <div class="body-text mb-4 mx-auto w-fit">{{ project.description }}</div>
                     </div>
-                    <img
-                        :src="useImage(project.asset)"
-                        alt="project asset image"
-                        class="rounded mx-auto"
-                    />
+                    <div class="h-96">
+                        <div class="project__assets">
+                            <img
+                                class="project__assets--item"
+                                v-for="(asset, index) in project.assets"
+                                :key="index"
+                                :src="asset"
+                                alt=""
+                            >
+                        </div>
+                        <!-- <img
+                            :src="String(useImage(project.asset))"
+                            alt="project asset image"
+                            class="rounded mx-auto"
+                        /> -->
+                    </div>
                     <div class="">
                         <div class="highlight mb-2 mx-auto mt-4 w-fit">Technologies used</div>
                         <div class="body-text w-fit mx-auto">
@@ -79,6 +92,31 @@ export default {
 </section>
 </template>
 
-<style scoped lang="scss">
+<style lang="scss" scoped>
+.accordion-body {
+    @apply flex flex-col
+}
+.project__assets {
+    @apply flex-1 flex h-full snap-mandatory snap-x overflow-x-scroll overflow-y-hidden
+}
+.project__assets::-webkit-scrollbar {
+    height: 0.5rem;
+    border: 1px solid $accent;
+    margin-top: 1rem;
+    border-radius: 4rem;
+    position: relative;
 
+    &::after,
+    &::before {
+        content: '';
+        display: block;
+        width: 2rem;
+        height: 100%;
+        position: absolute;
+    }
+}
+
+.project__assets--item {
+    @apply inset-0 h-full snap-center mr-2 mb-4
+}
 </style>

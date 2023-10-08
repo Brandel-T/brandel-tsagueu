@@ -4,10 +4,10 @@
         <NavBar class="fixed left-0 right-0 shadow-lg mx-auto !bg-transparent" />
     </div>
     <div class="hero-wrapper after:animate-pulse before:animate-pulse before:delay-200 before:duration-1000">
-        <Hero id="hero" class="z-1" />
+        <Hero :intro="hero" id="hero" class="z-1" />
     </div>
     <About id="about" class="-z-1" />
-    <WorkExperience id="work" :jobs="jobs" />
+    <WorkExperience id="work"/>
     <Projects id="projects" :projects="projects" />
     <TechStack id="tech-stack" :recentTechnologies="recentTechStack" :items="techStack" />
     <div class="bg-gradient">
@@ -19,9 +19,12 @@
 
 <script setup lang="ts">
 import {JobType, ProjectType, TechStackType} from "~/utils/models";
-import Footer from "~/components/Footer.vue";
-import {useAsyncData} from "#app";
+import {useProjects} from "~/components/composables/services/projects";
+import {useJobs} from "~/components/composables/services/jobs";
 
+const runtimeConfig = useRuntimeConfig()
+
+/*
 const jobs: JobType[] = [
     {
         title: 'Software Developer',
@@ -82,6 +85,7 @@ const projects: ProjectType[] = [
         url: 'https://github.com/Brandel-T/flutter_expenses_app'
     },
 ]
+ */
 
 const recentTechStack: string[] = ['NestJS', 'Angular', 'MongoDB', 'Flutter', 'Nuxt', 'SQLite']
 const techStack: TechStackType[] = [
@@ -97,12 +101,40 @@ const techStack: TechStackType[] = [
     }
 ]
 
+const projects = ref<ProjectType[]>([])
+const hero = ref('')
+
 const { find } = useStrapi()
-useAsyncData(() => find<any[]>('heroes'))
-  .then(({ data, pending, refresh }) => {
-      console.log(data.value)
-      console.log(pending.value)
-      console.log(refresh)
+useAsyncData(() => find<any>('heroes'))
+  .then(({ data }) => {
+    hero.value = data.value?.data[0].attributes.intro + ''
+  })
+
+useProjects<ProjectType>()
+  .then(({ data }) => {
+    projects.value = data.value?.data.map((project) => {
+      const {
+        assets,
+        description,
+        technologies,
+        title,
+        type,
+        url
+      } = project.attributes as any
+
+      return {
+        description,
+        title,
+        type,
+        url,
+        assets: assets.data.map((asset: any) => runtimeConfig.public.apiUrl + asset.attributes.url),
+        technologies: technologies.data.map((tech: any) => tech.attributes.name),
+      } as ProjectType
+    }) || []
+  })
+
+useJobs<JobType>()
+  .then(({ data, pending }) => {
   })
 </script>
 

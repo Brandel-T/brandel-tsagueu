@@ -1,8 +1,15 @@
 export const useDateFormat = (date: Date) => {
+    if (!date) return 'Today'
     if (date.getMonth() === (new Date()).getMonth()) return 'Today'
-    const month = date.getMonth() < 10 ? `0${date.getMonth()+1}` : date.getMonth()
+
+    const months = [
+        'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+        'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
+    ]
+
+    const month = months[date.getMonth()]
     const monthDate = date.getDate() < 10 ? `0${date.getDate()}` : date.getDate()
-    return date.getFullYear() + '.' + month + '.' + monthDate
+    return monthDate + '. ' + month + ' ' + date.getFullYear()
 }
 
 export const useImage = (pathName: string) => {

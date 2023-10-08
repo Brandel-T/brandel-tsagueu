@@ -1,9 +1,15 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: true },
+  runtimeConfig: {
+    public: {
+      apiUrl: process.env.STRAPI_URL
+    }
+  },
   modules: [
     '@nuxtjs/tailwindcss',
     '@nuxtjs/strapi',
+    '@nuxt/content',
   ],
   strapi: {
     url: process.env.STRAPI_URL || 'http://localhost:1337',
@@ -13,6 +19,16 @@ export default defineNuxtConfig({
     cssPath: '~/assets/styles/main.scss',
     configPath: 'tailwind.config',
     exposeConfig: true
+  },
+  content: {
+    highlight: {
+      theme: 'material-theme-lighter'
+    }
+  },
+  imports: {
+    dirs: [
+      'composables/**'
+    ]
   },
   vite: {
     css: {

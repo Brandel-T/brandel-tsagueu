@@ -11,7 +11,7 @@ export default {
 </script>
 
 <template>
-<div class="tech-stack page-section">
+<section class="tech-stack page-section">
     <SectionHeader title="Tech Stack" />
     <div class="section-body flex flex-col items-center justify-center">
         <div class="text mb-8 md:mb-12">
@@ -40,7 +40,7 @@ export default {
             </div>
         </div>
     </div>
-</div>
+</section>
 </template>
 
 <style scoped lang="scss">
