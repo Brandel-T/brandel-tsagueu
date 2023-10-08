@@ -3,8 +3,12 @@ import { PropType } from "vue";
 import { ProjectType } from "~/utils/models";
 
 export default {
+  methods: { useImage, useDateFormat },
   props: {
-    projects: { type: Object as PropType<ProjectType[]>, required: true },
+    projects: {
+      type: Array<ProjectType>,
+      required: true,
+    },
   },
   setup() {
     const selectedProject = ref<number>(0);
@@ -37,6 +41,8 @@ export default {
             <span :class="{ 'text-accent': selectedProject == index }">{{
               project.title
             }}</span>
+            <!-- <IconPlus v-if="!(selectedProject === index)" />
+                    <IconMinus v-else class="icon-secondary-accent" /> -->
             <div class="badge-outline">{{ project.type }}</div>
           </div>
           <div
@@ -50,11 +56,22 @@ export default {
                 {{ project.description }}
               </div>
             </div>
-            <img
-              :src="useImage(project.asset)"
-              alt="project asset image"
-              class="rounded mx-auto"
-            />
+            <div class="h-96">
+              <div class="project__assets">
+                <img
+                  v-for="(asset, index) in project.assets"
+                  :key="index"
+                  class="project__assets--item"
+                  :src="asset"
+                  alt=""
+                />
+              </div>
+              <!-- <img
+                            :src="String(useImage(project.asset))"
+                            alt="project asset image"
+                            class="rounded mx-auto"
+                        /> -->
+            </div>
             <div class="">
               <div class="highlight mb-2 mx-auto mt-4 w-fit">
                 Technologies used
@@ -97,4 +114,31 @@ export default {
   </section>
 </template>
 
-<style scoped lang="scss"></style>
+<style lang="scss" scoped>
+.accordion-body {
+  @apply flex flex-col;
+}
+.project__assets {
+  @apply flex-1 flex h-full snap-mandatory snap-x overflow-x-scroll overflow-y-hidden;
+}
+.project__assets::-webkit-scrollbar {
+  height: 0.5rem;
+  border: 1px solid $accent;
+  margin-top: 1rem;
+  border-radius: 4rem;
+  position: relative;
+
+  &::after,
+  &::before {
+    content: "";
+    display: block;
+    width: 2rem;
+    height: 100%;
+    position: absolute;
+  }
+}
+
+.project__assets--item {
+  @apply inset-0 h-full snap-center mr-2 mb-4;
+}
+</style>

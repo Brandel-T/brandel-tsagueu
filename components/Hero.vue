@@ -1,22 +1,33 @@
+<script lang="ts">
+export default {
+  props: {
+    intro: { type: String, required: true },
+  },
+};
+</script>
+
 <template>
   <div class="hero container h-screen">
     <div
-      class="w-full h-full my-auto grid grid-cols-12 grid-rows-5 md:grid-rows-1 justify-center items-center overflow-y-visible"
+      class="w-full h-full my-auto grid grid-cols-12 justify-center items-center"
     >
-      <div
-        class="col-span-12 md:col-span-9 lg:col-span-8 xl:col-span-7 !z-20 row-span-4"
-      >
+      <div class="col-span-12 md:col-span-9 lg:col-span-8 xl:col-span-7">
         <div>
-          <div class="body-text mb-4 text-center md:text-left">Hey, I’m</div>
+          <div class="body-text mb-4 text-center md:text-left font-light">
+            Hey, I’m
+          </div>
           <div
-            class="-z-20 text-4xl md:text-5xl lg:text-6xl xl:text-7xl text-center md:text-left"
+            class="text-4xl md:text-5xl lg:text-6xl xl:text-7xl text-center md:text-left"
           >
             Brandel Tsagueu,
             <span class="highlight">Student and Software developer</span> in
             part time
           </div>
-          <div class="body-text mt-6 text-center md:text-left">
-            I use code to build things for fun and on demand
+          <div class="mt-6 text-center md:text-left">
+            <span v-if="intro" class="body-text font-light">{{ intro }}</span>
+            <span v-else class="body-text font-light"
+              >I use code to build things for fun and on demand</span
+            >
           </div>
         </div>
         <div class="mt-10 flex gap-x-6 justify-center md:justify-start">

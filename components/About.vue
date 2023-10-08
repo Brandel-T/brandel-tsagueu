@@ -1,17 +1,33 @@
 <template>
-  <section class="about -z-20 page-section">
+  <section class="about page-section">
     <SectionHeader title="About Me" />
-    <div class="section-body -z-1">
-      <div class="about-content -z-20">
-        <ul class="list-disc pl-4 -z-20">
-          <li
-            v-for="(about, index) in abouts"
-            :key="index"
-            class="body-text mb-3"
-          >
-            {{ about }}
-          </li>
-        </ul>
+    <div class="section-body !-z-1">
+      <div class="about-content">
+        <!-- <ul class="list-disc pl-4">
+                    <li
+                        v-for="(about, index) in abouts"
+                        :key="index"
+                        class="body-text mb-3 "
+                    >{{ about }}</li>
+                </ul> -->
+        <ContentDoc
+          path="/about"
+          class="body-text text-center md:text-left font-light backdrop-blur border border-tertiary rounded-md py-4 px-6 bg-gradient"
+        />
+        <!-- <div lang="md" v-html="aboutMe"></div> -->
+        <div class="flex justify-center md:justify-start gap-x-12 mt-6">
+          <div class="body-text flex items-center gap-2 -z-10">
+            <strong class="text-[2.5rem] md:text-[3.5rem] font-normal"
+              >2+</strong
+            >
+            years Experience
+          </div>
+          <div class="body-text flex items-center gap-2 -z-10">
+            <IconLocation
+              class="!w-[2.5rem] !h-[2.5rem] md:!w-[3.5rem] md:!h-[3.5rem]"
+            />Germany, RLP
+          </div>
+        </div>
         <div
           class="mb-4 text-accent text-center md:text-left text-xl md:text-2xl mt-12 capitalize"
         >
@@ -28,27 +44,37 @@
         </div>
       </div>
       <div
-        class="profile img-wrapper z-10 rounded-md after:outline after:outline-1 after:outline-tertiary hover:after:bg-tertiary max-h-80 max-w-xs relative md:-top-12"
+        class="profile img-wrapper rounded-md after:outline after:outline-1 after:outline-tertiary hover:after:bg-tertiary"
       >
+        <!--
+                <img
+                    src="~/assets/images/profil-1.jpeg"
+                    class="w-full h-full rounded-md"
+                />
+                -->
         <img
-          src="~/assets/images/profil-1.jpeg"
+          v-if="profileImage"
+          :src="profileImage"
           class="w-full h-full rounded-md"
-          alt=""
         />
       </div>
     </div>
   </section>
 </template>
 
-<script lang="ts">
+<script>
+import { useAbout } from "~/components/composables/services/about";
+
 export default {
-  setup(props: any, ctx: any) {
-    const abouts = ref<string[]>([
+  async setup() {
+    const runtimeConfig = useRuntimeConfig();
+
+    const abouts = ref([
       "I study computer science at the Bingen University of Applied Sciences",
       "I’m currently contributing to digitalize a manually working process a Robert Bosch GmbH.",
       "Well, the way they make shows is, they make one show. That show's called a pilot. Then they show that show to the people who make shows, and on the strength of that one show they decide if they're going to make more shows. Some pilots get picked and become television programs. Some don't,",
     ]);
-    const interests = ref<string[]>([
+    const interestsList = ref([
       "mathematics",
       "data science",
       "big data",
@@ -56,7 +82,25 @@ export default {
       "software development",
       "drawing",
     ]);
-    return { abouts, interests };
+    const aboutMe = ref("");
+    const profileImage = ref("");
+    const interests = ref([]);
+    const about = ref("");
+
+    useAsyncData("about", () => queryContent("/about").findOne()).then(
+      ({ data }) => {
+        about.value = data.value;
+      },
+    );
+    useAbout().then(({ data, pending }) => {
+      profileImage.value = `${runtimeConfig.public.apiUrl}${data.value.data.attributes.profileImage.data.attributes.url}`;
+      interests.value = data.value.data.attributes.interests.data.map(
+        (interest) => interest.attributes.name,
+      );
+      aboutMe.value = data.value.data.attributes.description;
+    });
+
+    return { aboutMe, interests, profileImage, about };
   },
 };
 </script>
@@ -96,7 +140,7 @@ export default {
 
 .about-content {
   @apply col-span-12
-        self-center
+        self-start
         h-fit
         md:col-span-7;
 }
@@ -106,13 +150,13 @@ export default {
         w-3/4 md:w-full lg:w-3/4 mx-auto -order-1
         md:order-none md:col-start-8 md:col-span-5
         portrait:-order-1 portrait:w-3/4
-        self-center
+        self-start
         aspect-square
         md:aspect-auto
         shadow-lg
         rounded-md
         outline-secondary
-        relative
+        relative top-4
         transition
         duration-300
         ease-in-out

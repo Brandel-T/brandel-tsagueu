@@ -1,18 +1,50 @@
 <script lang="ts">
 import { PropType } from "vue";
 import { JobType } from "~/utils/models";
-import { useDateFormat } from "~/composables/utils";
+import { useDateFormat } from "~/components/composables/utils";
+import { useWorkExperience } from "~/components/composables/services/work";
+import { useJobs } from "~/components/composables/services/jobs";
 
 export default {
   props: {
-    jobs: { type: Object as PropType<JobType[]>, required: true },
+    jobs: { type: Object as PropType<JobType[]>, required: false },
   },
   setup() {
+    const jobs = ref<JobType[]>();
+
+    useJobs<JobType>().then(({ data, pending }) => {
+      jobs.value = data.value?.data.map((job) => {
+        const attributes: any = job.attributes;
+        return {
+          title: attributes.title,
+          startDate: attributes.startDate,
+          endDate: attributes.endDate,
+          locationFormat: attributes.locationFormat,
+          workFormat: attributes.workFormat,
+          description: attributes.description,
+          company: {
+            name: attributes.company.name,
+            url: attributes.company.url,
+            hasHashtag: attributes.company.hasHashtag,
+            isEmail: attributes.company.isEmail,
+            type: attributes.company.type,
+            showExternalIcon: attributes.company.showExternalIcon,
+          },
+          requirements: attributes.job_requirements.data.map(
+            (requirement: any) => requirement.attributes.title,
+          ),
+          techStack: attributes.technologiesUsed.data.map(
+            (tech: any) => tech.attributes.name,
+          ),
+        } as JobType;
+      });
+    });
+
     const selectedJob = ref<number>(0);
     function selectJob(accordionIndex: number) {
       selectedJob.value = accordionIndex;
     }
-    return { selectedJob, selectJob };
+    return { selectedJob, jobs, selectJob };
   },
   methods: { useDateFormat },
 };
@@ -51,32 +83,36 @@ export default {
               <div class="body-text">
                 <span class="small flex items-center gap-2">
                   <IconCalendar class="!h-5 !w-5 icon-gray" />
-                  {{ useDateFormat(job.startDate) }} -
-                  <span
-                    :class="{
-                      'text-secondary': useDateFormat(job.endDate) == 'Today',
-                    }"
-                    >{{ useDateFormat(job.endDate) }}</span
-                  >
+                  {{ useDateFormat(new Date(job.startDate)) }} -
+                  <span>
+                    <span v-if="job.endDate" class="small">{{
+                      useDateFormat(new Date(job.endDate))
+                    }}</span>
+                    <span v-else :class="{ 'text-secondary': !job.endDate }"
+                      >Today</span
+                    >
+                  </span>
                 </span>
               </div>
               <div class="heading-1">
                 <Anchor
-                  :name="job.company"
+                  :name="job.company.name"
                   :hashtag-visible="false"
-                  url="https://www.bosch.de/"
+                  :url="job.company.url"
                 />
               </div>
               <div
                 class="flex items-center gap-2 text-white font-light text-base"
               >
-                <IconTime class="!h-6 !w-6" />
-                {{ job.workFormat }} <span class="text-secondary">/</span>
+                <IconTime class="!h-5 !w-5" />
+                {{ job.workFormat }}
+                <span class="text-secondary">/</span>
+                <IconBuilding class="!h-5 !w-5" />
                 {{ job.locationFormat }}
               </div>
             </div>
             <div class="mb-4">
-              <div class="body-text mb-4">{{ job.description }}</div>
+              <div class="body-text mb-6">{{ job.description }}</div>
               <div class="highlight">Requirements</div>
               <div class="body-text">
                 <ul class="list-disc pl-4">
@@ -130,5 +166,3 @@ export default {
     </div>
   </section>
 </template>
-
-<style scoped lang="scss"></style>

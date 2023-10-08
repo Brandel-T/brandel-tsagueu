@@ -6,10 +6,10 @@
     <div
       class="hero-wrapper after:animate-pulse before:animate-pulse before:delay-200 before:duration-1000"
     >
-      <Hero id="hero" class="z-1" />
+      <Hero id="hero" :intro="hero" class="z-1" />
     </div>
     <About id="about" class="-z-1" />
-    <WorkExperience id="work" :jobs="jobs" />
+    <WorkExperience id="work" />
     <Projects id="projects" :projects="projects" />
     <TechStack
       id="tech-stack"
@@ -25,7 +25,12 @@
 
 <script setup lang="ts">
 import { JobType, ProjectType, TechStackType } from "~/utils/models";
+import { useProjects } from "~/components/composables/services/projects";
+import { useJobs } from "~/components/composables/services/jobs";
 
+const runtimeConfig = useRuntimeConfig();
+
+/*
 const jobs: JobType[] = [
   {
     title: "Software Developer",
@@ -80,31 +85,33 @@ const jobs: JobType[] = [
   },
 ];
 const projects: ProjectType[] = [
-  {
-    title: "MoneyBack",
-    type: "mobile",
-    description: "Mobile application for tracking daily expenses.",
-    asset: "mobile-app.png",
-    technologies: ["Flutter", "SQLite"],
-    url: "https://github.com/Brandel-T/flutter_expenses_app",
-  },
-  {
-    title: "MoneyBack",
-    type: "mobile",
-    description: "",
-    asset: "mobile-app.png",
-    technologies: ["Flutter", "SQLite"],
-    url: "https://github.com/Brandel-T/flutter_expenses_app",
-  },
-  {
-    title: "MoneyBack",
-    type: "mobile",
-    description: "",
-    asset: "mobile-app.png",
-    technologies: ["Flutter", "SQLite"],
-    url: "https://github.com/Brandel-T/flutter_expenses_app",
-  },
-];
+    {
+        title: 'MoneyBack',
+        type: 'mobile',
+        description: 'Mobile application for tracking daily expenses.',
+        asset: 'mobile-app.png',
+        technologies: ['Flutter', 'SQLite',],
+        url: 'https://github.com/Brandel-T/flutter_expenses_app'
+    },
+    {
+        title: 'MoneyBack',
+        type: 'mobile',
+        description: '',
+        asset: 'mobile-app.png',
+        technologies: ['Flutter', 'SQLite',],
+        url: 'https://github.com/Brandel-T/flutter_expenses_app'
+    },
+    {
+        title: 'MoneyBack',
+        type: 'mobile',
+        description: '',
+        asset: 'mobile-app.png',
+        technologies: ['Flutter', 'SQLite',],
+        url: 'https://github.com/Brandel-T/flutter_expenses_app'
+    },
+]
+ */
+
 const recentTechStack: string[] = [
   "NestJS",
   "Angular",
@@ -120,7 +127,7 @@ const techStack: TechStackType[] = [
       "Java",
       "C++",
       "MongoDB",
-      "PostgreSQL",
+      "PostgresSQL",
       "SQLite",
       "NodeJS",
       "Spring Boot",
@@ -143,6 +150,37 @@ const techStack: TechStackType[] = [
     technologies: ["Linux", "Windows", "Mac", "Bash/Shell Scripting", "Docker"],
   },
 ];
+
+const projects = ref<ProjectType[]>([]);
+const hero = ref("");
+
+const { find } = useStrapi();
+useAsyncData(() => find<any>("heroes")).then(({ data }) => {
+  hero.value = data.value?.data[0].attributes.intro + "";
+});
+
+useProjects<ProjectType>().then(({ data }) => {
+  projects.value =
+    data.value?.data.map((project) => {
+      const { assets, description, technologies, title, type, url } =
+        project.attributes as any;
+
+      return {
+        description,
+        title,
+        type,
+        url,
+        assets: assets.data.map(
+          (asset: any) => runtimeConfig.public.apiUrl + asset.attributes.url,
+        ),
+        technologies: technologies.data.map(
+          (tech: any) => tech.attributes.name,
+        ),
+      } as ProjectType;
+    }) || [];
+});
+
+useJobs<JobType>().then(({ data, pending }) => {});
 </script>
 
 <style lang="scss" scoped>
