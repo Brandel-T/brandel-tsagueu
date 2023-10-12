@@ -28,6 +28,6 @@ export type ProjectType = {
 };
 
 export type TechStackType = {
-  category: "Backend" | "Frontend" | "DevOps" | "Others";
+  category: "Backend" | "Frontend" | "Mobile" | "DevOps" | "Others";
   technologies: string[];
 };

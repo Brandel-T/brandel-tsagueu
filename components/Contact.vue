@@ -14,6 +14,9 @@
               name="Tsagueubrandel@gmail.com"
               :email="true"
               type="external"
+              data-aos="fade-left"
+              data-aos-duration="1000"
+              data-aos-easing="ease-in-out-sine"
             />
           </div>
           <div class="heading-thin contact-label">Social Media</div>
@@ -25,18 +28,27 @@
               url="https://www.linkedin.com/in/brandel-tsagueu-6a27bb205/"
               name="LinkedIn"
               type="external"
+              data-aos="fade-left"
+              data-aos-duration="1000"
+              data-aos-easing="ease-in-out-sine"
             />
             <Anchor
               class="heading-1 !z-0"
               url="https://www.xing.com/profile/Brandel_Tsagueu/cv"
               name="Xing"
               type="external"
+              data-aos="fade-left"
+              data-aos-duration="1000"
+              data-aos-easing="ease-in-out-sine"
             />
             <Anchor
               class="heading-1 !z-0"
               url="https://github.com/Brandel-T"
               name="GitHub"
               type="external"
+              data-aos="fade-left"
+              data-aos-duration="1000"
+              data-aos-easing="ease-in-out-sine"
             />
           </div>
         </div>
@@ -45,13 +57,41 @@
             class="col-span-3 md:col-span-1 md:text-end heading-thin text-soft"
           >
             Feel free to address me in
+            <span
+              data-aos="fade-left"
+              data-aos-duration="1000"
+              data-aos-easing="ease-in-out-sine"
+              data-aos-delay="2000"
+              >&#128578;</span
+            >
           </div>
           <div
             class="text-xl col-start-2 col-span-2 sm:text-2xl md:text-3xl font-light mr-2 flex flex-col gap-6"
           >
-            <div class="text-soft">English<small class="small">,</small></div>
-            <div class="text-soft">German <small class="small">or</small></div>
-            <div class="text-soft">French</div>
+            <div
+              class="text-soft"
+              data-aos="fade-left"
+              data-aos-duration="1000"
+              data-aos-easing="ease-in-out-sine"
+            >
+              English<small class="small">,</small>
+            </div>
+            <div
+              class="text-soft"
+              data-aos="fade-left"
+              data-aos-duration="1000"
+              data-aos-easing="ease-in-out-sine"
+            >
+              German <small class="small">or</small>
+            </div>
+            <div
+              class="text-soft"
+              data-aos="fade-left"
+              data-aos-duration="1000"
+              data-aos-easing="ease-in-out-sine"
+            >
+              French
+            </div>
           </div>
         </div>
       </div>

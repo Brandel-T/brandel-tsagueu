@@ -1,7 +1,75 @@
 <script lang="ts">
+import gsap from "gsap";
+
 export default {
   props: {
-    intro: { type: String, required: true },
+    intro: { type: String, required: false, default: "" },
+  },
+  setup() {
+    const animationDuration = 2.5;
+
+    onBeforeMount(() => {
+      gsap.fromTo(
+        ".hero-description",
+        {
+          x: -100,
+          opacity: 0,
+          ease: "power4.inOut",
+        },
+        {
+          x: 0,
+          opacity: 1,
+          duration: animationDuration,
+          ease: "power4.inOut",
+        },
+      );
+
+      document.querySelectorAll(".hero-link").forEach((anchor, index) => {
+        gsap.fromTo(
+          ".hero-link",
+          {
+            x: -100,
+            opacity: 0,
+          },
+          {
+            x: 0,
+            opacity: 1,
+            stagger: 0.2 * index,
+            ease: "power4.inOut",
+            duration: animationDuration,
+            delay: 0.5,
+          },
+        );
+      });
+
+      gsap.from(".shapes-container", {
+        opacity: 0,
+        y: 150,
+        duration: animationDuration,
+        ease: "back.inOut",
+      });
+
+      document
+        .querySelectorAll(".shapes-container > div")
+        .forEach((item, index) => {
+          gsap.fromTo(
+            item,
+            {
+              x: 100,
+              opacity: 0,
+              stagger: 0.2 * index,
+            },
+            {
+              x: 0,
+              opacity: 1,
+              stagger: 0.5 * index,
+              ease: "power4.inOut",
+              duration: animationDuration,
+              delay: 0.5,
+            },
+          );
+        });
+    });
   },
 };
 </script>
@@ -12,9 +80,9 @@ export default {
       class="w-full h-full my-auto grid grid-cols-12 justify-center items-center"
     >
       <div class="col-span-12 md:col-span-9 lg:col-span-8 xl:col-span-7">
-        <div>
+        <div class="hero-description">
           <div class="body-text mb-4 text-center md:text-left font-light">
-            Hey, I’m
+            Hey, I&apos;m
           </div>
           <div
             class="text-4xl md:text-5xl lg:text-6xl xl:text-7xl text-center md:text-left"
@@ -32,19 +100,19 @@ export default {
         </div>
         <div class="mt-10 flex gap-x-6 justify-center md:justify-start">
           <Anchor
-            class="!z-1"
+            class="!z-1 hero-link"
             name="LinkedIn"
             type="external"
             url="https://www.linkedin.com/in/brandel-tsagueu-6a27bb205/"
           />
           <Anchor
-            class="!z-1"
+            class="!z-1 hero-link"
             name="Xing"
             type="external"
             url="https://www.xing.com/profile/Brandel_Tsagueu/cv"
           />
           <Anchor
-            class="!z-1"
+            class="!z-1 hero-link"
             name="GitHub"
             type="external"
             url="https://github.com/Brandel-T"
@@ -52,10 +120,10 @@ export default {
         </div>
       </div>
       <div
-        class="shapes-container -z-20 mx-auto items-stretch align-middle justify-self-center left-32 md:-left-12 w-60 !h-60 !-top-52 md:!top-2 md:!h-80 md:!w-80 ld:h-96"
+        class="shapes-container animate-pulse -z-20 mx-auto items-stretch align-middle justify-self-center left-32 md:-left-12 w-60 !h-60 !-top-52 md:!top-2 md:!h-80 md:!w-80 ld:h-96"
       >
         <div class="shape-1 left-16 top-20 -z-20 md:top-32 md:left-32"></div>
-        <div class="shape-2 -z-20"></div>
+        <div class="shape-2 animate-pulse -z-20"></div>
       </div>
     </div>
   </div>

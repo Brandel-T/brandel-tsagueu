@@ -26,3 +26,6 @@ logs
 
 .npmrc
 package-lock.json
+
+# notes on readme file
+README-NOTES.md
