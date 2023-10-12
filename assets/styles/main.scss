@@ -74,10 +74,10 @@ body {
 .page-section {
   @apply container min-h-screen
   flex flex-col gap-4 justify-center
-  sm:gap-6 md:gap-12 relative
+  sm:gap-6 md:gap-12
 }
 .section-header {
-  @apply basis-28 md:basis-40 flex items-end
+  @apply basis-48 md:basis-56 lg:basis-72 mb-10 md:mb-16 flex items-end
 }
 .section-header__container {
   @apply h-fit relative capitalize

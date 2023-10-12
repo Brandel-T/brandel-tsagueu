@@ -1,7 +1,7 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: true },
-  runtimeConfig: {
+    runtimeConfig: {
     public: {
       apiUrl: process.env.STRAPI_URL,
     },
@@ -18,7 +18,7 @@ export default defineNuxtConfig({
   },
   content: {
     highlight: {
-      theme: "material-theme-lighter",
+      theme: "github-light",
     },
   },
   imports: {
@@ -33,6 +33,7 @@ export default defineNuxtConfig({
       },
     },
   },
+  plugins: [{ src: "~/plugins/aos.client.js", ssr: false }],
   postcss: {
     plugins: {
       tailwindcss: {},

@@ -1,6 +1,6 @@
 <template>
   <div class="app">
-    <div class="">
+    <div>
       <NavBar class="fixed left-0 right-0 shadow-lg mx-auto !bg-transparent" />
     </div>
     <div
@@ -8,25 +8,27 @@
     >
       <Hero id="hero" :intro="hero" class="z-1" />
     </div>
-    <About id="about" class="-z-1" />
-    <WorkExperience id="work" />
-    <Projects id="projects" :projects="projects" />
-    <TechStack
-      id="tech-stack"
-      :recent-technologies="recentTechStack"
-      :items="techStack"
-    />
-    <div class="bg-gradient">
-      <Contact id="contact" />
+    <div class="scroll-trigger-container">
+      <About id="about" class="-z-1 section" />
+      <WorkExperience id="work" class="section" />
+      <Projects id="projects" class="section" :projects="projects" />
+      <TechStack
+        id="tech-stack"
+        class="section"
+        :recent-technologies="recentTechStack"
+        :items="techStack"
+      />
+      <div class="bg-gradient section">
+        <Contact id="contact" />
+      </div>
     </div>
-    <Footer />
+    <MyFooter />
   </div>
 </template>
 
 <script setup lang="ts">
-import { JobType, ProjectType, TechStackType } from "~/utils/models";
+import { ProjectType, TechStackType } from "~/utils/models";
 import { useProjects } from "~/components/composables/services/projects";
-import { useJobs } from "~/components/composables/services/jobs";
 
 const runtimeConfig = useRuntimeConfig();
 
@@ -156,7 +158,7 @@ const hero = ref("");
 
 const { find } = useStrapi();
 useAsyncData(() => find<any>("heroes")).then(({ data }) => {
-  hero.value = data.value?.data[0].attributes.intro + "";
+  hero.value = data.value?.data[0].attributes.intro ?? "";
 });
 
 useProjects<ProjectType>().then(({ data }) => {
@@ -179,8 +181,6 @@ useProjects<ProjectType>().then(({ data }) => {
       } as ProjectType;
     }) || [];
 });
-
-useJobs<JobType>().then(({ data, pending }) => {});
 </script>
 
 <style lang="scss" scoped>

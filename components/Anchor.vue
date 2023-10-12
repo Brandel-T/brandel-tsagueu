@@ -30,17 +30,15 @@
 
 <script lang="ts">
 import { PropType } from "vue";
-import { IconHashtag, IconLinks } from "#components";
 
 type LinkType = "external" | "internal";
 export default {
-  components: { IconLinks, IconHashtag },
   props: {
     type: { type: String as PropType<LinkType>, default: "internal" },
     name: { type: String, required: true },
     hashtagVisible: { type: Boolean, default: true },
     externalIconVisible: { type: Boolean, default: true },
-    url: { type: String },
+    url: { type: String, default: "" },
     email: { type: Boolean, default: false },
   },
   setup() {

@@ -1,18 +1,16 @@
 <script lang="ts">
-import { PropType } from "vue";
 import { JobType } from "~/utils/models";
 import { useDateFormat } from "~/components/composables/utils";
-import { useWorkExperience } from "~/components/composables/services/work";
 import { useJobs } from "~/components/composables/services/jobs";
 
 export default {
   props: {
-    jobs: { type: Object as PropType<JobType[]>, required: false },
+    jobs: { type: Array<JobType>, default: [], required: false },
   },
   setup() {
     const jobs = ref<JobType[]>();
 
-    useJobs<JobType>().then(({ data, pending }) => {
+    useJobs<JobType>().then(({ data }) => {
       jobs.value = data.value?.data.map((job) => {
         const attributes: any = job.attributes;
         return {
@@ -57,7 +55,7 @@ export default {
       <div>
         <div
           v-for="(job, index) in jobs"
-          :key="job.startDate"
+          :key="String(job.startDate)"
           class="accordion"
         >
           <div
@@ -65,7 +63,11 @@ export default {
               'accordion-open': selectedJob === index,
               'accordion-close': selectedJob !== index,
             }"
-            class="accordion-header"
+            class="accordion-header transition-all duration-300"
+            data-aos="fade-right"
+            data-aos-delay="200"
+            data-aos-duration="600"
+            data-aos-easing="ease-in-out-sine"
             @click="selectJob(index)"
           >
             <span :class="{ 'text-accent': selectedJob == index }">{{
@@ -78,6 +80,9 @@ export default {
             v-if="selectedJob === index"
             :class="{ hidden: !(selectedJob === index) }"
             class="accordion-body transition-all duration-300 ease-in"
+            data-aos="zoom-up"
+            data-aos-duration="600"
+            data-aos-easing="ease-in-out-sine"
           >
             <div class="mb-6 mt-4">
               <div class="body-text">
@@ -117,8 +122,8 @@ export default {
               <div class="body-text">
                 <ul class="list-disc pl-4">
                   <li
-                    v-for="(requirement, index) in job.requirements"
-                    :key="index"
+                    v-for="(requirement, i) in job.requirements"
+                    :key="i"
                     class="body-text"
                   >
                     {{ requirement }}
@@ -132,11 +137,7 @@ export default {
                 <ul
                   class="flex flex-wrap gap-2 justify-center md:justify-start"
                 >
-                  <li
-                    v-for="(tech, index) in job.techStack"
-                    :key="index"
-                    class="badge"
-                  >
+                  <li v-for="(tech, j) in job.techStack" :key="j" class="badge">
                     {{ tech }}
                   </li>
                 </ul>
@@ -148,7 +149,7 @@ export default {
       <div class="accordion-header__container--desktop">
         <div
           v-for="(job, index) in jobs"
-          :key="job.startDate"
+          :key="String(job.startDate)"
           :class="{
             'accordion-open': selectedJob === index,
             'accordion-close': selectedJob !== index,

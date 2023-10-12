@@ -10,19 +10,36 @@
                         class="body-text mb-3 "
                     >{{ about }}</li>
                 </ul> -->
-        <ContentDoc
-          path="/about"
-          class="body-text text-center md:text-left font-light backdrop-blur border border-tertiary rounded-md py-4 px-6 bg-gradient"
-        />
+        <div
+          data-aos="fade-up-right"
+          data-aos-delay="0"
+          data-aos-easing="ease-in-out"
+          data-aos-duration="1000"
+        >
+          <!-- <ContentDoc
+            path="/about"
+            class="body-text text-center md:text-left font-light backdrop-blur border border-tertiary rounded-md py-4 px-6 bg-gradient"
+          /> -->
+          <ContentDoc
+            path="/about"
+            class="body-text text-center md:text-left !font-light"
+          />
+        </div>
         <!-- <div lang="md" v-html="aboutMe"></div> -->
         <div class="flex justify-center md:justify-start gap-x-12 mt-6">
-          <div class="body-text flex items-center gap-2 -z-10">
+          <div
+            class="body-text flex items-center gap-2 -z-10"
+            data-aos="zoom-in-right"
+          >
             <strong class="text-[2.5rem] md:text-[3.5rem] font-normal"
               >2+</strong
             >
             years Experience
           </div>
-          <div class="body-text flex items-center gap-2 -z-10">
+          <div
+            class="body-text flex items-center gap-2 -z-10"
+            data-aos="zoom-in-right"
+          >
             <IconLocation
               class="!w-[2.5rem] !h-[2.5rem] md:!w-[3.5rem] md:!h-[3.5rem]"
             />Germany, RLP
@@ -38,6 +55,7 @@
             v-for="(interest, index) in interests"
             :key="index"
             class="badge capitalize"
+            data-aos="zoom-in-right"
           >
             {{ interest }}
           </span>
@@ -46,16 +64,11 @@
       <div
         class="profile img-wrapper rounded-md after:outline after:outline-1 after:outline-tertiary hover:after:bg-tertiary"
       >
-        <!--
-                <img
-                    src="~/assets/images/profil-1.jpeg"
-                    class="w-full h-full rounded-md"
-                />
-                -->
         <img
           v-if="profileImage"
-          :src="profileImage"
+          :src="profileImage ? profileImage : '~/assets/images/profil-1.jpeg'"
           class="w-full h-full rounded-md"
+          data-aos="fade-left"
         />
       </div>
     </div>
@@ -92,7 +105,7 @@ export default {
         about.value = data.value;
       },
     );
-    useAbout().then(({ data, pending }) => {
+    useAbout().then(({ data }) => {
       profileImage.value = `${runtimeConfig.public.apiUrl}${data.value.data.attributes.profileImage.data.attributes.url}`;
       interests.value = data.value.data.attributes.interests.data.map(
         (interest) => interest.attributes.name,

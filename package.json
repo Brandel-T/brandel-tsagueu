@@ -9,8 +9,8 @@
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
     "lint": "eslint --ext \".ts,.vue\" --ignore-path .gitignore .",
-    "lintfix": "eslint --ext .js,.ts,.vue --ignore-path .gitignore --fix .",
-    "format": "prettier --write \"**/*.{js,jsx,vue}\""
+    "lintfix": "eslint --ext .js,.ts,.vue,.cjs --ignore-path .gitignore --fix .",
+    "format": "prettier --write \"**/*.{js,jsx,vue,cjs}\""
   },
   "devDependencies": {
     "@nuxt/content": "^2.8.5",
@@ -34,7 +34,8 @@
   },
   "dependencies": {
     "@nuxtjs/eslint-config-typescript": "^12.1.0",
-    "gsap": "^3.12.2",
+    "aos": "^2.3.4",
+    "gsap": "3.11.5",
     "sass": "^1.67.0"
   }
 }

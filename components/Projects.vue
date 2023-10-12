@@ -1,13 +1,12 @@
 <script lang="ts">
-import { PropType } from "vue";
 import { ProjectType } from "~/utils/models";
 
 export default {
-  methods: { useImage, useDateFormat },
   props: {
     projects: {
       type: Array<ProjectType>,
-      required: true,
+      required: false,
+      default: [],
     },
   },
   setup() {
@@ -17,6 +16,7 @@ export default {
     }
     return { selectedProject, selectProject };
   },
+  methods: { useImage, useDateFormat },
 };
 </script>
 
@@ -49,6 +49,9 @@ export default {
             v-if="selectedProject === index"
             :class="{ hidden: !(selectedProject === index) }"
             class="accordion-body transition-all duration-300 ease-in"
+            data-aos="zoom-up"
+            data-aos-duration="600"
+            data-aos-easing="ease-in-out-sine"
           >
             <div class="mb-4">
               <div class="highlight mx-auto mt-6 w-fit">Description</div>
@@ -66,11 +69,6 @@ export default {
                   alt=""
                 />
               </div>
-              <!-- <img
-                            :src="String(useImage(project.asset))"
-                            alt="project asset image"
-                            class="rounded mx-auto"
-                        /> -->
             </div>
             <div class="">
               <div class="highlight mb-2 mx-auto mt-4 w-fit">
