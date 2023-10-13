@@ -88,8 +88,7 @@ export default {
             class="text-4xl md:text-5xl lg:text-6xl xl:text-7xl text-center md:text-left"
           >
             Brandel Tsagueu,
-            <span class="highlight">Student and Software developer</span> in
-            part time
+            <span class="highlight">Fullstack and App Developer</span>
           </div>
           <div class="mt-6 text-center md:text-left">
             <span v-if="intro" class="body-text font-light">{{ intro }}</span>

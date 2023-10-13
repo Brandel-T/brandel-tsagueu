@@ -30,6 +30,16 @@
 import { ProjectType, TechStackType } from "~/utils/models";
 import { useProjects } from "~/components/composables/services/projects";
 
+useSeoMeta({
+  title: "Brandel Tsagueu, Student and Software Developer",
+  ogTitle: "Brandel Tsagueu, Student and Software Developer",
+  description:
+    "Developer devoted to creating great web experiences focused on Vue/Nuxt, Angular, NestJS and Flutter based in Germany.",
+  ogDescription:
+    "Developer devoted to creating great web experiences focused on Vue/Nuxt, Angular, NestJS and Flutter based in Germany.",
+  author: "Brandel Tsagueu",
+});
+
 const runtimeConfig = useRuntimeConfig();
 
 /*
@@ -203,7 +213,7 @@ useProjects<ProjectType>().then(({ data }) => {
   background-image: $bg-gradient;
   background-size: 200%;
   // filter: blur(400px);
-  filter: blur(110px) brightness(200%) contrast(1);
+  filter: blur(130px) brightness(200%) contrast(1);
   z-index: -1;
   animation: bg-animation 10s infinite alternate;
   border-radius: 50% 50% 42% 58% / 53% 24% 76% 47%;
