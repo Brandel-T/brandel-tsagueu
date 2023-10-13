@@ -6,7 +6,12 @@ export default defineNuxtConfig({
       apiUrl: process.env.STRAPI_URL,
     },
   },
-  modules: ["@nuxtjs/tailwindcss", "@nuxtjs/strapi", "@nuxt/content"],
+  modules: [
+    "@nuxtjs/tailwindcss",
+    "@nuxtjs/strapi",
+    "@nuxt/content",
+    "nuxt-lenis",
+  ],
   strapi: {
     url: process.env.STRAPI_URL || "http://localhost:1337",
     prefix: "/api",
@@ -17,6 +22,7 @@ export default defineNuxtConfig({
     exposeConfig: true,
   },
   content: {
+    contentHead: false,
     highlight: {
       theme: "github-light",
     },
@@ -34,12 +40,6 @@ export default defineNuxtConfig({
     },
   },
   plugins: [{ src: "~/plugins/aos.client.js", ssr: false }],
-  postcss: {
-    plugins: {
-      tailwindcss: {},
-      autoprefixer: {},
-    },
-  },
   build: {
     transpile: ["gsap"],
   },

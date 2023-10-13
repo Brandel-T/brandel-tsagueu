@@ -1,6 +1,6 @@
 <template>
   <footer class="h-30 w-full py-6 md:py-10 relative">
-    <div class="logo w-fit mx-auto text-center">Brandel-T</div>
+    <div class="logo w-fit mx-auto text-center"><Logo /></div>
     <div class="h-fit py-10 text-center text body-text align-middle px-4">
       Design and built with passion by
       <a href="#" class="highlight">Brandel Tsagueu</a>. All rights reserved

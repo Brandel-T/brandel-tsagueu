@@ -28,11 +28,6 @@ body {
   }
 }
 
-// ********** LOGO **********
-.logo {
-  @apply text-secondary font-semibold text-lg sm:text-xl
-}
-
 // *********** NAV BAR ************
 .active-nav-link {
   color: $primary;
