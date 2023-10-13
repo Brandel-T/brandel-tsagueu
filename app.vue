@@ -1,29 +1,33 @@
 <template>
-  <div class="app">
-    <div>
-      <NavBar class="fixed left-0 right-0 shadow-lg mx-auto !bg-transparent" />
-    </div>
-    <div
-      class="hero-wrapper after:animate-pulse before:animate-pulse before:delay-200 before:duration-1000"
-    >
-      <Hero id="hero" :intro="hero" class="z-1" />
-    </div>
-    <div class="scroll-trigger-container">
-      <About id="about" class="-z-1 section" />
-      <WorkExperience id="work" class="section" />
-      <Projects id="projects" class="section" :projects="projects" />
-      <TechStack
-        id="tech-stack"
-        class="section"
-        :recent-technologies="recentTechStack"
-        :items="techStack"
-      />
-      <div class="bg-gradient section">
-        <Contact id="contact" />
+  <Lenis>
+    <div class="app">
+      <div>
+        <NavBar
+          class="fixed left-0 right-0 shadow-lg mx-auto !bg-transparent"
+        />
       </div>
+      <div
+        class="hero-wrapper after:animate-pulse before:animate-pulse before:delay-200 before:duration-1000"
+      >
+        <Hero id="hero" :intro="hero" class="z-1" />
+      </div>
+      <div class="scroll-trigger-container">
+        <About id="about" class="-z-1 section" />
+        <WorkExperience id="work" class="section" />
+        <Projects id="projects" class="section" :projects="projects" />
+        <TechStack
+          id="tech-stack"
+          class="section"
+          :recent-technologies="recentTechStack"
+          :items="techStack"
+        />
+        <div class="bg-gradient section">
+          <Contact id="contact" />
+        </div>
+      </div>
+      <MyFooter />
     </div>
-    <MyFooter />
-  </div>
+  </Lenis>
 </template>
 
 <script setup lang="ts">

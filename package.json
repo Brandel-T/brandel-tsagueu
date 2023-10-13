@@ -36,6 +36,7 @@
     "@nuxtjs/eslint-config-typescript": "^12.1.0",
     "aos": "^2.3.4",
     "gsap": "3.11.5",
+    "nuxt-lenis": "^1.0.3",
     "sass": "^1.67.0"
   }
 }
