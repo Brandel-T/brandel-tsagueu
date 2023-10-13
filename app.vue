@@ -1,34 +1,48 @@
 <template>
-  <div class="app">
-    <div>
-      <NavBar class="fixed left-0 right-0 shadow-lg mx-auto !bg-transparent" />
-    </div>
-    <div
-      class="hero-wrapper after:animate-pulse before:animate-pulse before:delay-200 before:duration-1000"
-    >
-      <Hero id="hero" :intro="hero" class="z-1" />
-    </div>
-    <div class="scroll-trigger-container">
-      <About id="about" class="-z-1 section" />
-      <WorkExperience id="work" class="section" />
-      <Projects id="projects" class="section" :projects="projects" />
-      <TechStack
-        id="tech-stack"
-        class="section"
-        :recent-technologies="recentTechStack"
-        :items="techStack"
-      />
-      <div class="bg-gradient section">
-        <Contact id="contact" />
+  <Lenis>
+    <div class="app">
+      <div>
+        <NavBar
+          class="fixed left-0 right-0 shadow-lg mx-auto !bg-transparent"
+        />
       </div>
+      <div
+        class="hero-wrapper after:animate-pulse before:animate-pulse before:delay-200 before:duration-1000"
+      >
+        <Hero id="hero" :intro="hero" class="z-1" />
+      </div>
+      <div class="scroll-trigger-container">
+        <About id="about" class="-z-1 section" />
+        <WorkExperience id="work" class="section" />
+        <Projects id="projects" class="section" :projects="projects" />
+        <TechStack
+          id="tech-stack"
+          class="section"
+          :recent-technologies="recentTechStack"
+          :items="techStack"
+        />
+        <div class="bg-gradient section">
+          <Contact id="contact" />
+        </div>
+      </div>
+      <MyFooter />
     </div>
-    <MyFooter />
-  </div>
+  </Lenis>
 </template>
 
 <script setup lang="ts">
 import { ProjectType, TechStackType } from "~/utils/models";
 import { useProjects } from "~/components/composables/services/projects";
+
+useSeoMeta({
+  title: "Brandel Tsagueu, Student and Software Developer",
+  ogTitle: "Brandel Tsagueu, Student and Software Developer",
+  description:
+    "Developer devoted to creating great web experiences focused on Vue/Nuxt, Angular, NestJS and Flutter based in Germany.",
+  ogDescription:
+    "Developer devoted to creating great web experiences focused on Vue/Nuxt, Angular, NestJS and Flutter based in Germany.",
+  author: "Brandel Tsagueu",
+});
 
 const runtimeConfig = useRuntimeConfig();
 
@@ -203,7 +217,7 @@ useProjects<ProjectType>().then(({ data }) => {
   background-image: $bg-gradient;
   background-size: 200%;
   // filter: blur(400px);
-  filter: blur(110px) brightness(200%) contrast(1);
+  filter: blur(130px) brightness(200%) contrast(1);
   z-index: -1;
   animation: bg-animation 10s infinite alternate;
   border-radius: 50% 50% 42% 58% / 53% 24% 76% 47%;

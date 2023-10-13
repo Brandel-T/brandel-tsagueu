@@ -41,11 +41,9 @@ export default {
 <template>
   <div class="z-10 backdrop-blur-xl shadow-xl">
     <div class="container flex justify-between items-center h-16 relative">
-      <div id="logo" class="logo">
-        <a href="#hero">Brandel-T</a>
-      </div>
+      <Logo />
       <nav class="hidden md:block">
-        <ul class="flex gap-4 justify-end li-ctn">
+        <ul class="flex gap-0 lg:gap-4 justify-end li-ctn">
           <li class="menu-item">
             <a href="#about">About</a>
           </li>

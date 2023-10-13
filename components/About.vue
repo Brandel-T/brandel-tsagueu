@@ -3,29 +3,17 @@
     <SectionHeader title="About Me" />
     <div class="section-body !-z-1">
       <div class="about-content">
-        <!-- <ul class="list-disc pl-4">
-                    <li
-                        v-for="(about, index) in abouts"
-                        :key="index"
-                        class="body-text mb-3 "
-                    >{{ about }}</li>
-                </ul> -->
         <div
           data-aos="fade-up-right"
           data-aos-delay="0"
           data-aos-easing="ease-in-out"
           data-aos-duration="1000"
         >
-          <!-- <ContentDoc
-            path="/about"
-            class="body-text text-center md:text-left font-light backdrop-blur border border-tertiary rounded-md py-4 px-6 bg-gradient"
-          /> -->
           <ContentDoc
             path="/about"
             class="body-text text-center md:text-left !font-light"
           />
         </div>
-        <!-- <div lang="md" v-html="aboutMe"></div> -->
         <div class="flex justify-center md:justify-start gap-x-12 mt-6">
           <div
             class="body-text flex items-center gap-2 -z-10"
@@ -34,7 +22,7 @@
             <strong class="text-[2.5rem] md:text-[3.5rem] font-normal"
               >2+</strong
             >
-            years Experience
+            years experience
           </div>
           <div
             class="body-text flex items-center gap-2 -z-10"
@@ -42,7 +30,7 @@
           >
             <IconLocation
               class="!w-[2.5rem] !h-[2.5rem] md:!w-[3.5rem] md:!h-[3.5rem]"
-            />Germany, RLP
+            />Germany, DE
           </div>
         </div>
         <div
@@ -79,22 +67,22 @@
 import { useAbout } from "~/components/composables/services/about";
 
 export default {
-  async setup() {
+  setup() {
     const runtimeConfig = useRuntimeConfig();
 
-    const abouts = ref([
-      "I study computer science at the Bingen University of Applied Sciences",
-      "I’m currently contributing to digitalize a manually working process a Robert Bosch GmbH.",
-      "Well, the way they make shows is, they make one show. That show's called a pilot. Then they show that show to the people who make shows, and on the strength of that one show they decide if they're going to make more shows. Some pilots get picked and become television programs. Some don't,",
-    ]);
-    const interestsList = ref([
-      "mathematics",
-      "data science",
-      "big data",
-      "challenge",
-      "software development",
-      "drawing",
-    ]);
+    // const abouts = ref([
+    //   "I study computer science at the Bingen University of Applied Sciences",
+    //   "I’m currently contributing to digitalize a manually working process a Robert Bosch GmbH.",
+    //   "Well, the way they make shows is, they make one show. That show's called a pilot. Then they show that show to the people who make shows, and on the strength of that one show they decide if they're going to make more shows. Some pilots get picked and become television programs. Some don't,",
+    // ]);
+    // const interestsList = ref([
+    //   "mathematics",
+    //   "data science",
+    //   "big data",
+    //   "challenge",
+    //   "software development",
+    //   "drawing",
+    // ]);
     const aboutMe = ref("");
     const profileImage = ref("");
     const interests = ref([]);
