@@ -20,11 +20,7 @@ export default defineNuxtComponent({
   <section class="work-experience page-section">
     <SectionHeader title="Work experience" />
     <div class="section-body">
-      <div v-if="jobs.length == 0 || !jobs">
-        NBGJIRN GN GPRKN
-        {{ jobs }}
-      </div>
-      <div v-else>
+      <div>
         <div
           v-for="(job, index) in jobs"
           :key="String(job.startDate)"
