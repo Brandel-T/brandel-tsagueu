@@ -64,46 +64,23 @@
 </template>
 
 <script>
-import { useAbout } from "~/components/composables/services/about";
-
-export default {
-  setup() {
+export default defineNuxtComponent({
+  name: "About",
+  async setup() {
     const runtimeConfig = useRuntimeConfig();
-
-    // const abouts = ref([
-    //   "I study computer science at the Bingen University of Applied Sciences",
-    //   "I’m currently contributing to digitalize a manually working process a Robert Bosch GmbH.",
-    //   "Well, the way they make shows is, they make one show. That show's called a pilot. Then they show that show to the people who make shows, and on the strength of that one show they decide if they're going to make more shows. Some pilots get picked and become television programs. Some don't,",
-    // ]);
-    // const interestsList = ref([
-    //   "mathematics",
-    //   "data science",
-    //   "big data",
-    //   "challenge",
-    //   "software development",
-    //   "drawing",
-    // ]);
-    const aboutMe = ref("");
-    const profileImage = ref("");
-    const interests = ref([]);
     const about = ref("");
+    const { aboutMe, interests, profileImage } = await useAbout(runtimeConfig);
+    await useTechnologies();
 
     useAsyncData("about", () => queryContent("/about").findOne()).then(
       ({ data }) => {
         about.value = data.value;
       },
     );
-    useAbout().then(({ data }) => {
-      profileImage.value = `${runtimeConfig.public.apiUrl}${data.value.data.attributes.profileImage.data.attributes.url}`;
-      interests.value = data.value.data.attributes.interests.data.map(
-        (interest) => interest.attributes.name,
-      );
-      aboutMe.value = data.value.data.attributes.description;
-    });
 
     return { aboutMe, interests, profileImage, about };
   },
-};
+});
 </script>
 
 <style scoped lang="scss">

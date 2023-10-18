@@ -1,58 +1,30 @@
 <script lang="ts">
-import { JobType } from "~/utils/models";
-import { useDateFormat } from "~/components/composables/utils";
-import { useJobs } from "~/components/composables/services/jobs";
-
-export default {
+export default defineNuxtComponent({
+  name: "WorkExperience",
   props: {
     jobs: { type: Array<JobType>, default: [], required: false },
   },
   setup() {
-    const jobs = ref<JobType[]>();
-
-    useJobs<JobType>().then(({ data }) => {
-      jobs.value = data.value?.data.map((job) => {
-        const attributes: any = job.attributes;
-        return {
-          title: attributes.title,
-          startDate: attributes.startDate,
-          endDate: attributes.endDate,
-          locationFormat: attributes.locationFormat,
-          workFormat: attributes.workFormat,
-          description: attributes.description,
-          company: {
-            name: attributes.company.name,
-            url: attributes.company.url,
-            hasHashtag: attributes.company.hasHashtag,
-            isEmail: attributes.company.isEmail,
-            type: attributes.company.type,
-            showExternalIcon: attributes.company.showExternalIcon,
-          },
-          requirements: attributes.job_requirements.data.map(
-            (requirement: any) => requirement.attributes.title,
-          ),
-          techStack: attributes.technologiesUsed.data.map(
-            (tech: any) => tech.attributes.name,
-          ),
-        } as JobType;
-      });
-    });
-
     const selectedJob = ref<number>(0);
     function selectJob(accordionIndex: number) {
       selectedJob.value = accordionIndex;
     }
-    return { selectedJob, jobs, selectJob };
+
+    return { selectedJob, /* jobs, */ selectJob };
   },
   methods: { useDateFormat },
-};
+});
 </script>
 
 <template>
   <section class="work-experience page-section">
     <SectionHeader title="Work experience" />
     <div class="section-body">
-      <div>
+      <div v-if="jobs.length == 0 || !jobs">
+        NBGJIRN GN GPRKN
+        {{ jobs }}
+      </div>
+      <div v-else>
         <div
           v-for="(job, index) in jobs"
           :key="String(job.startDate)"
@@ -132,8 +104,10 @@ export default {
               </div>
             </div>
             <div class="">
-              <div class="highlight mb-2">Technologies used</div>
-              <div class="body-text">
+              <div v-if="job.techStack.length > 0" class="highlight mb-2">
+                Technologies used
+              </div>
+              <div v-if="job.techStack.length > 0" class="body-text">
                 <ul
                   class="flex flex-wrap gap-2 justify-center md:justify-start"
                 >

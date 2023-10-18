@@ -1,7 +1,6 @@
 <script lang="ts">
-import { ProjectType } from "~/utils/models";
-
-export default {
+export default defineNuxtComponent({
+  name: "Projects",
   props: {
     projects: {
       type: Array<ProjectType>,
@@ -17,7 +16,7 @@ export default {
     return { selectedProject, selectProject };
   },
   methods: { useImage, useDateFormat },
-};
+});
 </script>
 
 <template>

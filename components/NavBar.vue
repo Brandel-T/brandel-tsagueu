@@ -1,5 +1,6 @@
 <script lang="ts">
-export default {
+export default defineNuxtComponent({
+  name: "NavBar",
   setup() {
     const menuOpen = ref<boolean>(false);
     function toggleMenu() {
@@ -35,7 +36,7 @@ export default {
 
     return { menuOpen, toggleMenu };
   },
-};
+});
 </script>
 
 <template>

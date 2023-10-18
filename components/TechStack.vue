@@ -1,6 +1,4 @@
 <script lang="ts">
-import { TechStackType } from "~/utils/models";
-
 export default {
   props: {
     recentTechnologies: { type: Array<string>, required: false, default: [] },

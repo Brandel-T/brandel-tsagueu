@@ -28,7 +28,7 @@ export default defineNuxtConfig({
     },
   },
   imports: {
-    dirs: ["composables/**"],
+    dirs: ["composables", "composables/**", "composables/**/index.{js,ts}"],
   },
   vite: {
     css: {

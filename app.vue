@@ -13,13 +13,13 @@
       </div>
       <div class="scroll-trigger-container">
         <About id="about" class="-z-1 section" />
-        <WorkExperience id="work" class="section" />
+        <WorkExperience id="work" class="section" :jobs="jobs" />
         <Projects id="projects" class="section" :projects="projects" />
         <TechStack
           id="tech-stack"
           class="section"
-          :recent-technologies="recentTechStack"
-          :items="techStack"
+          :items="stacks"
+          :recent-technologies="recent"
         />
         <div class="bg-gradient section">
           <Contact id="contact" />
@@ -30,170 +30,42 @@
   </Lenis>
 </template>
 
-<script setup lang="ts">
-import { ProjectType, TechStackType } from "~/utils/models";
-import { useProjects } from "~/components/composables/services/projects";
+<script lang="ts">
+export default defineNuxtComponent({
+  async setup() {
+    useSeoMeta({
+      title: "Brandel Tsagueu, Student and Software Developer",
+      ogTitle: "Brandel Tsagueu, Student and Software Developer",
+      description:
+        "Developer devoted to creating great web experiences focused on Vue/Nuxt, Angular, NestJS and Flutter based in Germany.",
+      ogDescription:
+        "Developer devoted to creating great web experiences focused on Vue/Nuxt, Angular, NestJS and Flutter based in Germany.",
+      author: "Brandel Tsagueu",
+    });
 
-useSeoMeta({
-  title: "Brandel Tsagueu, Student and Software Developer",
-  ogTitle: "Brandel Tsagueu, Student and Software Developer",
-  description:
-    "Developer devoted to creating great web experiences focused on Vue/Nuxt, Angular, NestJS and Flutter based in Germany.",
-  ogDescription:
-    "Developer devoted to creating great web experiences focused on Vue/Nuxt, Angular, NestJS and Flutter based in Germany.",
-  author: "Brandel Tsagueu",
-});
+    const runtimeConfig = useRuntimeConfig();
 
-const runtimeConfig = useRuntimeConfig();
+    const hero = ref("");
 
-/*
-const jobs: JobType[] = [
-  {
-    title: "Software Developer",
-    company: "Robert Bosch GmbH",
-    description:
-      "Well, the way they make shows is, they make one show. That show's called a pilot.  if they're going to make more shows.",
-    locationFormat: "remote",
-    workFormat: "part time",
-    requirements: [
-      "communication",
-      "Team player",
-      "Design thinking",
-      "Dev skill",
-    ],
-    techStack: ["NestJS", "Angular", "MongoDB", "TypeScript", "Docker"],
-    startDate: new Date("2023-05-01"),
-    endDate: new Date(),
+    const { find } = useStrapi();
+    useAsyncData(() => find<any>("heroes")).then(({ data }) => {
+      hero.value = data.value?.data[0].attributes.intro ?? "";
+    });
+
+    const { jobs } = await useJobs<JobType>();
+
+    const { projects } = await useProjects<ProjectType>(runtimeConfig);
+
+    const { recent, stacks } = await useStack();
+
+    return {
+      jobs,
+      projects,
+      hero,
+      recent,
+      stacks,
+    };
   },
-  {
-    title: "Software Developer",
-    company: "Robert Bosch GmbH",
-    description:
-      "Well, the way they make shows is, they make one show. That show's called a pilot.  if they're going to make more shows.",
-    locationFormat: "remote",
-    workFormat: "part time",
-    requirements: [
-      "communication",
-      "Team player",
-      "Design thinking",
-      "Dev skill",
-    ],
-    techStack: ["NestJS", "Angular", "MongoDB", "TypeScript"],
-    startDate: new Date("2023-05-01"),
-    endDate: new Date(),
-  },
-  {
-    title: "Software Developer",
-    company: "Robert Bosch GmbH",
-    description:
-      "Well, the way they make shows is, they make one show. That show's called a pilot.  if they're going to make more shows.",
-    locationFormat: "remote",
-    workFormat: "part time",
-    requirements: [
-      "communication",
-      "Team player",
-      "Design thinking",
-      "Dev skill",
-    ],
-    techStack: ["NestJS", "Angular", "MongoDB", "TypeScript"],
-    startDate: new Date("2023-05-01"),
-    endDate: new Date(),
-  },
-];
-const projects: ProjectType[] = [
-    {
-        title: 'MoneyBack',
-        type: 'mobile',
-        description: 'Mobile application for tracking daily expenses.',
-        asset: 'mobile-app.png',
-        technologies: ['Flutter', 'SQLite',],
-        url: 'https://github.com/Brandel-T/flutter_expenses_app'
-    },
-    {
-        title: 'MoneyBack',
-        type: 'mobile',
-        description: '',
-        asset: 'mobile-app.png',
-        technologies: ['Flutter', 'SQLite',],
-        url: 'https://github.com/Brandel-T/flutter_expenses_app'
-    },
-    {
-        title: 'MoneyBack',
-        type: 'mobile',
-        description: '',
-        asset: 'mobile-app.png',
-        technologies: ['Flutter', 'SQLite',],
-        url: 'https://github.com/Brandel-T/flutter_expenses_app'
-    },
-]
- */
-
-const recentTechStack: string[] = [
-  "NestJS",
-  "Angular",
-  "MongoDB",
-  "Flutter",
-  "Nuxt",
-  "SQLite",
-];
-const techStack: TechStackType[] = [
-  {
-    category: "Backend",
-    technologies: [
-      "Java",
-      "C++",
-      "MongoDB",
-      "PostgresSQL",
-      "SQLite",
-      "NodeJS",
-      "Spring Boot",
-      "NestJS",
-    ],
-  },
-  {
-    category: "Frontend",
-    technologies: [
-      "Angular",
-      "Nuxt 3",
-      "Vue 3 / Composition API",
-      "TailwindCSS",
-      "(S)CSS",
-      "Bootstrap",
-    ],
-  },
-  {
-    category: "Others",
-    technologies: ["Linux", "Windows", "Mac", "Bash/Shell Scripting", "Docker"],
-  },
-];
-
-const projects = ref<ProjectType[]>([]);
-const hero = ref("");
-
-const { find } = useStrapi();
-useAsyncData(() => find<any>("heroes")).then(({ data }) => {
-  hero.value = data.value?.data[0].attributes.intro ?? "";
-});
-
-useProjects<ProjectType>().then(({ data }) => {
-  projects.value =
-    data.value?.data.map((project) => {
-      const { assets, description, technologies, title, type, url } =
-        project.attributes as any;
-
-      return {
-        description,
-        title,
-        type,
-        url,
-        assets: assets.data.map(
-          (asset: any) => runtimeConfig.public.apiUrl + asset.attributes.url,
-        ),
-        technologies: technologies.data.map(
-          (tech: any) => tech.attributes.name,
-        ),
-      } as ProjectType;
-    }) || [];
 });
 </script>
 

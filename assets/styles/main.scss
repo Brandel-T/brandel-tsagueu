@@ -72,7 +72,7 @@ body {
   sm:gap-6 md:gap-12
 }
 .section-header {
-  @apply basis-48 md:basis-56 lg:basis-72 mb-10 md:mb-16 flex items-end
+  @apply mt-32 mb-6 md:mb-10 lg:mb-14 flex items-end
 }
 .section-header__container {
   @apply h-fit relative capitalize
