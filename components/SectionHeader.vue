@@ -10,7 +10,8 @@ export default {
   <div
     class="section-header -z-10"
     data-aos="fade-left"
-    data-aos-duration="2000"
+    data-aos-easing="ease-in-out"
+    data-aos-duration="800"
   >
     <div class="section-header__container">
       <span class="hashtag">#</span>

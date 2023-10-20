@@ -7,7 +7,7 @@
           data-aos="fade-up-right"
           data-aos-delay="0"
           data-aos-easing="ease-in-out"
-          data-aos-duration="1000"
+          data-aos-duration="600"
         >
           <ContentDoc
             path="/about"
@@ -63,22 +63,13 @@
   </section>
 </template>
 
-<script>
+<script lang="ts">
 export default defineNuxtComponent({
   name: "About",
-  async setup() {
-    const runtimeConfig = useRuntimeConfig();
-    const about = ref("");
-    const { aboutMe, interests, profileImage } = await useAbout(runtimeConfig);
-    await useTechnologies();
-
-    useAsyncData("about", () => queryContent("/about").findOne()).then(
-      ({ data }) => {
-        about.value = data.value;
-      },
-    );
-
-    return { aboutMe, interests, profileImage, about };
+  props: {
+    aboutMe: { type: String, required: true },
+    interests: { type: Array<String>, default: [], required: false },
+    profileImage: { type: String, required: true },
   },
 });
 </script>

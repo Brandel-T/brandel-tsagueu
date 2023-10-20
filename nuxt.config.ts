@@ -27,9 +27,6 @@ export default defineNuxtConfig({
       theme: "github-light",
     },
   },
-  imports: {
-    dirs: ["composables", "composables/**", "composables/**/index.{js,ts}"],
-  },
   vite: {
     css: {
       preprocessorOptions: {

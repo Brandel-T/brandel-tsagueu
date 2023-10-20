@@ -1,5 +1,4 @@
 import { RuntimeConfig } from "nuxt/schema";
-import { useAsyncData } from "#app";
 
 export const useProjects = async <T>(runtimeConfig: RuntimeConfig) => {
   const { find } = useStrapi();

@@ -1,9 +1,11 @@
 <script lang="ts">
 import gsap from "gsap";
 
-export default {
+export default defineNuxtComponent({
+  name: "Hero",
   props: {
     intro: { type: String, required: false, default: "" },
+    anchors: { type: Array<any>, required: false, default: [] },
   },
   setup() {
     const animationDuration = 2.5;
@@ -71,13 +73,13 @@ export default {
         });
     });
   },
-};
+});
 </script>
 
 <template>
   <div class="hero container h-screen">
     <div
-      class="w-full h-full my-auto grid grid-cols-12 justify-center items-center"
+      class="w-full h-full my-auto grid grid-rows-1 grid-cols-12 justify-center items-center"
     >
       <div class="col-span-12 md:col-span-9 lg:col-span-8 xl:col-span-7">
         <div class="hero-description">
@@ -99,22 +101,12 @@ export default {
         </div>
         <div class="mt-10 flex gap-x-6 justify-center md:justify-start">
           <Anchor
-            class="!z-1 hero-link"
-            name="LinkedIn"
-            type="external"
-            url="https://www.linkedin.com/in/brandel-tsagueu-6a27bb205/"
-          />
-          <Anchor
-            class="!z-1 hero-link"
-            name="Xing"
-            type="external"
-            url="https://www.xing.com/profile/Brandel_Tsagueu/cv"
-          />
-          <Anchor
-            class="!z-1 hero-link"
-            name="GitHub"
-            type="external"
-            url="https://github.com/Brandel-T"
+            v-for="anchor in anchors"
+            :key="anchor.url"
+            class="!z-10 hero-link"
+            :name="anchor.name"
+            :type="anchor.type"
+            :url="anchor.url"
           />
         </div>
       </div>
@@ -128,7 +120,6 @@ export default {
   </div>
 </template>
 
-<script setup lang="ts"></script>
 <style lang="scss" scoped>
 .shapes-container {
   background-image: $bg-gradient;

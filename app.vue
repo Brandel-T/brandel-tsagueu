@@ -1,6 +1,18 @@
 <template>
   <Lenis>
-    <div class="app">
+    <div
+      v-if="
+        heroLoading &&
+        aboutLoading &&
+        jobLoading &&
+        projectsLoading &&
+        stackLoading
+      "
+      class="h-screen flex items-center justify-center"
+    >
+      <Logo class="!text-lg" />
+    </div>
+    <div v-else class="app">
       <div>
         <NavBar
           class="fixed left-0 right-0 shadow-lg mx-auto !bg-transparent"
@@ -9,10 +21,21 @@
       <div
         class="hero-wrapper after:animate-pulse before:animate-pulse before:delay-200 before:duration-1000"
       >
-        <Hero id="hero" :intro="hero" class="z-1" />
+        <Hero
+          id="hero"
+          :intro="hero.intro"
+          :anchors="hero.anchors"
+          class="z-1"
+        />
       </div>
       <div class="scroll-trigger-container">
-        <About id="about" class="-z-1 section" />
+        <About
+          id="about"
+          class="-z-1 section"
+          :interest="interests"
+          :profile-image="profileImage"
+          :about-me="aboutMe"
+        />
         <WorkExperience id="work" class="section" :jobs="jobs" />
         <Projects id="projects" class="section" :projects="projects" />
         <TechStack
@@ -26,6 +49,17 @@
         </div>
       </div>
       <MyFooter />
+
+      <a
+        href="#hero"
+        class="btn-to-top"
+        data-aos="zoom-in"
+        data-aos-once="false"
+        data-aos-anchor="#about"
+        data-aos-duration="1000"
+      >
+        <IconArrowUp class="!h-6 !w-6 sm:!h-8 sm:!w-8" />
+      </a>
     </div>
   </Lenis>
 </template>
@@ -45,25 +79,36 @@ export default defineNuxtComponent({
 
     const runtimeConfig = useRuntimeConfig();
 
-    const hero = ref("");
+    const { hero, pending: heroLoading } = await useHero();
 
-    const { find } = useStrapi();
-    useAsyncData(() => find<any>("heroes")).then(({ data }) => {
-      hero.value = data.value?.data[0].attributes.intro ?? "";
-    });
+    const {
+      aboutMe,
+      interests,
+      profileImage,
+      pending: aboutLoading,
+    } = await useAbout(runtimeConfig);
 
-    const { jobs } = await useJobs<JobType>();
+    const { jobs, pending: jobLoading } = await useJobs<JobType>();
 
-    const { projects } = await useProjects<ProjectType>(runtimeConfig);
+    const { projects, pending: projectsLoading } =
+      await useProjects<ProjectType>(runtimeConfig);
 
-    const { recent, stacks } = await useStack();
+    const { recent, stacks, pending: stackLoading } = await useStack();
 
     return {
+      hero,
+      aboutMe,
       jobs,
       projects,
-      hero,
       recent,
       stacks,
+      interests,
+      profileImage,
+      heroLoading,
+      aboutLoading,
+      jobLoading,
+      projectsLoading,
+      stackLoading,
     };
   },
 });
@@ -106,6 +151,20 @@ export default defineNuxtComponent({
   border-radius: 50%;
   filter: blur(300px);
   z-index: -1;
+}
+
+.btn-to-top {
+  @apply fixed
+  p-2 md:p-4
+  bg-accent
+  right-9 bottom-9
+  rounded-xl 
+  ease-in-out
+  hover:bg-background
+  hover:duration-700
+  hover:transition-all
+  hover:shadow-lg
+  hover:bottom-12;
 }
 
 @keyframes bg-animation {

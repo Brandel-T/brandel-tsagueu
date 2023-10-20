@@ -3,8 +3,8 @@ import "aos/dist/aos.css";
 
 export default defineNuxtPlugin((nuxtApp) => {
   nuxtApp.AOS = AOS.init({
-    once: false,
-    ease: "ease-in-out-back",
-    delay: 600,
+    once: true,
+    ease: "ease-in-out",
+    duration: 600,
   });
 });
