@@ -1,15 +1,12 @@
 <template>
   <Lenis>
     <div
-      v-if="
-        heroLoading &&
-        aboutLoading &&
-        jobLoading &&
-        projectsLoading &&
-        stackLoading
-      "
-      class="h-screen flex items-center justify-center"
+      v-if="error"
+      class="h-screen flex items-center justify-center text-2xl animate-pulse"
     >
+      An error occured &#128549;
+    </div>
+    <div v-else-if="!loading" class="h-screen flex items-center justify-center">
       <Logo class="!text-lg" />
     </div>
     <div v-else class="app">
@@ -79,21 +76,54 @@ export default defineNuxtComponent({
 
     const runtimeConfig = useRuntimeConfig();
 
-    const { hero, pending: heroLoading } = await useHero();
+    const { hero, pending: heroLoading, error: heroError } = await useHero();
 
     const {
       aboutMe,
       interests,
       profileImage,
       pending: aboutLoading,
+      error: aboutError,
     } = await useAbout(runtimeConfig);
 
-    const { jobs, pending: jobLoading } = await useJobs<JobType>();
+    const {
+      jobs,
+      pending: jobLoading,
+      error: jobsError,
+    } = await useJobs<JobType>();
 
-    const { projects, pending: projectsLoading } =
-      await useProjects<ProjectType>(runtimeConfig);
+    const {
+      projects,
+      pending: projectsLoading,
+      error: projectsError,
+    } = await useProjects<ProjectType>(runtimeConfig);
 
-    const { recent, stacks, pending: stackLoading } = await useStack();
+    const {
+      recent,
+      stacks,
+      pending: stackLoading,
+      error: stackError,
+    } = await useStack();
+
+    const loading = computed(() => {
+      return (
+        heroLoading ||
+        aboutLoading ||
+        projectsLoading ||
+        stackLoading ||
+        jobLoading
+      );
+    });
+
+    const error = computed(() => {
+      return (
+        heroError.value ||
+        aboutError.value ||
+        jobsError.value ||
+        projectsError.value ||
+        stackError.value
+      );
+    });
 
     return {
       hero,
@@ -104,11 +134,8 @@ export default defineNuxtComponent({
       stacks,
       interests,
       profileImage,
-      heroLoading,
-      aboutLoading,
-      jobLoading,
-      projectsLoading,
-      stackLoading,
+      loading,
+      error,
     };
   },
 });

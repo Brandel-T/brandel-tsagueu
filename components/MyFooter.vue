@@ -3,8 +3,8 @@
     <div class="logo w-fit mx-auto text-center"><Logo /></div>
     <div class="h-fit py-10 text-center text body-text align-middle px-4">
       Design and built with passion by
-      <a href="#" class="highlight">Brandel Tsagueu</a>. All rights reserved
-      &copy; {{ currentYear }}
+      <a href="#contact" class="highlight">Brandel Tsagueu</a>. All rights
+      reserved &copy; {{ currentYear }}
     </div>
     <div
       data-aos="zoom-in-out"
