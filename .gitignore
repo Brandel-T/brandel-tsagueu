@@ -29,3 +29,6 @@ package-lock.json
 
 # notes on readme file
 README-NOTES.md
+
+# constants and mock data
+./utils/mock.ts
