@@ -17,6 +17,7 @@ logs
 .DS_Store
 .fleet
 .idea
+.vscode
 
 # Local env files
 .env
@@ -24,3 +25,7 @@ logs
 !.env.example
 
 .npmrc
+package-lock.json
+
+# notes on readme file
+README-NOTES.md

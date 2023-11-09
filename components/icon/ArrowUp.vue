@@ -1,5 +1,3 @@
-<script setup lang="ts"></script>
-
 <template>
   <div class="icon">
     <svg
@@ -10,9 +8,11 @@
       stroke="currentColor"
       class="w-6 h-6"
     >
-      <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m6-6H6" />
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        d="M4.5 10.5L12 3m0 0l7.5 7.5M12 3v18"
+      />
     </svg>
   </div>
 </template>
-
-<style scoped lang="scss"></style>
