@@ -4,7 +4,7 @@
       v-if="error"
       class="h-screen flex items-center justify-center text-2xl animate-pulse"
     >
-      An error occured &#128549;
+      An error occurred &#128549;
     </div>
     <div v-else-if="!loading" class="h-screen flex items-center justify-center">
       <Logo class="!text-lg" />

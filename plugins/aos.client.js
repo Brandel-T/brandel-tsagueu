@@ -6,5 +6,6 @@ export default defineNuxtPlugin((nuxtApp) => {
     once: true,
     ease: "ease-in-out",
     duration: 600,
+    delay: 0,
   });
 });
