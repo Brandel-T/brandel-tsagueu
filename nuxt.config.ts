@@ -1,6 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  devtools: { enabled: true },
+  devtools: { enabled: false },
   runtimeConfig: {
     public: {
       apiUrl: process.env.STRAPI_URL,
@@ -13,7 +13,10 @@ export default defineNuxtConfig({
     "nuxt-lenis",
   ],
   strapi: {
-    url: process.env.STRAPI_URL || "http://localhost:1337",
+    url:
+      process.env.STRAPI_URL ||
+      process.env.BACKEND_URL ||
+      "http://localhost:1337",
     prefix: "/api",
   },
   tailwindcss: {
