@@ -20,7 +20,7 @@
             data-aos="zoom-in-right"
           >
             <strong class="text-[2.5rem] md:text-[3.5rem] font-normal"
-              >2+</strong
+              >{{ yearsOfexperience }}+</strong
             >
             years experience
           </div>
@@ -70,6 +70,18 @@ export default defineNuxtComponent({
     aboutMe: { type: String, required: true },
     interests: { type: Array<String>, default: [], required: false },
     profileImage: { type: String, required: true },
+  },
+  setup() {
+    const toYearFactor = 1000 * 60 * 60 * 24 * 365.25;
+    const yearsDiff = ref(
+      (new Date().getTime() - new Date("2021-01-01").getTime()) / toYearFactor,
+    );
+
+    const yearsOfexperience = computed(() => Math.ceil(yearsDiff.value));
+
+    return {
+      yearsOfexperience,
+    };
   },
 });
 </script>

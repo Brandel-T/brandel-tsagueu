@@ -69,11 +69,8 @@ export default defineNuxtComponent({
         @click="toggleMenu"
       />
       <IconXmark v-else class="md:hidden block !z-10" @click="toggleMenu" />
-      <nav
-        v-if="menuOpen"
-        class="bg-primary shadow-md md:hidden block absolute left-0 top-16 w-full px-4 z-1"
-      >
-        <ul class="grid grid-cols-1 divide-y divide-tertiary">
+      <nav v-if="menuOpen" class="mobile-nav-menu z-1">
+        <ul class="mobile-menu-list">
           <li class="menu-item">
             <a href="#about">About</a>
           </li>
@@ -118,5 +115,15 @@ export default defineNuxtComponent({
 
 a {
   display: block;
+}
+
+.mobile-nav-menu {
+  @apply bg-primary shadow-md md:hidden block absolute left-0 top-16 w-full px-4 py-4;
+  .mobile-menu-list {
+    @apply grid grid-cols-1 gap-2 divide-soft;
+    .menu-item {
+      @apply p-4 bg-accent-soft;
+    }
+  }
 }
 </style>
