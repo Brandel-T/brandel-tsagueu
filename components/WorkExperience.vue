@@ -107,8 +107,12 @@ export default defineNuxtComponent({
                 <ul
                   class="flex flex-wrap gap-2 justify-center md:justify-start"
                 >
-                  <li v-for="(tech, j) in job.techStack" :key="j" class="badge">
-                    {{ tech }}
+                  <li v-for="(tech, j) in job.techStack" :key="j">
+                    <Badge
+                      :value="tech.name"
+                      :icon-name="tech.iconName"
+                      theme="secondary"
+                    />
                   </li>
                 </ul>
               </div>

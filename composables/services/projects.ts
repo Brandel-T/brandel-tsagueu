@@ -9,7 +9,7 @@ export const useProjects = async <T>(runtimeConfig: RuntimeConfig) => {
 
   try {
     const { data, pending: loading } = await useAsyncData(() =>
-      find<T>("projects?populate=*"),
+      find<T>("projects?populate=*&sort=createdAt:desc"),
     );
     pending.value = loading.value;
 
@@ -28,9 +28,12 @@ export const useProjects = async <T>(runtimeConfig: RuntimeConfig) => {
               (asset: any) =>
                 runtimeConfig.public.apiUrl + asset.attributes.url,
             ),
-            technologies: technologies.data.map(
-              (tech: any) => tech.attributes.name,
-            ),
+            technologies: technologies.data.map((tech: any) => {
+              return {
+                name: tech.attributes.name,
+                iconName: tech.attributes.iconName,
+              };
+            }),
           } as ProjectType;
         }) || [];
     } else {

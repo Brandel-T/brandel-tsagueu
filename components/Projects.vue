@@ -53,7 +53,7 @@ export default defineNuxtComponent({
             data-aos-easing="ease-in-out-sine"
           >
             <div class="mb-4">
-              <div class="highlight mx-auto mt-6 w-fit">Description</div>
+              <div class="highlight mb-2 md:mb-4 mt-6 w-fit">Description</div>
               <div class="body-text mb-4 mx-auto w-fit">
                 {{ project.description }}
               </div>
@@ -70,19 +70,15 @@ export default defineNuxtComponent({
               </div>
             </div>
             <div class="">
-              <div class="highlight mb-2 mx-auto mt-4 w-fit">
+              <div class="highlight mb-2 md:mb-4 mt-4 w-fit">
                 Technologies used
               </div>
               <div class="body-text w-fit mx-auto">
                 <ul
                   class="flex flex-wrap gap-2 justify-center md:justify-start"
                 >
-                  <li
-                    v-for="(tech, index) in project.technologies"
-                    :key="index"
-                    class="badge"
-                  >
-                    {{ tech }}
+                  <li v-for="tech in project.technologies" :key="tech.name">
+                    <Badge :value="tech.name" :icon-name="tech.iconName" />
                   </li>
                 </ul>
               </div>

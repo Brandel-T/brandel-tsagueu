@@ -7,7 +7,10 @@ export const useJobs = <T>() => {
 
   useAsyncData(() =>
     find<T[]>(
-      "jobs?populate[job_requirements][fields]=title&populate[technologies_used][fields]=name&populate[company]=*",
+      "jobs?" +
+        "populate[job_requirements][fields]=title&" +
+        "populate[technologies_used][fields]=iconName&populate[technologies_used][fields]=name&" +
+        "populate[company]=*",
     ),
   )
     .then(({ data, pending: loading }) => {
@@ -36,9 +39,12 @@ export const useJobs = <T>() => {
             requirements: attributes.job_requirements.data.map(
               (requirement: any) => requirement.attributes.title,
             ),
-            techStack: attributes.technologies_used.data.map(
-              (tech: any) => tech.attributes.name,
-            ),
+            techStack: attributes.technologies_used.data.map((tech: any) => {
+              return {
+                name: tech.attributes.name,
+                iconName: tech.attributes.iconName,
+              };
+            }),
           } as T;
         });
       } else {

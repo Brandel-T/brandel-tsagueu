@@ -14,7 +14,7 @@ export type JobType = {
   workFormat: "part time" | "full time";
   description: string;
   requirements: string[];
-  techStack: string[];
+  techStack: { name: string; iconName: string }[];
   company: Company;
 };
 
@@ -25,6 +25,7 @@ export type ProjectType = {
   description: string;
   type: "mobile" | "web" | "branding" | "native app";
   url: string;
+  iconName: string;
 };
 
 export type TechStackType = {

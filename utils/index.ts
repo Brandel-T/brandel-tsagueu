@@ -29,3 +29,16 @@ export const useImage = (pathName: string) => {
   });
   return assets["/assets/images/" + pathName];
 };
+
+/**
+ * load icon from /assets folder
+ * @param iconName icon name. Must be in lower case and only contain letters and not white spaces or special characters
+ * @returns icon absolute path from assest folder
+ */
+export const useIcon = (iconName: string) => {
+  const icons = import.meta.glob("~/assets/icons/*", {
+    eager: true,
+    import: "default",
+  });
+  return icons["/assets/icons/" + iconName + ".svg"];
+};
