@@ -1,7 +1,7 @@
 <template>
   <section class="contact page-section">
     <SectionHeader title="Get In Touch" />
-    <div class="section-body flex !items-center mx-auto pb-20">
+    <article class="section-body flex !items-center mx-auto pb-20">
       <div
         class="grid grid-cols-1 grid-rows-2 shadow-2xl hover:shadow-primary rounded-lg px-4 h-fit"
       >
@@ -95,7 +95,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </article>
   </section>
 </template>
 

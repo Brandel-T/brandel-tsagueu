@@ -77,7 +77,7 @@ export default defineNuxtComponent({
 </script>
 
 <template>
-  <div class="hero container h-screen">
+  <section class="hero container h-screen">
     <div
       class="w-full h-full my-auto grid grid-rows-1 grid-cols-12 justify-center items-center"
     >
@@ -93,13 +93,13 @@ export default defineNuxtComponent({
             <span class="highlight">Software Developer</span>
           </div>
           <div class="mt-6 text-center md:text-left">
-            <span v-if="intro" class="body-text font-light">{{ intro }}</span>
-            <span v-else class="body-text font-light"
-              >I use code to build things for fun and on demand</span
-            >
+            <p v-if="intro" class="body-text font-light">{{ intro }}</p>
+            <p v-else class="body-text font-light">
+              I use code to build things for fun and on demand
+            </p>
           </div>
         </div>
-        <div class="mt-10 flex gap-x-6 justify-center md:justify-start">
+        <nav class="mt-10 flex gap-x-6 justify-center md:justify-start">
           <Anchor
             v-for="anchor in anchors"
             :key="anchor.url"
@@ -108,7 +108,7 @@ export default defineNuxtComponent({
             :type="anchor.type"
             :url="anchor.url"
           />
-        </div>
+        </nav>
       </div>
       <div
         class="shapes-container animate-pulse -z-20 mx-auto items-stretch align-middle justify-self-center left-32 md:-left-12 w-60 !h-60 !-top-52 md:!top-2 md:!h-80 md:!w-80 ld:h-96"
@@ -117,7 +117,7 @@ export default defineNuxtComponent({
         <div class="shape-2 animate-pulse -z-20"></div>
       </div>
     </div>
-  </div>
+  </section>
 </template>
 
 <style lang="scss" scoped>

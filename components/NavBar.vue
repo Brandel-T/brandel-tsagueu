@@ -40,7 +40,7 @@ export default defineNuxtComponent({
 </script>
 
 <template>
-  <div class="z-10 backdrop-blur-xl shadow-xl">
+  <header class="z-10 backdrop-blur-xl shadow-xl">
     <div class="container flex justify-between items-center h-16 relative">
       <Logo />
       <nav class="hidden md:block">
@@ -89,7 +89,7 @@ export default defineNuxtComponent({
         </ul>
       </nav>
     </div>
-  </div>
+  </header>
 </template>
 
 <style scoped lang="scss">

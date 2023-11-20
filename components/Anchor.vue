@@ -1,10 +1,12 @@
 <template>
-  <div
+  <a
+    :href="`${email ? 'mailto:' : ''}${url}`"
+    :target="'_blank'"
     class="anchor link relative hover:cursor-pointer w-fit z-0"
     @mouseenter="hover = true"
     @mouseleave="hover = false"
   >
-    <div class="flex flex-col-reverse items-center gap-1 w-fit">
+    <span class="flex flex-col-reverse items-center gap-1 w-fit">
       <span class="w-fit mb-1">
         <span v-if="type === 'internal' && hashtagVisible" class="hashtag"
           >#</span
@@ -12,9 +14,7 @@
         <span
           class="text-slate-400 text-xl sm:text-2xl md:text-3xl font-light mr-2"
         >
-          <a :href="`${email ? 'mailto:' : ''}${url}`" :target="'_blank'">{{
-            name
-          }}</a>
+          {{ name }}
         </span>
         <span
           v-if="type === 'external' && externalIconVisible"
@@ -24,8 +24,8 @@
         >
       </span>
       <span class="underline"></span>
-    </div>
-  </div>
+    </span>
+  </a>
 </template>
 
 <script lang="ts">

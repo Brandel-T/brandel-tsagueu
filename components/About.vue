@@ -1,7 +1,7 @@
 <template>
   <section class="about page-section">
     <SectionHeader title="About Me" />
-    <div class="section-body !-z-1">
+    <article class="section-body !-z-1">
       <div class="about-content">
         <div
           data-aos="fade-up-right"
@@ -16,7 +16,7 @@
         </div>
         <div class="flex justify-center md:justify-start gap-x-12 mt-6">
           <div
-            class="body-text flex items-center gap-2 -z-10"
+            class="w-fit body-text flex items-center gap-2 -z-10"
             data-aos="zoom-in-right"
           >
             <strong class="text-[2.5rem] md:text-[3.5rem] font-normal"
@@ -25,7 +25,7 @@
             years experience
           </div>
           <div
-            class="body-text flex items-center gap-2 -z-10"
+            class="w-fit body-text flex items-center gap-2 -z-10"
             data-aos="zoom-in-right"
           >
             <IconLocation
@@ -38,19 +38,19 @@
         >
           My interests
         </div>
-        <div class="flex flex-wrap justify-center md:justify-start gap-2">
-          <span
+        <ul class="flex flex-wrap justify-center md:justify-start gap-2">
+          <li
             v-for="(interest, index) in interests"
             :key="index"
-            class="badge capitalize"
+            class="badge capitalize list-item"
             data-aos="zoom-in-right"
           >
             {{ interest }}
-          </span>
-        </div>
+          </li>
+        </ul>
       </div>
       <div
-        class="profile img-wrapper rounded-md after:outline after:outline-1 after:outline-tertiary hover:after:bg-tertiary"
+        class="profile max-w-[25rem] img-wrapper rounded-md after:outline after:outline-1 after:outline-tertiary hover:after:bg-tertiary"
       >
         <img
           v-if="profileImage"
@@ -60,7 +60,7 @@
           data-aos="fade-left"
         />
       </div>
-    </div>
+    </article>
   </section>
 </template>
 

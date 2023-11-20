@@ -1,4 +1,4 @@
-export const useDateFormat = (date: Date) => {
+export const useDateFormat = (date: Date): string => {
   if (!date) return "Today";
   if (date.getMonth() === new Date().getMonth()) return "Today";
 
@@ -22,12 +22,12 @@ export const useDateFormat = (date: Date) => {
   return monthDate + ". " + month + " " + date.getFullYear();
 };
 
-export const useImage = (pathName: string) => {
+export const useImage = (pathName: string): string => {
   const assets = import.meta.glob("~/assets/images/*", {
     eager: true,
     import: "default",
   });
-  return assets["/assets/images/" + pathName];
+  return String(assets["/assets/images/" + pathName]);
 };
 
 /**
@@ -35,10 +35,10 @@ export const useImage = (pathName: string) => {
  * @param iconName icon name. Must be in lower case and only contain letters and not white spaces or special characters
  * @returns icon absolute path from assest folder
  */
-export const useIcon = (iconName: string) => {
+export const useIcon = (iconName: string): string => {
   const icons = import.meta.glob("~/assets/icons/*", {
     eager: true,
     import: "default",
   });
-  return icons["/assets/icons/" + iconName + ".svg"];
+  return String(icons["/assets/icons/" + iconName + ".svg"]);
 };

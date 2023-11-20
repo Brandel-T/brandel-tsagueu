@@ -10,7 +10,7 @@ export default defineNuxtComponent({
       selectedJob.value = accordionIndex;
     }
 
-    return { selectedJob, /* jobs, */ selectJob };
+    return { selectedJob, selectJob };
   },
   methods: { useDateFormat },
 });
@@ -19,7 +19,7 @@ export default defineNuxtComponent({
 <template>
   <section class="work-experience page-section">
     <SectionHeader title="Work experience" />
-    <div class="section-body">
+    <article class="section-body">
       <div>
         <div
           v-for="(job, index) in jobs"
@@ -67,7 +67,7 @@ export default defineNuxtComponent({
                   </span>
                 </span>
               </div>
-              <div class="heading-1">
+              <div class="heading-1 w-fit">
                 <Anchor
                   :name="job.company.name"
                   :hashtag-visible="false"
@@ -138,6 +138,6 @@ export default defineNuxtComponent({
           <IconMinus v-else class="icon-secondary-accent" />
         </div>
       </div>
-    </div>
+    </article>
   </section>
 </template>

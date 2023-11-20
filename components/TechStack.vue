@@ -10,8 +10,10 @@ export default {
 <template>
   <section class="tech-stack page-section">
     <SectionHeader title="Tech Stack" />
-    <div class="section-body flex flex-col items-center justify-center pb-12">
-      <div
+    <article
+      class="section-body flex flex-col items-center justify-center pb-12"
+    >
+      <header
         class="text body-text mb-8 md:mb-12"
         data-aos="fade-right"
         data-aos-delay="150"
@@ -29,7 +31,7 @@ export default {
           </span>
           <span v-if="index < recentTechnologies.length - 2">, </span>
         </span>
-      </div>
+      </header>
 
       <div class="flex-1">
         <div class="w-full lg:grid lg:grid-cols-2 lg:grid-rows-2 lg:gap-2">
@@ -69,7 +71,7 @@ export default {
           </div>
         </div>
       </div>
-    </div>
+    </article>
   </section>
 </template>
 

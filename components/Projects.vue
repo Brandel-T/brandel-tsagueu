@@ -22,7 +22,7 @@ export default defineNuxtComponent({
 <template>
   <section class="projects page-section">
     <SectionHeader title="Projects" />
-    <div class="section-body flex-row-reverse">
+    <article class="section-body flex-row-reverse">
       <div class="flex-1">
         <div
           v-for="(project, index) in projects"
@@ -101,7 +101,7 @@ export default defineNuxtComponent({
           <div class="badge-outline">{{ project.type }}</div>
         </div>
       </div>
-    </div>
+    </article>
   </section>
 </template>
 
