@@ -16,7 +16,7 @@
   @apply text-secondary font-normal text-lg md:text-2xl animate-pulse;
 }
 .logo-title {
-  font-family: "JetBrains", "FiraCode", "consolas", serif;
+  font-family: "JetBrains Mono", "Fira Code", "consolas", serif;
   font-size: 1.4rem;
 }
 .logo:hover {
