@@ -67,6 +67,10 @@ export default defineNuxtComponent({
     useSeoMeta({
       title: "Brandel Tsagueu, Student and Software Developer",
       ogTitle: "Brandel Tsagueu, Student and Software Developer",
+      ogUrl: "https://brandel-tsagueu.dev",
+      ogImage: "",
+      keywords:
+        "Brandel Tsagueu, Brandel Tsagueu Temgoua Perez, Brandel-T, @Brandel-T, BrandelTsagueu",
       description:
         "Developer devoted to creating great web experiences focused on Vue/Nuxt, Angular, NestJS and Flutter based in Germany.",
       ogDescription:
