@@ -55,6 +55,7 @@
         <img
           v-if="profileImage"
           :src="profileImage ? profileImage : '~/assets/images/profil-1.jpeg'"
+          alt="Brandel Tsagueu website profile image"
           class="w-full h-full rounded-md"
           data-aos="fade-left"
         />

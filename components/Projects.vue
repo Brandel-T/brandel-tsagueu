@@ -40,8 +40,6 @@ export default defineNuxtComponent({
             <span :class="{ 'text-accent': selectedProject == index }">{{
               project.title
             }}</span>
-            <!-- <IconPlus v-if="!(selectedProject === index)" />
-                    <IconMinus v-else class="icon-secondary-accent" /> -->
             <div class="badge-outline">{{ project.type }}</div>
           </div>
           <div
@@ -61,11 +59,11 @@ export default defineNuxtComponent({
             <div class="h-96">
               <div class="project__assets">
                 <img
-                  v-for="(asset, index) in project.assets"
-                  :key="index"
+                  v-for="(asset, assetIndex) in project.assets"
+                  :key="assetIndex"
                   class="project__assets--item"
                   :src="asset"
-                  alt=""
+                  :alt="`Portfolio: Project ${project.title} preview ${assetIndex}`"
                 />
               </div>
             </div>

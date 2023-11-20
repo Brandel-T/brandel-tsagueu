@@ -72,6 +72,13 @@ export default defineNuxtComponent({
       ogDescription:
         "Developer devoted to creating great web experiences focused on Vue/Nuxt, Angular, NestJS and Flutter based in Germany.",
       author: "Brandel Tsagueu",
+      charset: "utf-8",
+    });
+
+    useHead({
+      htmlAttrs: {
+        lang: "en",
+      },
     });
 
     const runtimeConfig = useRuntimeConfig();
