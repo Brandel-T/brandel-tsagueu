@@ -1,7 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: false },
-  css: ["@/assets/styles/_fonts.scss"],
   runtimeConfig: {
     public: {
       apiUrl: process.env.STRAPI_URL,
@@ -12,6 +11,7 @@ export default defineNuxtConfig({
     "@nuxtjs/strapi",
     "@nuxt/content",
     "nuxt-lenis",
+    "@nuxtjs/google-fonts",
   ],
   strapi: {
     url:
@@ -29,6 +29,13 @@ export default defineNuxtConfig({
     contentHead: false,
     highlight: {
       theme: "github-light",
+    },
+  },
+  googleFonts: {
+    families: {
+      Inter: true,
+      "JetBrains Mono": [300, 400],
+      "Fira Code": [400],
     },
   },
   vite: {
