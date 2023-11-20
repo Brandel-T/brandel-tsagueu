@@ -2,8 +2,7 @@
   <div :class="['e-badge', badgeBackground]">
     <img
       v-if="useIcon(iconName!)"
-      class="e-badge-icon"
-      :class="`bg-${color}`"
+      :class="['e-badge-icon', `!bg-${color}`]"
       :src="String(useIcon(iconName!))"
       :alt="`svg icon: ${iconName}`"
     />
