@@ -1,11 +1,5 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  app: {
-    head: {
-      name: "google-site-verification",
-      content: "z5JTCdi2mTb686PlXj8x7qj-0LuF7dzqayk4je3FdGc",
-    },
-  },
   devtools: { enabled: false },
   runtimeConfig: {
     public: {

@@ -13,7 +13,7 @@ useSeoMeta({
   title: "Brandel Tsagueu | B.Sc. Student and Software Developer",
   ogTitle: "Brandel Tsagueu",
   ogUrl: "https://brandel-tsagueu.dev",
-  ogImage: useImage("profil-1.jpeg"),
+  ogImage: "/profil-1.jpeg",
   keywords:
     "Brandel Tsagueu, Brandel Tsagueu Temgoua Perez, Brandel-T, @Brandel-T, BrandelTsagueu",
   description:
