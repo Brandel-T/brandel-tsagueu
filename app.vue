@@ -10,7 +10,7 @@
 
 <script lang="ts" setup>
 useSeoMeta({
-  title: "Brandel Tsagueu, Student and Software Developer",
+  title: "Brandel Tsagueu | B.Sc. Student and Software Developer",
   ogTitle: "Brandel Tsagueu",
   ogUrl: "https://brandel-tsagueu.dev",
   ogImage: useImage("profil-1.jpeg"),
@@ -22,6 +22,7 @@ useSeoMeta({
     "Developer devoted to creating great web experiences focused on Vue/Nuxt, Angular, NestJS and Flutter based in Germany.",
   author: "Brandel Tsagueu",
   charset: "utf-8",
+  ogSiteName: "Brandel Tsagueu | B.Sc. Student and Software Developer",
 });
 
 useHead({
