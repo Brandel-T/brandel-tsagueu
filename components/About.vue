@@ -34,6 +34,7 @@
           </div>
         </div>
         <div
+          v-if="interests"
           class="mb-4 text-accent text-center md:text-left text-xl md:text-2xl mt-12 capitalize"
         >
           My interests
@@ -42,7 +43,7 @@
           <li
             v-for="(interest, index) in interests"
             :key="index"
-            class="badge capitalize list-item"
+            class="badge-outline capitalize list-item"
             data-aos="zoom-in-right"
           >
             {{ interest }}

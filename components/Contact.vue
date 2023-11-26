@@ -3,9 +3,9 @@
     <SectionHeader title="Get In Touch" />
     <article class="section-body flex !items-center mx-auto pb-20">
       <div
-        class="grid grid-cols-1 grid-rows-2 shadow-2xl hover:shadow-primary rounded-lg px-4 h-fit"
+        class="grid grid-cols-1 grid-rows-3 items-center rounded-lg px-4 h-fit"
       >
-        <div class="contact-wrapper">
+        <div class="contact-wrapper row-span-2">
           <div class="heading-thin contact-label">E-mail</div>
           <div class="heading-1">
             <Anchor

@@ -1,11 +1,17 @@
 <template>
-  <div :class="['e-badge', badgeBackground]">
+  <div
+    :class="[
+      'e-badge',
+      badgeBackground,
+      { 'outline outline-1 outline-tertiary': theme === 'outline' },
+    ]"
+  >
     <img
       v-if="useIcon(iconName!)"
       :class="[
         'e-badge-icon',
         { 'bg-accent': theme !== 'secondary' },
-        { 'bg-secondary': theme === 'secondary' },
+        { 'bg-secondary': theme === 'secondary' || theme === 'outline' },
       ]"
       :src="String(useIcon(iconName!))"
       :alt="`svg icon: ${iconName}`"
@@ -14,7 +20,7 @@
       :class="[
         'e-badge-content',
         { 'text-accent': theme !== 'secondary' },
-        { 'text-secondary': theme === 'secondary' },
+        { 'text-secondary': theme === 'secondary' || theme === 'outline' },
       ]"
     >
       {{ value }}
@@ -35,9 +41,18 @@ export default defineNuxtComponent({
   },
   setup(props: any) {
     const icon = computed(() => `url(${useIcon(props.iconName)})`);
-    const badgeBackground = computed(() =>
-      props.theme === "secondary" ? "bg-tertiary" : "bg-accent-soft",
-    );
+    const badgeBackground = computed(() => {
+      switch (props.theme) {
+        case "secondary":
+          return "bg-tertiary";
+        case "primary":
+          return "bg-accent-soft";
+        case "outline":
+          return "bg-transparent";
+        default:
+          return "bg-primary";
+      }
+    });
     return { icon, badgeBackground };
   },
 });

@@ -111,7 +111,7 @@ export default defineNuxtComponent({
                     <Badge
                       :value="tech.name"
                       :icon-name="tech.iconName"
-                      theme="secondary"
+                      theme="outline"
                     />
                   </li>
                 </ul>

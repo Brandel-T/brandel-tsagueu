@@ -69,26 +69,26 @@ export default defineNuxtComponent({
         @click="toggleMenu"
       />
       <IconXmark v-else class="md:hidden block !z-10" @click="toggleMenu" />
-      <nav v-if="menuOpen" class="mobile-nav-menu z-1">
-        <ul class="mobile-menu-list">
-          <li class="menu-item">
-            <a href="#about">About</a>
-          </li>
-          <li class="menu-item">
-            <a href="#work">Work</a>
-          </li>
-          <li class="menu-item">
-            <a href="#projects">Projects</a>
-          </li>
-          <li class="menu-item">
-            <a href="#tech-stack">Tech Stack</a>
-          </li>
-          <li class="menu-item">
-            <a href="#contact">Contact</a>
-          </li>
-        </ul>
-      </nav>
     </div>
+    <nav v-if="menuOpen" class="mobile-nav-menu z-1">
+      <ul class="mobile-menu-list">
+        <li class="menu-item">
+          <a href="#about">About</a>
+        </li>
+        <li class="menu-item">
+          <a href="#work">Work</a>
+        </li>
+        <li class="menu-item">
+          <a href="#projects">Projects</a>
+        </li>
+        <li class="menu-item">
+          <a href="#tech-stack">Tech Stack</a>
+        </li>
+        <li class="menu-item">
+          <a href="#contact">Contact</a>
+        </li>
+      </ul>
+    </nav>
   </header>
 </template>
 
@@ -118,11 +118,15 @@ a {
 }
 
 .mobile-nav-menu {
-  @apply bg-primary shadow-md md:hidden block absolute left-0 top-16 w-full px-4 py-4;
+  @apply bg-primary h-[20rem] shadow-md md:hidden block absolute left-0 top-16 w-full px-4 py-4;
   .mobile-menu-list {
     @apply grid grid-cols-1 gap-2 divide-soft;
     .menu-item {
-      @apply p-4 bg-accent-soft;
+      @apply h-14 flex items-center px-4 bg-accent-soft;
+
+      a {
+        @apply h-full w-full flex items-center;
+      }
     }
   }
 }

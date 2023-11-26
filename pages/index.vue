@@ -6,7 +6,7 @@
     >
       An error occurred &#128549;
     </div>
-    <div v-else-if="!loading" class="h-screen flex items-center justify-center">
+    <div v-if="loading" class="h-screen flex items-center justify-center">
       <Logo class="!text-lg" />
     </div>
     <div v-else>
@@ -24,7 +24,7 @@
         <About
           id="about"
           class="-z-1 section"
-          :interest="interests"
+          :interests="interests"
           :profile-image="profileImage"
           :about-me="aboutMe"
         />
@@ -95,18 +95,27 @@ const {
 
 const loading = computed(() => {
   return (
-    heroLoading || aboutLoading || projectsLoading || stackLoading || jobLoading
+    heroLoading ||
+    aboutLoading.value ||
+    projectsLoading.value ||
+    stackLoading.value ||
+    jobLoading.value
   );
 });
 
-const error = computed(() => {
-  return (
-    heroError.value ||
-    aboutError.value ||
-    jobsError.value ||
-    projectsError.value ||
-    stackError.value
-  );
+const error = computed({
+  get() {
+    return (
+      heroError.value ||
+      aboutError.value ||
+      jobsError.value ||
+      projectsError.value ||
+      stackError.value
+    );
+  },
+  set(newValue) {
+    error.value = newValue;
+  },
 });
 </script>
 

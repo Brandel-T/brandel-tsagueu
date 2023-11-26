@@ -8,7 +8,7 @@ export default {
 </script>
 
 <template>
-  <section class="tech-stack page-section">
+  <section class="tech-stack page-section !min-h-screen">
     <SectionHeader title="Tech Stack" />
     <article
       class="section-body flex flex-col items-center justify-center pb-12"
@@ -75,4 +75,8 @@ export default {
   </section>
 </template>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+.tech-stack {
+  @apply h-screen overflow-y-hidden pb-12;
+}
+</style>

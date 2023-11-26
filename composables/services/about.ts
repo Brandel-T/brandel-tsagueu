@@ -11,7 +11,10 @@ export const useAbout = async <T = any>(runtimeConfig: RuntimeConfig) => {
 
   try {
     const { data, pending: loading } = await useLazyAsyncData(
-      () => find<T>("about?populate=*"),
+      () =>
+        find<T>(
+          "about?populate[profileImage]=*&populate[interests][fields]=name",
+        ),
       {
         server: true,
       },

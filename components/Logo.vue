@@ -1,5 +1,5 @@
 <template>
-  <a id="logo" class="logo">
+  <a id="logo" class="logo" href="#hero">
     <span href="#hero" class="flex items-center gap-1">
       <span class="bracket">${</span>
       <span class="logo-title">Brandel-T</span>

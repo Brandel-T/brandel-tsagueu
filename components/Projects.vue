@@ -13,7 +13,12 @@ export default defineNuxtComponent({
     function selectProject(accordionIndex: number) {
       selectedProject.value = accordionIndex;
     }
-    return { selectedProject, selectProject };
+
+    function isAccordionActive(index: number) {
+      return selectedProject.value === index;
+    }
+
+    return { selectedProject, selectProject, isAccordionActive };
   },
   methods: { useImage, useDateFormat },
 });
@@ -31,20 +36,30 @@ export default defineNuxtComponent({
         >
           <div
             :class="{
-              'accordion-open': selectedProject === index,
-              'accordion-close': selectedProject !== index,
+              'accordion-open': isAccordionActive(index),
+              'accordion-close': !isAccordionActive(index),
             }"
             class="accordion-header"
             @click="selectProject(index)"
           >
-            <span :class="{ 'text-accent': selectedProject == index }">{{
+            <span :class="{ 'text-accent': isAccordionActive(index) }">{{
               project.title
             }}</span>
-            <div class="badge-outline">{{ project.type }}</div>
+            <div class="flex justify-center items-center gap-2">
+              <a
+                v-if="isAccordionActive(index)"
+                class="text-secondary"
+                :href="project.url"
+                target="_blank"
+              >
+                <Badge value="View on GitHub ↗" icon-name="github" />
+              </a>
+              <div class="badge-outline">{{ project.type }}</div>
+            </div>
           </div>
           <div
-            v-if="selectedProject === index"
-            :class="{ hidden: !(selectedProject === index) }"
+            v-if="isAccordionActive(index)"
+            :class="{ hidden: !isAccordionActive(index) }"
             class="accordion-body transition-all duration-300 ease-in"
             data-aos="zoom-up"
             data-aos-duration="600"
@@ -89,16 +104,26 @@ export default defineNuxtComponent({
           v-for="(project, index) in projects"
           :key="index"
           :class="{
-            'accordion-open': selectedProject === index,
-            'accordion-close': selectedProject !== index,
+            'accordion-open': isAccordionActive(index),
+            'accordion-close': !isAccordionActive(index),
           }"
           class="accordion-header"
           @click="selectProject(index)"
         >
-          <span :class="{ 'text-accent': selectedProject == index }">{{
+          <span :class="{ 'text-accent': isAccordionActive(index) }">{{
             project.title
           }}</span>
-          <div class="badge-outline">{{ project.type }}</div>
+          <div class="flex justify-center items-center gap-2">
+            <a
+              v-if="isAccordionActive(index)"
+              class="text-secondary"
+              :href="project.url"
+              target="_blank"
+            >
+              <Badge value="View on GitHub ↗" icon-name="github" />
+            </a>
+            <div class="badge-outline">{{ project.type }}</div>
+          </div>
         </div>
       </div>
     </article>

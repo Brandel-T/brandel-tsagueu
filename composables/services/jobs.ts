@@ -52,7 +52,7 @@ export const useJobs = <T>() => {
         error.value = true;
       }
     })
-    .catch((reason) => {
+    .catch((_reason) => {
       error.value = true;
       pending.value = false;
       jobs.value = [];

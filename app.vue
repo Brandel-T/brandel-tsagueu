@@ -10,9 +10,12 @@
 
 <script lang="ts" setup>
 useSeoMeta({
-  title: "Brandel Tsagueu | B.Sc. Student and Software Developer",
+  charset: "utf-8",
+  title: "Brandel Tsagueu | B.Sc. Computer Science and Software Developer",
+  ogSiteName: "Brandel Tsagueu | B.Sc. Computer Science and Software Developer",
   ogTitle: "Brandel Tsagueu",
-  ogUrl: "https://brandel-tsagueu.dev",
+  author: "Brandel Tsagueu",
+  ogUrl: "https://brandel-tsagueu.dev/",
   ogImage: "/profil-1.jpeg",
   keywords:
     "Brandel Tsagueu, Brandel Tsagueu Temgoua Perez, Brandel-T, @Brandel-T, BrandelTsagueu",
@@ -20,14 +23,17 @@ useSeoMeta({
     "Developer devoted to creating great web experiences focused on Vue/Nuxt, Angular, NestJS and Flutter based in Germany.",
   ogDescription:
     "Developer devoted to creating great web experiences focused on Vue/Nuxt, Angular, NestJS and Flutter based in Germany.",
-  author: "Brandel Tsagueu",
-  charset: "utf-8",
-  ogSiteName: "Brandel Tsagueu | B.Sc. Student and Software Developer",
 });
 
 useHead({
   htmlAttrs: {
     lang: "en",
   },
+  meta: [
+    {
+      name: "google-site-verification",
+      content: "z5JTCdi2mTb686PlXj8x7qj-0LuF7dzqayk4je3FdGc",
+    },
+  ],
 });
 </script>
