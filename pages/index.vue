@@ -40,7 +40,6 @@
           <Contact id="contact" />
         </div>
       </div>
-      <!-- <MyFooter /> -->
 
       <a
         href="#hero"
@@ -130,12 +129,10 @@ const error = computed({
   border: 2px solid $primary;
   position: absolute;
   left: 50%;
-  // top: -45%;
   top: 45%;
   border-radius: 50%;
   background-image: $bg-gradient;
   background-size: 200%;
-  // filter: blur(400px);
   filter: blur(130px) brightness(200%) contrast(1);
   z-index: -1;
   animation: bg-animation 10s infinite alternate;

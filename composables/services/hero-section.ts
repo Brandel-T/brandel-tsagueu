@@ -7,7 +7,7 @@ export const useHero = async () => {
 
   try {
     const { data, pending } = await useAsyncData(() =>
-      find("hero-section?populate=*"),
+      find("hero-section?populate=*&fields=intro&fields=heading"),
     );
     loading.value = pending.value;
 

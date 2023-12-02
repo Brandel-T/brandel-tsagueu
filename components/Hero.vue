@@ -93,7 +93,16 @@ export default defineNuxtComponent({
             <span class="highlight">Software Developer</span>
           </div>
           <div class="mt-6 text-center md:text-left">
-            <p v-if="intro" class="body-text font-light">{{ intro }}</p>
+            <p v-if="intro" class="body-text font-light">
+              {{ intro }} <br />I am currently continuing my education by
+              supporting a development team at
+              <a
+                href="http://bosch.com"
+                target="_blank"
+                class="highlight hover:underline transition ease-in-out delay-500"
+                >Bosch</a
+              >
+            </p>
             <p v-else class="body-text font-light">
               I use code to build things for fun and on demand
             </p>
