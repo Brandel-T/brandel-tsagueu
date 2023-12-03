@@ -1,21 +1,18 @@
 <template>
   <NuxtLayout>
     <div class="h-screen flex flex-col justify-center items-center">
-      <h1>{{ error.statusCode }}</h1>
-      <div>Page not found: {{ error.url }}</div>
+      <h1 class="text-8xl">{{ error.statusCode }}</h1>
+      <div class="text-xl">{{ error.message }}</div>
 
-      <button class="px-4 px-2 rounded-sm bg-tertiary" @click="goBack">
+      <br />
+      <button class="px-4 px-2 rounded-sm bg-tertiary" @click="handleError">
         Back home
       </button>
     </div>
   </NuxtLayout>
 </template>
 
-<script setup>
-const router = useRouter();
+<script setup lang="ts">
 const error = useError();
-async function goBack() {
-  router.push({ path: "/", hash: "#hero" });
-  await refreshNuxtData();
-}
+const handleError = () => clearError({ redirect: "/" });
 </script>

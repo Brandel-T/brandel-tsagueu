@@ -1,12 +1,15 @@
 <template>
   <Lenis>
-    <div
+    <!-- <div
       v-if="error"
       class="h-screen flex items-center justify-center text-2xl animate-pulse"
     >
       An error occurred &#128549;
-    </div>
-    <div v-if="loading" class="h-screen flex items-center justify-center">
+    </div> -->
+    <div
+      v-if="error || loading"
+      class="h-screen flex items-center justify-center"
+    >
       <Logo class="!text-lg" />
     </div>
     <div v-else>
@@ -92,14 +95,19 @@ const {
   error: stackError,
 } = await useStack();
 
-const loading = computed(() => {
-  return (
-    heroLoading ||
-    aboutLoading.value ||
-    projectsLoading.value ||
-    stackLoading.value ||
-    jobLoading.value
-  );
+const loading = computed({
+  get() {
+    return (
+      heroLoading ||
+      aboutLoading.value ||
+      projectsLoading.value ||
+      stackLoading.value ||
+      jobLoading.value
+    );
+  },
+  set(newValue) {
+    loading.value = newValue;
+  },
 });
 
 const error = computed({
@@ -115,6 +123,20 @@ const error = computed({
   set(newValue) {
     error.value = newValue;
   },
+});
+
+if (error.value) {
+  throw createError({
+    statusCode: 404,
+    statusMessage: "Ooops, an error occured :/",
+  });
+}
+
+watchEffect(() => {
+  useStore.error = error.value;
+});
+watchEffect(() => {
+  useStore.loading = loading.value;
 });
 </script>
 

@@ -1,22 +1,24 @@
 <template>
   <div>
-    <NavBar class="sticky top-0" />
+    <NavBar v-if="!useStore.error && !useStore.loading" class="sticky top-0" />
     <NuxtLayout>
       <NuxtPage />
     </NuxtLayout>
-    <MyFooter />
+    <MyFooter v-if="!useStore.error && !useStore.loading" />
   </div>
 </template>
 
 <script lang="ts" setup>
 useSeoMeta({
   charset: "utf-8",
-  title: "Brandel Tsagueu | B.Sc. Computer Science and Software Developer",
-  ogSiteName: "Brandel Tsagueu | B.Sc. Computer Science and Software Developer",
-  ogTitle: "Brandel Tsagueu",
+  title: "Brandel Tsagueu",
+  ogTitle: "Brandel Tsagueu | B.Sc. Computer Science and Software Developer",
   author: "Brandel Tsagueu",
   ogUrl: "https://brandel-tsagueu.dev/",
-  ogImage: "/profil-1.jpeg",
+  ogImage: "https://brandel-tsagueu.dev/profil-1.jpeg",
+  ogSiteName: "Brandel Tsagueu",
+  ogType: "website",
+  ogLocale: "en_UK",
   keywords:
     "Brandel Tsagueu, Brandel Tsagueu Temgoua Perez, Brandel-T, @Brandel-T, BrandelTsagueu",
   description:
