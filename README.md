@@ -1,75 +1,21 @@
-# Nuxt 3 Minimal Starter
+# Brandel Tsagueu personal website
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+This is the first iteration of my personal site and this repo include the codebase of that.
+
+![personal-website-landing](https://github.com/Brandel-T/brandel-tsagueu/assets/85814091/38a94fcf-7e4a-445e-af4b-80219c5ec74f)
 
 ## Setup
 
-Make sure to install the dependencies:
 
-```bash
-# npm
-npm install
-
-# pnpm
-pnpm install
-
-# yarn
-yarn install
-
-# bun
-bun install
-```
-
-## Development Server
-
-Start the development server on `http://localhost:3000`:
-
-```bash
-# npm
-npm run dev
-
-# pnpm
-pnpm run dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
-```
+- Install the dependencies `npm install`
+- Start dev server on `http://localhost:3000` with `npm run dev`
 
 ## Production
 
-Build the application for production:
+- Build for production `npm run build`
+- Locally preview production build: `npm run preview`
 
-```bash
-# npm
-npm run build
+# Licence
 
-# pnpm
-pnpm run build
-
-# yarn
-yarn build
-
-# bun
-bun run build
-```
-
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm run preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+Copyright (c) 2023 - today Brandel Tsagueu. All rights reserved.
+**All regarding this project is intellectual property. Including code and design and can not be copied, modified or redistributed without consent from the author in the name of Brandel P. Tsagueu T. `(me)`**.
