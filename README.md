@@ -2,10 +2,17 @@
 
 This is the first iteration of my personal site and this repo include the codebase of that.
 
+Built with:
+- [Nuxt 3](https://nuxt.com/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [SASS](https://sass-lang.com/)
+
+Deploy on [Netlify](https://www.netlify.com/)
+
+
 ![personal-website-landing](https://github.com/Brandel-T/brandel-tsagueu/assets/85814091/38a94fcf-7e4a-445e-af4b-80219c5ec74f)
 
 ## Setup
-
 
 - Install the dependencies `npm install`
 - Start dev server on `http://localhost:3000` with `npm run dev`
