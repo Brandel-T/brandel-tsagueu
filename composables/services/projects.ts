@@ -24,10 +24,7 @@ export const useProjects = async <T>(runtimeConfig: RuntimeConfig) => {
             title,
             type,
             url,
-            assets: assets.data.map(
-              (asset: any) =>
-                runtimeConfig.public.apiUrl + asset.attributes.url,
-            ),
+            assets: assets.data.map((asset: any) => asset.attributes.url),
             technologies: technologies.data.map((tech: any) => {
               return {
                 name: tech.attributes.name,

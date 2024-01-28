@@ -51,7 +51,7 @@
         </ul>
       </div>
       <div
-        class="profile max-w-[25rem] img-wrapper rounded-md after:outline after:outline-1 after:outline-tertiary hover:after:bg-tertiary"
+        class="profile max-w-[25rem] img-wrapper rounded-md after:outline after:outline-1 after:outline-tertiary hover:after:bg-tertiary mask-squircle"
       >
         <img
           v-if="profileImage"
@@ -79,7 +79,7 @@ export default defineNuxtComponent({
       (new Date().getTime() - new Date("2021-01-01").getTime()) / toYearFactor,
     );
 
-    const yearsOfexperience = computed(() => Math.ceil(yearsDiff.value));
+    const yearsOfexperience = computed(() => Math.floor(yearsDiff.value));
 
     return {
       yearsOfexperience,
@@ -92,33 +92,6 @@ export default defineNuxtComponent({
 .section-body {
   @apply grid grid-cols-12 gap-12 justify-center
     portrait:flex portrait:flex-col relative;
-}
-.img-wrapper::after {
-  content: "";
-  width: 100%;
-  height: 100%;
-  display: block;
-  position: absolute;
-  top: 2em;
-  left: 2em;
-  z-index: -1;
-  border-radius: 0.32em;
-  transition: all 1s;
-  mix-blend-mode: darken;
-}
-.img-wrapper:hover {
-  &::after {
-    top: 1em;
-    left: 1em;
-  }
-}
-.img-wrapper img {
-  filter: brightness(130%);
-  isolation: isolate;
-  transition: all 1s ease-in-out;
-}
-.img-wrapper img:hover {
-  filter: grayscale(0%);
 }
 
 .about-content {
@@ -145,5 +118,45 @@ export default defineNuxtComponent({
         ease-in-out
         -translate-y-4
         object-cover;
+}
+.mask-squircle {
+  -webkit-mask-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0nMjAwJyBoZWlnaHQ9JzIwMCcgeG1sbnM9J2h0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnJz48cGF0aCBkPSdNMTAwIDBDMjAgMCAwIDIwIDAgMTAwczIwIDEwMCAxMDAgMTAwIDEwMC0yMCAxMDAtMTAwUzE4MCAwIDEwMCAwWicvPjwvc3ZnPg==);
+  mask-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0nMjAwJyBoZWlnaHQ9JzIwMCcgeG1sbnM9J2h0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnJz48cGF0aCBkPSdNMTAwIDBDMjAgMCAwIDIwIDAgMTAwczIwIDEwMCAxMDAgMTAwIDEwMC0yMCAxMDAtMTAwUzE4MCAwIDEwMCAwWicvPjwvc3ZnPg==);
+  mask-repeat: no-repeat;
+  mask-size: contain;
+  transform: perspective(900px) translate3d(0px, 0px, -50px) rotateY(-15deg)
+    rotateX(10deg) scale(1);
+  border-radius: 20px;
+  box-shadow: 0 70px 40px -20px red !important;
+  transition: 0.4s ease-in-out transform;
+  isolation: isolate;
+  transition: all 1s ease-in-out;
+
+  &:hover {
+    transform: translate3d(0px, 0px, -250px);
+  }
+
+  img {
+    filter: grayscale(0%);
+
+    &:hover {
+      filter: brightness(130%);
+    }
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .mask-squircle {
+    transform: none !important;
+    transition: none;
+
+    &:hover {
+      transform: none;
+    }
+
+    img {
+      filter: brightness(130%);
+    }
+  }
 }
 </style>
