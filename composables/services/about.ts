@@ -20,7 +20,6 @@ export const useAbout = async <T = any>(runtimeConfig: RuntimeConfig) => {
       },
     );
     pending.value = loading.value;
-
     if (data.value) {
       profileImage.value = `${data.value?.data.attributes.profileImage.data.attributes.url}`;
       interests.value = data.value!.data.attributes.interests.data.map(

@@ -8,7 +8,7 @@ export default {
 </script>
 
 <template>
-  <section class="tech-stack page-section !min-h-screen">
+  <section class="tech-stack page-section !h-auto">
     <SectionHeader title="Tech Stack" />
     <article
       class="section-body flex flex-col items-center justify-center pb-12"

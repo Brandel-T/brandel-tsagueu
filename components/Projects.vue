@@ -1,6 +1,16 @@
 <script lang="ts">
+import "vue3-carousel/dist/carousel.css";
+
+import { Carousel, Pagination, Slide, Navigation } from "vue3-carousel";
+
 export default defineNuxtComponent({
   name: "Projects",
+  components: {
+    Carousel,
+    Slide,
+    Pagination,
+    Navigation,
+  },
   props: {
     projects: {
       type: Array<ProjectType>,
@@ -10,6 +20,19 @@ export default defineNuxtComponent({
   },
   setup() {
     const selectedProject = ref<number>(0);
+    const carouselSettings = ref({
+      wrapAround: true,
+      transition: 500,
+      autoplay: 3500,
+      itemsToShow: 1,
+    });
+    const carouselBreakpoints = ref({
+      768: {
+        itemsToShow: 1.3,
+        snapAlign: "center",
+      },
+    });
+
     function selectProject(accordionIndex: number) {
       selectedProject.value = accordionIndex;
     }
@@ -18,7 +41,13 @@ export default defineNuxtComponent({
       return selectedProject.value === index;
     }
 
-    return { selectedProject, selectProject, isAccordionActive };
+    return {
+      selectedProject,
+      selectProject,
+      isAccordionActive,
+      carouselSettings,
+      carouselBreakpoints,
+    };
   },
   methods: { useImage, useDateFormat },
 });
@@ -72,17 +101,29 @@ export default defineNuxtComponent({
               </div>
             </div>
             <div class="h-96">
-              <div class="project__assets">
-                <img
+              <Carousel
+                class="h-full"
+                v-bind="carouselSettings"
+                :breakpoints="carouselBreakpoints"
+              >
+                <Slide
                   v-for="(asset, assetIndex) in project.assets"
-                  :key="assetIndex"
-                  class="project__assets--item"
-                  :src="asset"
-                  :alt="`Portfolio: Project ${project.title} preview ${assetIndex}`"
-                />
-              </div>
+                  :key="asset"
+                >
+                  <img
+                    :key="asset"
+                    class="project__assets--item"
+                    :src="asset"
+                    :alt="`Portfolio: Project ${project.title} preview ${assetIndex}`"
+                  />
+                </Slide>
+
+                <template #addons>
+                  <Navigation />
+                </template>
+              </Carousel>
             </div>
-            <div class="">
+            <div>
               <div class="highlight mb-2 md:mb-4 mt-4 w-fit">
                 Technologies used
               </div>
@@ -154,7 +195,28 @@ export default defineNuxtComponent({
   }
 }
 
+:deep(.carousel) {
+  height: 100%;
+  justify-content: center !important;
+
+  .carousel__viewport {
+    width: 100% !important;
+    border-radius: 1rem;
+
+    .carousel__track {
+      height: 100%;
+      padding-bottom: 2rem;
+      margin-bottom: 1rem;
+
+      .carousel__slide {
+        border-radius: 1rem !important;
+        padding: 0.5rem;
+      }
+    }
+  }
+}
+
 .project__assets--item {
-  @apply inset-0 h-full snap-center mr-2 mb-4;
+  @apply inset-0 h-full snap-center object-center object-cover rounded-lg;
 }
 </style>

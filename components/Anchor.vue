@@ -49,6 +49,10 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.anchor {
+  text-decoration: none;
+}
+
 .underline {
   content: "";
   position: absolute;

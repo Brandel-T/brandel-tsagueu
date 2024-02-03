@@ -11,8 +11,9 @@
       <span class="flex-1 h-2 bg-tertiary"></span>
     </div>
     <div class="h-fit py-10 text-center text body-text align-middle px-4">
-      Design and built with passion by
-      <a href="#contact" class="highlight">Brandel Tsagueu</a>. All rights
+      Design with
+      <a href="https://www.figma.com/de/" class="highlight">Figma</a> and built
+      with passion by <a href="#contact" class="highlight">me</a>. All rights
       reserved &copy; {{ currentYear }}
     </div>
   </footer>

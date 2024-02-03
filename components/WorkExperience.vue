@@ -20,7 +20,7 @@ export default defineNuxtComponent({
   <section class="work-experience page-section">
     <SectionHeader title="Work experience" />
     <article class="section-body">
-      <div>
+      <div class="lg:w-1/2">
         <div
           v-for="(job, index) in jobs"
           :key="String(job.startDate)"
