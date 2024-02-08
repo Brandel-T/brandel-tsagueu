@@ -10,7 +10,7 @@
           <div class="heading-1">
             <Anchor
               class="heading-1 !z-0"
-              url="johndoe@gmail.com"
+              url="tsagueubrandel@gmail.com"
               name="Tsagueubrandel@gmail.com"
               :email="true"
               type="external"
