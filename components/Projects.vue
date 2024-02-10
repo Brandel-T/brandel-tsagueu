@@ -23,7 +23,7 @@ export default defineNuxtComponent({
     const carouselSettings = ref({
       wrapAround: true,
       transition: 800,
-      // autoplay: 4000,
+      autoplay: 4000,
       itemsToShow: 1,
     });
     const carouselBreakpoints = ref({
