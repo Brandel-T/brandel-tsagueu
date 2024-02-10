@@ -14,7 +14,10 @@ export default defineNuxtConfig({
     "@nuxtjs/google-fonts",
   ],
   strapi: {
-    url: process.env.STRAPI_URL || "http://localhost:1337",
+    url:
+      process.env.NODE_ENV === "development"
+        ? "http://localhost:1337"
+        : process.env.STRAPI_URL,
     prefix: "/api",
   },
   tailwindcss: {

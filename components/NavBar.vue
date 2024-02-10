@@ -41,7 +41,9 @@ export default defineNuxtComponent({
 
 <template>
   <header class="z-10 backdrop-blur-xl shadow-xl">
-    <div class="container flex justify-between items-center h-16 relative">
+    <div
+      class="container bg-primary md:bg-opacity-20 flex justify-between items-center h-16 relative"
+    >
       <Logo />
       <nav class="hidden md:block">
         <ul class="flex gap-0 lg:gap-4 justify-end li-ctn">
@@ -118,7 +120,7 @@ a {
 }
 
 .mobile-nav-menu {
-  @apply bg-primary h-[20rem] shadow-md md:hidden block absolute left-0 top-16 w-full px-4 py-4;
+  @apply bg-primary h-auto py-4 shadow-md md:hidden block absolute left-0 top-16 w-full px-4;
   .mobile-menu-list {
     @apply grid grid-cols-1 gap-2 divide-soft;
     .menu-item {

@@ -1,10 +1,12 @@
 <template>
   <div>
-    <NavBar v-if="!useStore.error && !useStore.loading" class="sticky top-0" />
+    <!-- <NavBar v-if="!useStore.error && !useStore.loading" class="sticky top-0" /> -->
+    <NavBar v-if="!useStore.loading" class="sticky top-0" />
     <NuxtLayout>
       <NuxtPage />
     </NuxtLayout>
-    <MyFooter v-if="!useStore.error && !useStore.loading" />
+    <!-- <MyFooter v-if="!useStore.error && !useStore.loading" /> -->
+    <MyFooter v-if="!useStore.loading" />
   </div>
 </template>
 

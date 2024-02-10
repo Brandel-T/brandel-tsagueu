@@ -6,10 +6,13 @@
     >
       An error occurred &#128549;
     </div> -->
-    <div
+    <!-- <div
       v-if="error || loading"
       class="h-screen flex items-center justify-center"
     >
+      <Logo class="!text-lg" />
+    </div> -->
+    <div v-if="loading" class="h-screen flex items-center justify-center">
       <Logo class="!text-lg" />
     </div>
     <div v-else>
@@ -66,33 +69,33 @@ definePageMeta({
 
 const runtimeConfig = useRuntimeConfig();
 
-const { hero, pending: heroLoading, error: heroError } = await useHero();
+const { hero, pending: heroLoading /*, error: heroError */ } = await useHero();
 
 const {
   aboutMe,
   interests,
   profileImage,
   pending: aboutLoading,
-  error: aboutError,
+  // error: aboutError,
 } = await useAbout(runtimeConfig);
 
 const {
   jobs,
   pending: jobLoading,
-  error: jobsError,
+  // error: jobsError,
 } = await useJobs<JobType>();
 
 const {
   projects,
   pending: projectsLoading,
-  error: projectsError,
+  // error: projectsError,
 } = await useProjects<ProjectType>(runtimeConfig);
 
 const {
   recent,
   stacks,
   pending: stackLoading,
-  error: stackError,
+  // error: stackError,
 } = await useStack();
 
 const loading = computed({
@@ -110,31 +113,31 @@ const loading = computed({
   },
 });
 
-const error = computed({
-  get() {
-    return (
-      heroError.value ||
-      aboutError.value ||
-      jobsError.value ||
-      projectsError.value ||
-      stackError.value
-    );
-  },
-  set(newValue) {
-    error.value = newValue;
-  },
-});
+// const error = computed({
+//   get() {
+//     return (
+//       heroError.value ||
+//       aboutError.value ||
+//       jobsError.value ||
+//       projectsError.value ||
+//       stackError.value
+//     );
+//   },
+//   set(newValue) {
+//     error.value = newValue;
+//   },
+// });
 
-if (error.value) {
-  throw createError({
-    statusCode: 404,
-    statusMessage: "Ooops, an error occured :/",
-  });
-}
+// if (error.value) {
+//   throw createError({
+//     statusCode: 404,
+//     statusMessage: "Ooops, an error occured :/",
+//   });
+// }
 
-watchEffect(() => {
-  useStore.error = error.value;
-});
+// watchEffect(() => {
+//   useStore.error = error.value;
+// });
 watchEffect(() => {
   useStore.loading = loading.value;
 });

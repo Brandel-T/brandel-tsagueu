@@ -22,14 +22,17 @@ export default defineNuxtComponent({
     const selectedProject = ref<number>(0);
     const carouselSettings = ref({
       wrapAround: true,
-      transition: 500,
-      autoplay: 3500,
+      transition: 800,
+      // autoplay: 4000,
       itemsToShow: 1,
     });
     const carouselBreakpoints = ref({
       768: {
-        itemsToShow: 1.3,
+        itemsToShow: 2,
         snapAlign: "center",
+      },
+      1024: {
+        itemsToShow: 1.2,
       },
     });
 
@@ -200,8 +203,9 @@ export default defineNuxtComponent({
   justify-content: center !important;
 
   .carousel__viewport {
-    width: 100% !important;
-    border-radius: 1rem;
+    height: 100%;
+    border-radius: 0.5rem;
+    background-color: $accent-soft;
 
     .carousel__track {
       height: 100%;
@@ -211,12 +215,21 @@ export default defineNuxtComponent({
       .carousel__slide {
         border-radius: 1rem !important;
         padding: 0.5rem;
+
+        @media screen and (min-width: 768px) {
+          &:hover {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+          }
+        }
       }
     }
   }
 }
 
 .project__assets--item {
-  @apply inset-0 h-full snap-center object-center object-cover rounded-lg;
+  @apply inset-0 h-full snap-center object-center object-contain rounded-lg duration-200 z-0
+    lg:object-cover lg:object-center md:hover:scale-105 hover:z-50;
 }
 </style>
