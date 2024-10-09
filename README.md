@@ -1,3 +1,5 @@
+[![Netlify Status](https://api.netlify.com/api/v1/badges/aa37fa9e-02e1-4c47-96cc-a7cdd6744ade/deploy-status)](https://app.netlify.com/sites/brandel-tsagueu/deploys)
+
 # Brandel Tsagueu personal website
 
 This is the first iteration of my personal site and this repo include the codebase of that.
