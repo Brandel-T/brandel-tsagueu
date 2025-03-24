@@ -19,6 +19,7 @@ export const useAbout = async <T = any>(runtimeConfig: RuntimeConfig) => {
         server: true,
       },
     );
+
     pending.value = loading.value;
     if (data.value) {
       profileImage.value = `${data.value?.data.attributes.profileImage.data.attributes.url}`;

@@ -1,90 +1,114 @@
 <template>
-  <section class="about page-section">
-    <SectionHeader title="About Me" />
-    <article class="section-body !-z-1">
-      <div class="about-content">
+  <NuxtErrorBoundary>
+    <section id="about" class="about page-section">
+      <SectionHeader title="About Me" />
+      <article class="section-body !-z-1">
+        <div class="about-content">
+          <div
+            data-aos="fade-up-right"
+            data-aos-delay="0"
+            data-aos-easing="ease-in-out"
+            data-aos-duration="600"
+          >
+            <div v-if="pending">Loading ... {{ pending }}</div>
+            <div v-else>
+              <div v-html="about.description"></div>
+            </div>
+          </div>
+          <div class="flex justify-center md:justify-start gap-x-12 mt-6">
+            <div
+              class="w-fit body-text flex items-center gap-2 -z-10"
+              data-aos="zoom-in-right"
+            >
+              <strong class="text-[2.5rem] md:text-[3.5rem] font-normal">
+                {{ yearsOfexperience }}+
+              </strong>
+              years experience
+            </div>
+            <div
+              class="w-fit body-text flex items-center gap-2 -z-10"
+              data-aos="zoom-in-right"
+            >
+              <IconLocation
+                class="!w-[2.5rem] !h-[2.5rem] md:!w-[3.5rem] md:!h-[3.5rem]"
+              />Germany, DE
+            </div>
+          </div>
+          <div
+            v-if="about.interests"
+            class="mb-4 text-accent text-center md:text-left text-xl md:text-2xl mt-12 capitalize"
+          >
+            My interests
+          </div>
+          <ul class="flex flex-wrap justify-center md:justify-start gap-2">
+            <li
+              v-for="(interest, index) in about.interests"
+              :key="index"
+              class="badge-outline capitalize list-item"
+              data-aos="zoom-in-right"
+            >
+              {{ interest.name }}
+            </li>
+          </ul>
+        </div>
         <div
-          data-aos="fade-up-right"
-          data-aos-delay="0"
-          data-aos-easing="ease-in-out"
-          data-aos-duration="600"
+          class="profile max-w-[25rem] img-wrapper rounded-md after:outline after:outline-1 after:outline-tertiary hover:after:bg-tertiary mask-squircle"
         >
-          <ContentDoc
-            path="/about"
-            class="body-text text-center md:text-left !font-light"
+          <img
+            v-if="about.profileImage"
+            :src="
+              about.profileImage
+                ? useRuntimeImage(about.profileImage.url)
+                : '~/assets/images/profil-1.jpeg'
+            "
+            alt="profile picture: Brandel Tsagueu"
+            class="w-full h-full rounded-md"
+            data-aos="fade-left"
           />
         </div>
-        <div class="flex justify-center md:justify-start gap-x-12 mt-6">
-          <div
-            class="w-fit body-text flex items-center gap-2 -z-10"
-            data-aos="zoom-in-right"
-          >
-            <strong class="text-[2.5rem] md:text-[3.5rem] font-normal"
-              >{{ yearsOfexperience }}+</strong
-            >
-            years experience
-          </div>
-          <div
-            class="w-fit body-text flex items-center gap-2 -z-10"
-            data-aos="zoom-in-right"
-          >
-            <IconLocation
-              class="!w-[2.5rem] !h-[2.5rem] md:!w-[3.5rem] md:!h-[3.5rem]"
-            />Germany, DE
-          </div>
-        </div>
-        <div
-          v-if="interests"
-          class="mb-4 text-accent text-center md:text-left text-xl md:text-2xl mt-12 capitalize"
-        >
-          My interests
-        </div>
-        <ul class="flex flex-wrap justify-center md:justify-start gap-2">
-          <li
-            v-for="(interest, index) in interests"
-            :key="index"
-            class="badge-outline capitalize list-item"
-            data-aos="zoom-in-right"
-          >
-            {{ interest }}
-          </li>
-        </ul>
-      </div>
-      <div
-        class="profile max-w-[25rem] img-wrapper rounded-md after:outline after:outline-1 after:outline-tertiary hover:after:bg-tertiary mask-squircle"
-      >
-        <img
-          v-if="profileImage"
-          :src="profileImage ? profileImage : '~/assets/images/profil-1.jpeg'"
-          alt="profile picture: Brandel Tsagueu"
-          class="w-full h-full rounded-md"
-          data-aos="fade-left"
-        />
-      </div>
-    </article>
-  </section>
+      </article>
+    </section>
+
+    <template #error="{ error }">
+      <p>
+        An error occured when loading the
+        <i class="text-soft">about</i> content.
+      </p>
+      <p>{{ error }}</p>
+    </template>
+  </NuxtErrorBoundary>
 </template>
 
-<script lang="ts">
-export default defineNuxtComponent({
-  name: "About",
-  props: {
-    aboutMe: { type: String, required: true },
-    interests: { type: Array<String>, default: [], required: false },
-    profileImage: { type: String, required: true },
-  },
-  setup() {
-    const toYearFactor = 1000 * 60 * 60 * 24 * 365.25;
-    const yearsDiff = ref(
-      (new Date().getTime() - new Date("2021-01-01").getTime()) / toYearFactor,
-    );
+<script lang="ts" setup>
+const { find } = useStrapi();
 
-    const yearsOfexperience = computed(() => Math.floor(yearsDiff.value));
+const about = ref();
 
-    return {
-      yearsOfexperience,
-    };
-  },
+const toYearFactor = 1000 * 60 * 60 * 24 * 365.25;
+const yearsDiff = ref(
+  (new Date().getTime() - new Date("2021-01-01").getTime()) / toYearFactor,
+);
+
+const yearsOfexperience = computed(() => Math.floor(yearsDiff.value));
+
+const { data, pending } = await useAsyncData(async () => {
+  return await find("about", {
+    fields: ["title", "description"],
+    populate: {
+      interests: {
+        fields: ["name"],
+        populate: "*",
+      },
+      profileImage: {
+        populate: "*",
+      },
+    },
+  }).then(({ data }) => data);
+});
+
+watchEffect(() => {
+  if (!about) return;
+  about.value = data.value;
 });
 </script>
 

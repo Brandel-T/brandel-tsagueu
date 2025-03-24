@@ -17,6 +17,10 @@
   @apply transition-all ease-linear duration-300
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   margin: 0;
   padding: 0;

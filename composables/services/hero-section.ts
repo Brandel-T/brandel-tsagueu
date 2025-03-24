@@ -5,20 +5,23 @@ export const useHero = async () => {
   const loading = ref(true);
   const heroData = ref<any>();
 
-  try {
-    const { data, pending } = await useAsyncData(() =>
-      find("hero-section?populate=*&fields=intro&fields=heading"),
-    );
-    loading.value = pending.value;
+  // try {
+  //   useAsyncData(() =>
+  //     find("hero-section?populate=*&fields=intro&fields=heading"),
+  //   ).then(({ data, pending }) => {
+  //     console.log(data)
+  //   })
+  //   console.log(data.value)
+  //   loading.value = pending.value;
 
-    if (data.value) {
-      error.value = false;
-      heroData.value = data.value;
-    }
-  } catch (err) {
-    error.value = true;
-    loading.value = false;
-  }
+  //   if (data.value) {
+  //     error.value = false;
+  //     heroData.value = data.value;
+  //   }
+  // } catch (err) {
+  //   error.value = true;
+  //   loading.value = false;
+  // }
 
   return {
     hero: {

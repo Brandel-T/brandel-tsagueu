@@ -1,18 +1,14 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  devtools: { enabled: false },
+  devtools: { enabled: process.env.NODE_ENV === "development" },
   runtimeConfig: {
     public: {
-      apiUrl: process.env.STRAPI_URL,
+      apiUrl:
+        process.env.NODE_ENV === "development"
+          ? "http://localhost:1337"
+          : process.env.STRAPI_URL,
     },
   },
-  modules: [
-    "@nuxtjs/tailwindcss",
-    "@nuxtjs/strapi",
-    "@nuxt/content",
-    "nuxt-lenis",
-    "@nuxtjs/google-fonts",
-  ],
   strapi: {
     url:
       process.env.NODE_ENV === "development"
@@ -20,6 +16,13 @@ export default defineNuxtConfig({
         : process.env.STRAPI_URL,
     prefix: "/api",
   },
+  modules: [
+    "@nuxtjs/tailwindcss",
+    "@nuxtjs/strapi",
+    "@nuxt/content",
+    "@nuxtjs/google-fonts",
+    "vue3-carousel-nuxt",
+  ],
   tailwindcss: {
     cssPath: "~/assets/styles/main.scss",
     configPath: "tailwind.config",
