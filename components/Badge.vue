@@ -17,6 +17,7 @@
       :alt="`svg icon: ${iconName}`"
     />
     <div
+      v-if="value"
       :class="[
         'e-badge-content',
         { 'text-accent': theme !== 'secondary' },
@@ -61,7 +62,7 @@ export default defineNuxtComponent({
 <style lang="scss" scoped>
 .e-badge {
   @apply flex justify-between items-center gap-2
-    w-fit min-w-[4rem]
+    w-fit
     rounded-full;
 
   .e-badge-icon {
