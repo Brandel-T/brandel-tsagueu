@@ -1,44 +1,3 @@
-<script lang="ts">
-export default defineNuxtComponent({
-  name: "NavBar",
-  setup() {
-    const menuOpen = ref<boolean>(false);
-    function toggleMenu() {
-      menuOpen.value = !menuOpen.value;
-    }
-
-    function highlightLinksOnScroll() {
-      const sections = document.querySelectorAll("section.page-section");
-      const navLinks = document.querySelectorAll(".menu-item");
-      window.onscroll = () => {
-        let current: string = "";
-        sections.forEach((section) => {
-          const sectionTop = section.offsetTop;
-          if (window.scrollY >= sectionTop - 80) {
-            current = section.getAttribute("id"); /*  ?? '' */
-          }
-        });
-        navLinks.forEach((li) => {
-          const link = li
-            .firstElementChild!.getAttribute("href")!
-            .replace("#", "");
-          li.classList.remove("active-nav-link");
-          if (link == current) {
-            li.classList.add("active-nav-link");
-          }
-        });
-      };
-    }
-
-    onMounted(() => {
-      highlightLinksOnScroll();
-    });
-
-    return { menuOpen, toggleMenu };
-  },
-});
-</script>
-
 <template>
   <header class="z-10 backdrop-blur-xl shadow-xl">
     <div
@@ -93,6 +52,47 @@ export default defineNuxtComponent({
     </nav>
   </header>
 </template>
+
+<script lang="ts">
+export default defineNuxtComponent({
+  name: "NavBar",
+  setup() {
+    const menuOpen = ref<boolean>(false);
+    function toggleMenu() {
+      menuOpen.value = !menuOpen.value;
+    }
+
+    function highlightLinksOnScroll() {
+      const sections = document.querySelectorAll("section.page-section");
+      const navLinks = document.querySelectorAll(".menu-item");
+      window.onscroll = () => {
+        let current: string = "";
+        sections.forEach((section) => {
+          const sectionTop = section.offsetTop;
+          if (window.scrollY >= sectionTop - 80) {
+            current = section.getAttribute("id"); /*  ?? '' */
+          }
+        });
+        navLinks.forEach((li) => {
+          const link = li
+            .firstElementChild!.getAttribute("href")!
+            .replace("#", "");
+          li.classList.remove("active-nav-link");
+          if (link == current) {
+            li.classList.add("active-nav-link");
+          }
+        });
+      };
+    }
+
+    onMounted(() => {
+      highlightLinksOnScroll();
+    });
+
+    return { menuOpen, toggleMenu };
+  },
+});
+</script>
 
 <style scoped lang="scss">
 .li-ctn > .menu-item {

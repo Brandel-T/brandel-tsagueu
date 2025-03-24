@@ -1,5 +1,9 @@
 <template>
-  <main>
-    <slot />
-  </main>
+  <div>
+    <NavBar class="sticky top-0" />
+    <main>
+      <slot />
+    </main>
+    <MyFooter />
+  </div>
 </template>

@@ -1,5 +1,5 @@
 <template>
-  <section class="contact page-section">
+  <section id="contact" class="contact page-section">
     <SectionHeader title="Get In Touch" />
     <article class="section-body flex !items-center mx-auto pb-20">
       <div

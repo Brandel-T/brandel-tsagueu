@@ -30,6 +30,10 @@ export const useImage = (pathName: string): string => {
   return String(assets["/assets/images/" + pathName]);
 };
 
+export const useRuntimeImage = (url: string): string => {
+  return useRuntimeConfig().public.apiUrl + url;
+};
+
 /**
  * load icon from /assets folder
  * @param iconName icon name. Must be in lower case and only contain letters and not white spaces or special characters

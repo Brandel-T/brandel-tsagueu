@@ -1,145 +1,37 @@
 <template>
-  <Lenis>
-    <!-- <div
-      v-if="error"
-      class="h-screen flex items-center justify-center text-2xl animate-pulse"
+  <div>
+    <div
+      class="hero-wrapper after:animate-pulse before:animate-pulse before:delay-200 before:duration-1000"
     >
-      An error occurred &#128549;
-    </div> -->
-    <!-- <div
-      v-if="error || loading"
-      class="h-screen flex items-center justify-center"
-    >
-      <Logo class="!text-lg" />
-    </div> -->
-    <div v-if="loading" class="h-screen flex items-center justify-center">
-      <Logo class="!text-lg" />
+      <Hero id="hero" class="z-1" />
     </div>
-    <div v-else>
-      <div
-        class="hero-wrapper after:animate-pulse before:animate-pulse before:delay-200 before:duration-1000"
-      >
-        <Hero
-          id="hero"
-          :intro="hero.intro"
-          :anchors="hero.anchors"
-          class="z-1"
-        />
+    <div class="scroll-trigger-container">
+      <About class="-z-1 section" />
+      <WorkExperience class="section" />
+      <Projects class="section" />
+      <TechStack class="section" />
+      <div class="bg-gradient section">
+        <Contact />
       </div>
-      <div class="scroll-trigger-container">
-        <About
-          id="about"
-          class="-z-1 section"
-          :interests="interests"
-          :profile-image="profileImage"
-          :about-me="aboutMe"
-        />
-        <WorkExperience id="work" class="section" :jobs="jobs" />
-        <Projects id="projects" class="section" :projects="projects" />
-        <TechStack
-          id="tech-stack"
-          class="section"
-          :items="stacks"
-          :recent-technologies="recent"
-        />
-        <div class="bg-gradient section">
-          <Contact id="contact" />
-        </div>
-      </div>
+    </div>
 
-      <a
-        href="#hero"
-        class="btn-to-top"
-        data-aos="zoom-in"
-        data-aos-once="false"
-        data-aos-anchor="#about"
-        data-aos-duration="1000"
-      >
-        <IconArrowUp class="!h-6 !w-6 sm:!h-8 sm:!w-8" />
-      </a>
-    </div>
-  </Lenis>
+    <a
+      href="#"
+      class="btn-to-top"
+      data-aos="zoom-in"
+      data-aos-once="false"
+      data-aos-anchor="#about"
+      data-aos-duration="1000"
+    >
+      <IconArrowUp class="!h-6 !w-6 sm:!h-8 sm:!w-8" />
+    </a>
+  </div>
 </template>
 
 <script lang="ts" setup>
 definePageMeta({
   layoutTransition: true,
   pageTransition: true,
-});
-
-const runtimeConfig = useRuntimeConfig();
-
-const { hero, pending: heroLoading /*, error: heroError */ } = await useHero();
-
-const {
-  aboutMe,
-  interests,
-  profileImage,
-  pending: aboutLoading,
-  // error: aboutError,
-} = await useAbout(runtimeConfig);
-
-const {
-  jobs,
-  pending: jobLoading,
-  // error: jobsError,
-} = await useJobs<JobType>();
-
-const {
-  projects,
-  pending: projectsLoading,
-  // error: projectsError,
-} = await useProjects<ProjectType>(runtimeConfig);
-
-const {
-  recent,
-  stacks,
-  pending: stackLoading,
-  // error: stackError,
-} = await useStack();
-
-const loading = computed({
-  get() {
-    return (
-      heroLoading ||
-      aboutLoading.value ||
-      projectsLoading.value ||
-      stackLoading.value ||
-      jobLoading.value
-    );
-  },
-  set(newValue) {
-    loading.value = newValue;
-  },
-});
-
-// const error = computed({
-//   get() {
-//     return (
-//       heroError.value ||
-//       aboutError.value ||
-//       jobsError.value ||
-//       projectsError.value ||
-//       stackError.value
-//     );
-//   },
-//   set(newValue) {
-//     error.value = newValue;
-//   },
-// });
-
-// if (error.value) {
-//   throw createError({
-//     statusCode: 404,
-//     statusMessage: "Ooops, an error occured :/",
-//   });
-// }
-
-// watchEffect(() => {
-//   useStore.error = error.value;
-// });
-watchEffect(() => {
-  useStore.loading = loading.value;
 });
 </script>
 
