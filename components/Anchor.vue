@@ -8,7 +8,9 @@
   >
     <span class="flex flex-col-reverse items-center gap-1 w-fit">
       <span class="w-fit mb-1">
-        <span v-if="type === 'internal' && hashtagVisible" class="hashtag">#</span>
+        <span v-if="type === 'internal' && hashtagVisible" class="hashtag"
+          >#</span
+        >
         <span
           class="text-slate-400 text-xl sm:text-2xl md:text-3xl font-light mr-2"
         >
