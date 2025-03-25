@@ -1,18 +1,10 @@
 <template>
   <div>
-    <NavBar v-if="false" class="sticky top-0" />
-
-    <div
-      class="h-screen text-center align-middle flex flex-col gap-8 justify-center items-center"
-    >
-      <div class="text-xl">The site is currently undergoing maintenance.</div>
-      <Badge icon-name="maintenance" theme="primary" />
-    </div>
-
-    <main v-if="false">
+    <NavBar />
+    <main>
       <slot />
     </main>
-    <MyFooter v-if="false" />
+    <MyFooter />
   </div>
 </template>
 

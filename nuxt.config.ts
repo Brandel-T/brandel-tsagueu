@@ -1,3 +1,5 @@
+import tailwindcss from "@tailwindcss/vite";
+
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: process.env.NODE_ENV === "development" },
@@ -29,12 +31,12 @@ export default defineNuxtConfig({
     configPath: "tailwind.config",
     exposeConfig: true,
   },
-  content: {
-    contentHead: false,
-    highlight: {
-      theme: "github-light",
-    },
-  },
+  // content: {
+  //   contentHead: false,
+  //   highlight: {
+  //     theme: "github-light",
+  //   },
+  // },
   googleFonts: {
     families: {
       Inter: true,
@@ -46,11 +48,13 @@ export default defineNuxtConfig({
     css: {
       preprocessorOptions: {
         scss: {
-          additionalData: '@use "@/assets/styles/_colors.scss" as *;',
+          additionalData: '@use "@/assets/styles/main.scss" as *;',
         },
       },
     },
+    plugins: [tailwindcss()],
   },
+  css: ["~/assets/styles/tailwind.css"],
   plugins: [{ src: "~/plugins/aos.client.js", ssr: false }],
   build: {
     transpile: ["gsap"],
