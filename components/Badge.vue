@@ -30,7 +30,7 @@
 </template>
 
 <script lang="ts">
-import { PropType } from "#imports";
+import { type PropType } from "#imports";
 
 type TBadgeTheme = "primary" | "secondary" | "outline";
 
@@ -59,18 +59,20 @@ export default defineNuxtComponent({
 });
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
+@reference "../assets/styles/tailwind.css";
+
 .e-badge {
   @apply flex justify-between items-center gap-2
     w-fit
     rounded-full;
+}
 
-  .e-badge-icon {
-    @apply rounded-full h-6 w-6 object-center;
-  }
+.e-badge .e-badge-icon {
+  @apply rounded-full h-6 w-6 object-center;
+}
 
-  .e-badge-content {
-    @apply text-xs md:text-sm mr-2;
-  }
+.e-badge .e-badge-content {
+  @apply text-xs md:text-sm mr-2;
 }
 </style>

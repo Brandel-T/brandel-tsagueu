@@ -8,7 +8,9 @@
   </a>
 </template>
 
-<style scoped lang="scss">
+<style scoped>
+@reference "../assets/styles/tailwind.css";
+
 .logo {
   @apply font-thin text-base sm:text-lg cursor-pointer min-w-max;
 }
@@ -19,12 +21,11 @@
   font-family: "JetBrains Mono", "Fira Code", "consolas", serif;
   font-size: 1.4rem;
 }
-.logo:hover {
-  .logo-title {
-    color: $primary;
-  }
-  .bracket {
-    color: $text-color;
-  }
+
+.logo:hover .logo-title {
+  color: var(--primary);
+}
+.logo:hover .bracket {
+  color: var(--text-color);
 }
 </style>

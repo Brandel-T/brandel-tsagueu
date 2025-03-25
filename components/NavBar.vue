@@ -1,7 +1,7 @@
 <template>
-  <header class="z-10 backdrop-blur-xl shadow-xl">
+  <header class="z-10 drop-shadow-2xl">
     <div
-      class="container bg-primary md:bg-opacity-20 flex justify-between items-center h-16 relative"
+      class="container md:bg-opacity-20 flex justify-between items-center h-16 relative"
     >
       <Logo />
       <nav class="hidden md:block">
@@ -26,10 +26,10 @@
 
       <IconMenu
         v-if="!menuOpen"
-        class="md:hidden block !z-10"
+        class="md:hidden block z-10!"
         @click="toggleMenu"
       />
-      <IconXmark v-else class="md:hidden block !z-10" @click="toggleMenu" />
+      <IconXmark v-else class="md:hidden block z-10!" @click="toggleMenu" />
     </div>
     <nav v-if="menuOpen" class="mobile-nav-menu z-1">
       <ul class="mobile-menu-list">
@@ -94,7 +94,9 @@ export default defineNuxtComponent({
 });
 </script>
 
-<style scoped lang="scss">
+<style scoped>
+@reference "../assets/styles/tailwind.css";
+
 .li-ctn > .menu-item {
   @apply h-full flex justify-center items-center;
 }
@@ -110,9 +112,9 @@ export default defineNuxtComponent({
 }
 .menu-item {
   display: block;
-  &:hover {
-    background: $bg-gradient;
-  }
+}
+.menu-item:hover {
+  background: var(--bg-gradient);
 }
 
 a {
@@ -121,15 +123,14 @@ a {
 
 .mobile-nav-menu {
   @apply bg-primary h-auto py-4 shadow-md md:hidden block absolute left-0 top-16 w-full px-4;
-  .mobile-menu-list {
-    @apply grid grid-cols-1 gap-2 divide-soft;
-    .menu-item {
-      @apply h-14 flex items-center px-4 bg-accent-soft;
-
-      a {
-        @apply h-full w-full flex items-center;
-      }
-    }
-  }
+}
+.mobile-nav-menu .mobile-menu-list {
+  @apply grid grid-cols-1 gap-2 divide-soft;
+}
+.mobile-nav-menu .mobile-menu-list .menu-item {
+  @apply h-14 flex items-center px-4 bg-accent-soft;
+}
+.mobile-nav-menu .mobile-menu-list .menu-item a {
+  @apply h-full w-full flex items-center;
 }
 </style>

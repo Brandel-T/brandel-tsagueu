@@ -23,7 +23,7 @@
       data-aos-anchor="#about"
       data-aos-duration="1000"
     >
-      <IconArrowUp class="!h-6 !w-6 sm:!h-8 sm:!w-8" />
+      <IconArrowUp class="h-6! w-6! sm:h-8! sm:w-8!" />
     </a>
   </div>
 </template>
@@ -35,7 +35,9 @@ definePageMeta({
 });
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
+@reference "../assets/styles/tailwind.css";
+
 .hero-wrapper {
   overflow: hidden;
 }
@@ -43,12 +45,12 @@ definePageMeta({
   content: "";
   width: 10rem;
   height: 15rem;
-  border: 2px solid $primary;
+  border: 2px solid var(--primary);
   position: absolute;
   left: 50%;
   top: 45%;
   border-radius: 50%;
-  background-image: $bg-gradient;
+  background-image: var(--bg-gradient);
   background-size: 200%;
   filter: blur(130px) brightness(200%) contrast(1);
   z-index: -1;
@@ -60,7 +62,7 @@ definePageMeta({
   content: "";
   width: 10rem;
   height: 5rem;
-  border: 4rem solid $primary;
+  border: 4rem solid var(--primary);
   position: absolute;
   left: -10%;
   top: 35%;

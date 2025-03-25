@@ -1,40 +1,4 @@
-@import url("./colors.css");
-
-@import "tailwindcss";
-@plugin "daisyui";
-
-@theme {
-  --color-*: initial;
-  --color-white: #fefefe;
-  --color-soft: #9ca3af;
-  --color-primary: #030712;
-  --color-secondary: #32ffac;
-  --color-tertiary: #32ffac2b;
-  --color-accent: #aec1f5;
-  --color-accent-soft: #aec1f52b;
-  --color-background: #202739;
-}
-.container {
-  @apply mx-auto px-4 md:px-12 lg:px-10 max-w-[80rem] overflow-hidden;
-}
-
-/*
-  The default border color has changed to `currentColor` in Tailwind CSS v4,
-  so we've added these compatibility styles to make sure everything still
-  looks the same as it did with Tailwind CSS v3.
-
-  If we ever want to remove these styles, we need to add an explicit border
-  color utility to any element that depends on these defaults.
-*/
-@layer base {
-  *,
-  ::after,
-  ::before,
-  ::backdrop,
-  ::file-selector-button {
-    border-color: var(--color-gray-200, currentColor);
-  }
-}
+@import url("colors");
 
 * {
   font-family: Inter, Arial, Helvetica, "sans-serif";
@@ -65,6 +29,7 @@ body::before {
   margin: 0;
   padding: 0;
 }
+
 
 /* *********** NAV BAR ************ */
 .active-nav-link {

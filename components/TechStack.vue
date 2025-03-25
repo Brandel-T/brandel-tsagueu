@@ -3,7 +3,7 @@
     <section
       v-if="!pending && data"
       id="tech-stack"
-      class="tech-stack page-section !h-auto"
+      class="tech-stack page-section h-auto!"
     >
       <SectionHeader title="Tech Stack" />
 
@@ -40,30 +40,30 @@
               data-aos="fade-up-right"
               data-aos-duration="1500"
               :data-aos-delay="index * 100"
-              class="w-full md:w-auto bg-accent-soft rounded p-6 items-stretch mb-2 lg:mb-0 shadow-lg shadow-primary"
+              class="w-full md:w-auto bg-accent-soft rounded-sm p-6 items-stretch mb-2 lg:mb-0 shadow-lg shadow-primary"
             >
               <div class="flex items-end justify-between">
                 <span class="heading-2">{{ item.category }}</span>
                 <IconBackend
                   v-if="item.category === 'Backend'"
-                  class="icon-secondary !h-12 !w-12"
+                  class="icon-secondary h-12! w-12!"
                 />
                 <IconDesktop
                   v-else-if="item.category === 'Frontend'"
-                  class="icon-secondary !h-12 !w-12"
+                  class="icon-secondary h-12! w-12!"
                 />
                 <IconPhone
                   v-else-if="item.category === 'Mobile'"
-                  class="icon-secondary !h-12 !w-12"
+                  class="icon-secondary h-12! w-12!"
                 />
-                <IconSettings v-else class="icon-secondary !h-12 !w-12" />
+                <IconSettings v-else class="icon-secondary h-12! w-12!" />
               </div>
 
               <div class="mt-4 flex flex-wrap gap-4">
                 <span
                   v-for="tech in item.technologies"
                   :key="tech"
-                  class="body-text !text-accent"
+                  class="body-text text-accent!"
                   >{{ tech.name }}</span
                 >
               </div>
@@ -111,7 +111,9 @@ watch(
 );
 </script>
 
-<style scoped lang="scss">
+<style scoped>
+@reference "../assets/styles/tailwind.css";
+
 .tech-stack {
   @apply h-screen overflow-y-hidden pb-12;
 }

@@ -1,7 +1,7 @@
 <template>
   <footer class="h-30 w-full pb-6 md:pb-10">
     <div
-      class="flex items-center justify-center gap-2 w-full relative !-top-[1rem]"
+      class="flex items-center justify-center gap-2 w-full relative -top-[1rem]!"
       data-aos="zoom-in-out"
       data-aos-duration="1000"
       data-aos-easing="ease-in-cubic"
