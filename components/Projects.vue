@@ -3,7 +3,7 @@
     <section
       v-if="projectSection && !pending"
       id="projects"
-      class="projects page-section"
+      class="projects page-section container"
     >
       <SectionHeader
         :title="projectSection ? 'Projects' : projectSection.title"

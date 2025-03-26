@@ -5,8 +5,8 @@
     >
       <Hero id="hero" class="z-1" />
     </div>
-    <div class="scroll-trigger-container">
-      <About class="-z-1 section" />
+    <div>
+      <About class="section" />
       <WorkExperience class="section" />
       <Projects class="section" />
       <TechStack class="section" />
@@ -23,7 +23,7 @@
       data-aos-anchor="#about"
       data-aos-duration="1000"
     >
-      <IconArrowUp class="h-6! w-6! sm:h-8! sm:w-8!" />
+      <IconArrowUp class="size-4 sm:size-6" />
     </a>
   </div>
 </template>
@@ -72,17 +72,8 @@ definePageMeta({
 }
 
 .btn-to-top {
-  @apply fixed
-   p-2 md:p-4
-   bg-accent
-   right-9 bottom-9
-   rounded-xl 
-   ease-in-out
-   hover:bg-background
-   hover:duration-700
-   hover:transition-all
-   hover:shadow-lg
-   hover:bottom-12;
+  @apply fixed p-1 md:p-2 bg-accent-soft right-9 bottom-9 rounded-xl ease-in-out
+   hover:bg-accent-soft/25 hover:duration-700 hover:transition-all hover:shadow-lg hover:bottom-12;
 }
 
 @keyframes bg-animation {

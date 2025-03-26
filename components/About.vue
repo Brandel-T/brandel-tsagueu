@@ -1,8 +1,8 @@
 <template>
   <NuxtErrorBoundary>
-    <section id="about" class="about page-section">
+    <section id="about" class="about page-section container">
       <SectionHeader title="About Me" />
-      <article class="section-body -z-1!">
+      <article class="section-body">
         <div class="about-content">
           <div
             data-aos="fade-up-right"
@@ -17,7 +17,7 @@
           </div>
           <div class="flex justify-center md:justify-start gap-x-12 mt-6">
             <div
-              class="w-fit body-text flex items-center gap-2 -z-10"
+              class="w-fit body-text flex items-center gap-2"
               data-aos="zoom-in-right"
             >
               <strong class="text-[2.5rem] md:text-[3.5rem] font-normal">
@@ -26,7 +26,7 @@
               years experience
             </div>
             <div
-              class="w-fit body-text flex items-center gap-2 -z-10"
+              class="w-fit body-text flex items-center gap-2"
               data-aos="zoom-in-right"
             >
               <IconLocation
@@ -52,7 +52,7 @@
           </ul>
         </div>
         <div
-          class="profile max-w-[25rem] img-wrapper rounded-md after:outline after:outline-1 after:outline-tertiary hover:after:bg-tertiary mask-squircle"
+          class="profile max-w-[25rem] img-wrapper rounded-md after:outline after:outline-tertiary hover:after:bg-tertiary mask-squircle"
         >
           <img
             v-if="about.profileImage"

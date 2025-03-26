@@ -18,7 +18,6 @@ export default defineNuxtConfig({
     prefix: "/api",
   },
   modules: [
-    // "@nuxtjs/tailwindcss",
     "@nuxtjs/strapi",
     "@nuxtjs/google-fonts",
     "vue3-carousel-nuxt",
@@ -28,15 +27,13 @@ export default defineNuxtConfig({
       Inter: true,
       "JetBrains Mono": [300, 400],
       "Fira Code": [400],
+      Oregano: [300, 400, 500],
     },
   },
+  compatibilityDate: "2025-03-25",
   vite: {
     plugins: [tailwindcss()],
   },
   css: ["~/assets/styles/tailwind.css"],
   plugins: [{ src: "~/plugins/aos.client.js", ssr: false }],
-  build: {
-    transpile: ["gsap"],
-  },
-  compatibilityDate: "2025-03-25",
 });

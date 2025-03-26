@@ -105,20 +105,11 @@ export default defineNuxtComponent({
 }
 
 .menu-item {
-  @apply rounded-md
-    sm:text-lg md:text-xl
-    hover:text-secondary
-    transition-all duration-500 ease-in-out;
-}
-.menu-item {
-  display: block;
-}
-.menu-item:hover {
-  background: var(--bg-gradient);
+  @apply rounded-md sm:text-lg md:text-xl transition-all duration-500 ease-in-out;
 }
 
-a {
-  display: block;
+.menu-item:hover a {
+  color: var(--text-color);
 }
 
 .mobile-nav-menu {

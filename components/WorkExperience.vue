@@ -1,6 +1,6 @@
 <template>
   <NuxtErrorBoundary>
-    <section id="work" class="work-experience page-section">
+    <section id="work" class="work-experience page-section container">
       <SectionHeader title="Work experience" />
       <article class="section-body">
         <div class="lg:w-1/2">

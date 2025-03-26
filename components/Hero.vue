@@ -52,8 +52,6 @@
 </template>
 
 <script lang="ts" setup>
-import gsap from "gsap";
-
 const animationDuration = 2.5;
 const { find } = useStrapi();
 
@@ -79,69 +77,6 @@ watch(
   },
   { immediate: true },
 );
-
-onBeforeMount(() => {
-  gsap.fromTo(
-    ".hero-description",
-    {
-      x: -100,
-      opacity: 0,
-      ease: "power4.inOut",
-    },
-    {
-      x: 0,
-      opacity: 1,
-      duration: animationDuration,
-      ease: "power4.inOut",
-    },
-  );
-
-  document.querySelectorAll(".hero-link").forEach((anchor, index) => {
-    gsap.fromTo(
-      ".hero-link",
-      {
-        x: -100,
-        opacity: 0,
-      },
-      {
-        x: 0,
-        opacity: 1,
-        stagger: 0.2 * index,
-        ease: "power4.inOut",
-        duration: animationDuration,
-        delay: 0.5,
-      },
-    );
-  });
-
-  gsap.from(".shapes-container", {
-    opacity: 0,
-    y: 150,
-    duration: animationDuration,
-    ease: "back.inOut",
-  });
-
-  document
-    .querySelectorAll(".shapes-container > div")
-    .forEach((item, index) => {
-      gsap.fromTo(
-        item,
-        {
-          x: 100,
-          opacity: 0,
-          stagger: 0.2 * index,
-        },
-        {
-          x: 0,
-          opacity: 1,
-          stagger: 0.5 * index,
-          ease: "power4.inOut",
-          duration: animationDuration,
-          delay: 0.5,
-        },
-      );
-    });
-});
 </script>
 
 <style scoped>

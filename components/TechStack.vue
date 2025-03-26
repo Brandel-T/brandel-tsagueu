@@ -3,7 +3,7 @@
     <section
       v-if="!pending && data"
       id="tech-stack"
-      class="tech-stack page-section h-auto!"
+      class="tech-stack page-section container"
     >
       <SectionHeader title="Tech Stack" />
 
@@ -40,7 +40,7 @@
               data-aos="fade-up-right"
               data-aos-duration="1500"
               :data-aos-delay="index * 100"
-              class="w-full md:w-auto bg-accent-soft rounded-sm p-6 items-stretch mb-2 lg:mb-0 shadow-lg shadow-primary"
+              class="bg-accent-soft/25 w-full md:w-auto rounded-sm p-6 items-stretch mb-2 lg:mb-0 shadow-lg"
             >
               <div class="flex items-end justify-between">
                 <span class="heading-2">{{ item.category }}</span>

@@ -3,7 +3,7 @@
     :class="[
       'e-badge',
       badgeBackground,
-      { 'outline outline-1 outline-tertiary': theme === 'outline' },
+      { 'outline-1 outline-tertiary': theme === 'outline' },
     ]"
   >
     <img
@@ -63,13 +63,11 @@ export default defineNuxtComponent({
 @reference "../assets/styles/tailwind.css";
 
 .e-badge {
-  @apply flex justify-between items-center gap-2
-    w-fit
-    rounded-full;
+  @apply flex justify-between items-center gap-2 w-fit rounded-full;
 }
 
 .e-badge .e-badge-icon {
-  @apply rounded-full h-6 w-6 object-center;
+  @apply rounded-full size-6 object-center;
 }
 
 .e-badge .e-badge-content {
