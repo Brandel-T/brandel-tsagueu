@@ -1,9 +1,210 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import url("./colors.css");
 
-@layer utilities {
-  .container {
-    @apply mx-auto px-4 md:px-12 lg:px-10 max-w-[80rem] overflow-hidden;
+@import "tailwindcss";
+@plugin "daisyui";
+
+@theme {
+  --color-*: initial;
+  --color-white: #fefefe;
+  --color-soft: #9ca3af;
+  --color-primary: #030712;
+  --color-secondary: #32ffac;
+  --color-tertiary: #32ffac2b;
+  --color-accent: #aec1f5;
+  --color-accent-soft: #aec1f52b;
+  --color-background: #202739;
+}
+.container {
+  @apply mx-auto px-4 md:px-12 lg:px-10 max-w-[80rem] overflow-hidden;
+}
+
+/*
+  The default border color has changed to `currentColor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentColor);
   }
+}
+
+* {
+  font-family: Inter, Arial, Helvetica, "sans-serif";
+  color: var(--text-color-2);
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+*::selection {
+  background-color: var(--accent);
+}
+
+* {
+  @apply transition-all ease-linear duration-300;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--blog-bg-color);
+}
+body::after,
+body::before {
+  margin: 0;
+  padding: 0;
+}
+
+/* *********** NAV BAR ************ */
+.active-nav-link {
+  color: var(--primary);
+}
+
+/* ********** HEADINGS ****************** */
+.heading-1 {
+  @apply text-white text-lg md:text-2xl font-semibold my-1;
+}
+.heading-2 {
+  @apply text-white text-base md:text-lg font-medium;
+}
+.heading-thin {
+  @apply text-base md:text-xl font-thin;
+}
+
+.small {
+  @apply text-xs text-soft;
+}
+
+.highlight {
+  @apply text-accent;
+}
+
+.body-text {
+  @apply text-base sm:text-lg text-soft;
+}
+
+/* ************** HASHTAG **************** */
+.hashtag {
+  @apply font-bold text-xl md:text-2xl text-secondary mr-2;
+}
+
+/* *************** SECTIONS ****************** */
+.section-title {
+  @apply font-bold text-xl md:text-2xl capitalize;
+}
+.page-section {
+  @apply min-h-screen
+  flex flex-col gap-4 justify-center
+  sm:gap-6 md:gap-12;
+}
+
+.section-header {
+  @apply mt-32 mb-6 md:mb-10 lg:mb-14 flex items-end;
+}
+.section-header__container {
+  @apply h-fit relative capitalize;
+}
+.section-header__container::after {
+  content: "";
+  position: absolute;
+  height: 1px;
+  width: 100%;
+  background-color: var(--secondary);
+  top: 50%;
+  margin-left: 1em;
+}
+.section-body {
+  @apply flex-1 lg:flex lg:gap-4 lg:items-start lg:content-center;
+}
+
+/* ************* components ************** */
+
+/* BADGE */
+.badge {
+  @apply w-fit
+  rounded-full text-xs md:text-sm
+  text-secondary capitalize
+  bg-tertiary
+  px-4 py-1
+  justify-center items-center gap-2
+  hover:outline-tertiary hover:opacity-75;
+}
+.badge-outline {
+  @apply w-fit
+  rounded-full text-xs md:text-sm
+  text-secondary capitalize
+  outline outline-1 outline-tertiary
+  px-4 py-1
+  justify-center items-center gap-2
+  hover:bg-tertiary transition-all;
+}
+
+/* ICON */
+.icon {
+  color: var(--text-color);
+  height: 2rem;
+  width: 2rem;
+  /* z-index: -1; */
+
+  &:hover {
+    cursor: pointer;
+    color: var(--accent);
+  }
+
+  svg {
+    width: 100% !important;
+    height: 100% !important;
+  }
+}
+.icon-gray svg {
+  @apply stroke-soft;
+}
+.icon-accent svg {
+  @apply stroke-secondary;
+}
+.icon-secondary-accent svg {
+  @apply stroke-accent;
+}
+
+/* ACCORDION */
+.accordion {
+  @apply flex flex-col mb-2 lg:border-t lg:border-accent-soft lg:rounded-lg lg:shadow-md lg:shadow-accent-soft;
+}
+.accordion-open {
+  @apply bg-accent-soft text-accent;
+}
+.accordion-close {
+  @apply outline outline-1 outline-accent-soft;
+}
+.accordion-header {
+  @apply flex justify-between items-center rounded py-5 px-4
+  hover:cursor-pointer hover:opacity-75;
+}
+.accordion .accordion-header {
+  @apply lg:hidden;
+}
+.accordion-body {
+  @apply px-4 mb-4 shadow lg:flex-1;
+}
+.accordion-header__container--desktop {
+  @apply flex-1 basis-2/4 hidden lg:block;
+}
+.accordion-header__container--desktop .accordion-header {
+  @apply mb-2 w-full;
+}
+
+/* BACKGROUND GRADIENT */
+.bg-gradient {
+  background: var(--bg-gradient);
 }

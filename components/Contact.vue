@@ -1,7 +1,7 @@
 <template>
-  <section id="contact" class="contact page-section">
+  <section id="contact" class="contact page-section container">
     <SectionHeader title="Get In Touch" />
-    <article class="section-body flex !items-center mx-auto pb-20">
+    <article class="section-body flex items-center! mx-auto pb-20">
       <div
         class="grid grid-cols-1 grid-rows-3 items-center rounded-lg px-4 h-fit"
       >
@@ -9,7 +9,7 @@
           <div class="heading-thin contact-label">E-mail</div>
           <div class="heading-1">
             <Anchor
-              class="heading-1 !z-0"
+              class="heading-1"
               url="tsagueubrandel@gmail.com"
               name="Tsagueubrandel@gmail.com"
               :email="true"
@@ -24,7 +24,7 @@
             class="col-start-2 col-span-2 row-start-2 row-span-2 flex flex-col gap-2"
           >
             <Anchor
-              class="heading-1 !z-0"
+              class="heading-1"
               url="https://www.linkedin.com/in/brandel-tsagueu-6a27bb205/"
               name="LinkedIn"
               type="external"
@@ -33,7 +33,7 @@
               data-aos-easing="ease-in-out-sine"
             />
             <Anchor
-              class="heading-1 !z-0"
+              class="heading-1"
               url="https://www.xing.com/profile/Brandel_Tsagueu/cv"
               name="Xing"
               type="external"
@@ -42,7 +42,7 @@
               data-aos-easing="ease-in-out-sine"
             />
             <Anchor
-              class="heading-1 !z-0"
+              class="heading-1"
               url="https://github.com/Brandel-T"
               name="GitHub"
               type="external"
@@ -99,7 +99,9 @@
   </section>
 </template>
 
-<style scoped lang="scss">
+<style scoped>
+@reference "../assets/styles/tailwind.css";
+
 .contact-wrapper {
   @apply max-h-80 md:max-h-80
         mx-auto py-8 gap-4

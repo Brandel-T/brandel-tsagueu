@@ -1,30 +1,17 @@
 <template>
-  <a id="logo" class="logo" href="#">
-    <span href="#hero" class="flex items-center gap-1">
-      <span class="bracket">${</span>
-      <span class="logo-title">Brandel-T</span>
-      <span class="bracket">}</span></span
-    >
-  </a>
+  <NuxtLink id="logo" class="logo" to="/#">
+    <span class="logo-title">Brandel-T</span>
+  </NuxtLink>
 </template>
 
-<style scoped lang="scss">
-.logo {
-  @apply font-thin text-base sm:text-lg cursor-pointer min-w-max;
-}
-.bracket {
-  @apply text-secondary font-normal text-lg md:text-2xl animate-pulse;
-}
+<style scoped>
 .logo-title {
-  font-family: "JetBrains Mono", "Fira Code", "consolas", serif;
-  font-size: 1.4rem;
+  font-family: Oregano, "JetBrains Mono", "Fira Code", "consolas", serif;
+  font-size: 1.8rem;
+  font-weight: 300;
+  color: var(--text-color)
 }
-.logo:hover {
-  .logo-title {
-    color: $primary;
-  }
-  .bracket {
-    color: $text-color;
-  }
+.logo:hover .logo-title {
+  color: var(--primary);
 }
 </style>

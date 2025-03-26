@@ -1,6 +1,6 @@
 <template>
   <NuxtErrorBoundary>
-    <section id="work" class="work-experience page-section">
+    <section id="work" class="work-experience page-section container">
       <SectionHeader title="Work experience" />
       <article class="section-body">
         <div class="lg:w-1/2">
@@ -38,7 +38,7 @@
               <div class="mb-6 mt-4">
                 <div class="body-text">
                   <span class="small flex items-center gap-2">
-                    <IconCalendar class="!h-5 !w-5 icon-gray" />
+                    <IconCalendar class="h-5! w-5! icon-gray" />
                     {{ useDateFormat(new Date(job.startDate)) }} -
                     <span>
                       <span v-if="job.endDate" class="small">{{
@@ -60,10 +60,10 @@
                 <div
                   class="flex items-center gap-2 text-white font-light text-base"
                 >
-                  <IconTime class="!h-5 !w-5" />
+                  <IconTime class="h-5! w-5!" />
                   {{ job.workFormat ?? "undefined" }}
                   <span class="text-secondary">/</span>
-                  <IconBuilding class="!h-5 !w-5" />
+                  <IconBuilding class="h-5! w-5!" />
                   {{ job.locationFormat ?? "undefined" }}
                 </div>
               </div>

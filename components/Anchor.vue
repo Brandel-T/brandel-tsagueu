@@ -2,7 +2,7 @@
   <a
     :href="`${email ? 'mailto:' : ''}${url}`"
     :target="'_blank'"
-    class="anchor link relative hover:cursor-pointer w-fit z-0"
+    class="anchor link isolate relative hover:cursor-pointer w-fit"
     @mouseenter="hover = true"
     @mouseleave="hover = false"
   >
@@ -29,7 +29,7 @@
 </template>
 
 <script lang="ts">
-import { PropType } from "vue";
+import { type PropType } from "#imports";
 
 type LinkType = "external" | "internal";
 export default {
@@ -48,7 +48,7 @@ export default {
 };
 </script>
 
-<style scoped lang="scss">
+<style scoped>
 .anchor {
   text-decoration: none;
 }
@@ -58,9 +58,10 @@ export default {
   position: absolute;
   width: 0;
   height: 3px;
-  background-color: $text-color;
+  background-color: var(--text-color);
   transition: width 0.5s;
 }
+
 .link:hover .underline {
   border: none;
   width: 100%;

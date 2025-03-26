@@ -3,10 +3,10 @@
     <div
       class="hero-wrapper after:animate-pulse before:animate-pulse before:delay-200 before:duration-1000"
     >
-      <Hero id="hero" class="z-1" />
+      <Hero id="hero" />
     </div>
-    <div class="scroll-trigger-container">
-      <About class="-z-1 section" />
+    <div>
+      <About class="section" />
       <WorkExperience class="section" />
       <Projects class="section" />
       <TechStack class="section" />
@@ -14,17 +14,6 @@
         <Contact />
       </div>
     </div>
-
-    <a
-      href="#"
-      class="btn-to-top"
-      data-aos="zoom-in"
-      data-aos-once="false"
-      data-aos-anchor="#about"
-      data-aos-duration="1000"
-    >
-      <IconArrowUp class="!h-6 !w-6 sm:!h-8 sm:!w-8" />
-    </a>
   </div>
 </template>
 
@@ -35,7 +24,9 @@ definePageMeta({
 });
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
+@reference "../assets/styles/tailwind.css";
+
 .hero-wrapper {
   overflow: hidden;
 }
@@ -43,15 +34,15 @@ definePageMeta({
   content: "";
   width: 10rem;
   height: 15rem;
-  border: 2px solid $primary;
+  border: 2px solid var(--primary);
   position: absolute;
   left: 50%;
   top: 45%;
   border-radius: 50%;
-  background-image: $bg-gradient;
+  background-image: var(--bg-gradient);
   background-size: 200%;
   filter: blur(130px) brightness(200%) contrast(1);
-  z-index: -1;
+  /* z-index: -1; */
   animation: bg-animation 10s infinite alternate;
   border-radius: 50% 50% 42% 58% / 53% 24% 76% 47%;
   overflow: hidden;
@@ -60,27 +51,13 @@ definePageMeta({
   content: "";
   width: 10rem;
   height: 5rem;
-  border: 4rem solid $primary;
+  border: 4rem solid var(--primary);
   position: absolute;
   left: -10%;
   top: 35%;
   border-radius: 50%;
   filter: blur(300px);
-  z-index: -1;
-}
-
-.btn-to-top {
-  @apply fixed
-   p-2 md:p-4
-   bg-accent
-   right-9 bottom-9
-   rounded-xl 
-   ease-in-out
-   hover:bg-background
-   hover:duration-700
-   hover:transition-all
-   hover:shadow-lg
-   hover:bottom-12;
+  /* z-index: -1; */
 }
 
 @keyframes bg-animation {

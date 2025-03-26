@@ -1,52 +1,52 @@
 <template>
-  <header class="z-10 backdrop-blur-xl shadow-xl">
-    <div
-      class="container bg-primary md:bg-opacity-20 flex justify-between items-center h-16 relative"
-    >
+  <header class="drop-shadow-2xl">
+    <div class="container md:bg-opacity-20 flex justify-between items-center h-16 relative">
       <Logo />
       <nav class="hidden md:block">
         <ul class="flex gap-0 lg:gap-4 justify-end li-ctn">
           <li class="menu-item">
-            <a href="#about">About</a>
+            <NuxtLink to="/#about">About</NuxtLink>
           </li>
           <li class="menu-item">
-            <a href="#work">Work</a>
+            <NuxtLink to="/#work">Work</NuxtLink>
           </li>
           <li class="menu-item">
-            <a href="#projects">Projects</a>
+            <NuxtLink to="/#projects">Projects</NuxtLink>
           </li>
           <li class="menu-item">
-            <a href="#tech-stack">Tech Stack</a>
+            <NuxtLink to="/#tech-stack">Tech Stack</NuxtLink>
           </li>
           <li class="menu-item">
-            <a href="#contact">Contact</a>
+            <NuxtLink to="/writtings">Writtings</NuxtLink>
+          </li>
+          <li class="menu-item">
+            <NuxtLink to="/#contact">Contact</NuxtLink>
           </li>
         </ul>
       </nav>
 
-      <IconMenu
-        v-if="!menuOpen"
-        class="md:hidden block !z-10"
-        @click="toggleMenu"
-      />
-      <IconXmark v-else class="md:hidden block !z-10" @click="toggleMenu" />
+      <IconMenu v-if="!menuOpen" class="md:hidden block" @click="toggleMenu" />
+      <IconXmark v-else class="md:hidden block" @click="toggleMenu" />
     </div>
-    <nav v-if="menuOpen" class="mobile-nav-menu z-1">
+    <nav v-if="menuOpen" class="mobile-nav-menu">
       <ul class="mobile-menu-list">
         <li class="menu-item">
-          <a href="#about">About</a>
+          <NuxtLink to="/#about">About</NuxtLink>
         </li>
         <li class="menu-item">
-          <a href="#work">Work</a>
+          <NuxtLink to="/#work">Work</NuxtLink>
         </li>
         <li class="menu-item">
-          <a href="#projects">Projects</a>
+          <NuxtLink to="/#projects">Projects</NuxtLink>
         </li>
         <li class="menu-item">
-          <a href="#tech-stack">Tech Stack</a>
+          <NuxtLink to="/#tech-stack">Tech Stack</NuxtLink>
         </li>
+          <li class="menu-item">
+            <NuxtLink to="/writtings">Writtings</NuxtLink>
+          </li>
         <li class="menu-item">
-          <a href="#contact">Contact</a>
+          <NuxtLink to="/#contact">Contact</NuxtLink>
         </li>
       </ul>
     </nav>
@@ -94,7 +94,9 @@ export default defineNuxtComponent({
 });
 </script>
 
-<style scoped lang="scss">
+<style scoped>
+@reference "../assets/styles/tailwind.css";
+
 .li-ctn > .menu-item {
   @apply h-full flex justify-center items-center;
 }
@@ -103,33 +105,27 @@ export default defineNuxtComponent({
 }
 
 .menu-item {
-  @apply rounded-md
-    sm:text-lg md:text-xl
-    hover:text-secondary
-    transition-all duration-500 ease-in-out;
-}
-.menu-item {
-  display: block;
-  &:hover {
-    background: $bg-gradient;
-  }
+  @apply rounded-md sm:text-lg md:text-xl transition-all duration-500 ease-in-out;
 }
 
-a {
-  display: block;
+.menu-item:hover a {
+  color: var(--text-color);
 }
 
 .mobile-nav-menu {
-  @apply bg-primary h-auto py-4 shadow-md md:hidden block absolute left-0 top-16 w-full px-4;
-  .mobile-menu-list {
-    @apply grid grid-cols-1 gap-2 divide-soft;
-    .menu-item {
-      @apply h-14 flex items-center px-4 bg-accent-soft;
+  @apply h-auto bg-neutral py-4 shadow-md md:hidden block absolute left-0 top-16 w-full px-4;
+}
+.mobile-nav-menu .mobile-menu-list {
+  @apply grid grid-cols-1 gap-2 divide-soft;
+}
+.mobile-nav-menu .mobile-menu-list .menu-item {
+  @apply h-14 flex items-center px-4 bg-accent-soft;
+}
+.mobile-nav-menu .mobile-menu-list .menu-item a {
+  @apply h-full w-full flex items-center;
+}
 
-      a {
-        @apply h-full w-full flex items-center;
-      }
-    }
-  }
+.router-link-exact-active {
+  @apply text-white;
 }
 </style>
