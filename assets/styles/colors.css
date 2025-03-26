@@ -5,9 +5,16 @@
 
   --primary: #32ffac;
   --secondary: rgba(50, 255, 172, 0.17);
-  --accent: #AEC1F5;
+  --accent: #aec1f5;
   --accent-soft: #aec1f52b;
 
   --bg-color: #030712;
-  --bg-gradient: linear-gradient(135deg, rgba(50, 255, 172, 0.17) 0%, #050D21 73%);
+  --bg-gradient: linear-gradient(
+    135deg,
+    rgba(50, 255, 172, 0.17) 0%,
+    #050d21 73%
+  );
+
+  --blog-bg-color: #0d0d0d;
+  --blog-bg-color-surface: #262626;
 }

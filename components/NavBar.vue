@@ -7,46 +7,48 @@
       <nav class="hidden md:block">
         <ul class="flex gap-0 lg:gap-4 justify-end li-ctn">
           <li class="menu-item">
-            <a href="#about">About</a>
+            <NuxtLink to="/#about">About</NuxtLink>
           </li>
           <li class="menu-item">
-            <a href="#work">Work</a>
+            <NuxtLink to="/#work">Work</NuxtLink>
           </li>
           <li class="menu-item">
-            <a href="#projects">Projects</a>
+            <NuxtLink to="/#projects">Projects</NuxtLink>
           </li>
           <li class="menu-item">
-            <a href="#tech-stack">Tech Stack</a>
+            <NuxtLink to="/#tech-stack">Tech Stack</NuxtLink>
           </li>
           <li class="menu-item">
-            <a href="#contact">Contact</a>
+            <NuxtLink to="/writtings">Writtings</NuxtLink>
+          </li>
+          <li class="menu-item">
+            <NuxtLink to="/#contact">Contact</NuxtLink>
           </li>
         </ul>
       </nav>
 
-      <IconMenu
-        v-if="!menuOpen"
-        class="md:hidden block z-10!"
-        @click="toggleMenu"
-      />
+      <IconMenu v-if="!menuOpen" class="md:hidden block z-10!" @click="toggleMenu" />
       <IconXmark v-else class="md:hidden block z-10!" @click="toggleMenu" />
     </div>
     <nav v-if="menuOpen" class="mobile-nav-menu z-1">
       <ul class="mobile-menu-list">
         <li class="menu-item">
-          <a href="#about">About</a>
+          <NuxtLink to="/#about">About</NuxtLink>
         </li>
         <li class="menu-item">
-          <a href="#work">Work</a>
+          <NuxtLink to="/#work">Work</NuxtLink>
         </li>
         <li class="menu-item">
-          <a href="#projects">Projects</a>
+          <NuxtLink to="/#projects">Projects</NuxtLink>
         </li>
         <li class="menu-item">
-          <a href="#tech-stack">Tech Stack</a>
+          <NuxtLink to="/#tech-stack">Tech Stack</NuxtLink>
         </li>
+          <li class="menu-item">
+            <NuxtLink to="/writtings">Writtings</NuxtLink>
+          </li>
         <li class="menu-item">
-          <a href="#contact">Contact</a>
+          <NuxtLink to="/#contact">Contact</NuxtLink>
         </li>
       </ul>
     </nav>
@@ -123,5 +125,9 @@ export default defineNuxtComponent({
 }
 .mobile-nav-menu .mobile-menu-list .menu-item a {
   @apply h-full w-full flex items-center;
+}
+
+.router-link-exact-active {
+  @apply text-white;
 }
 </style>

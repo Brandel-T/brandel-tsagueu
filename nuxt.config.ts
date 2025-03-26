@@ -21,6 +21,7 @@ export default defineNuxtConfig({
     "@nuxtjs/strapi",
     "@nuxtjs/google-fonts",
     "vue3-carousel-nuxt",
+    "@nuxt/icon",
   ],
   googleFonts: {
     families: {

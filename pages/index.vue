@@ -14,17 +14,6 @@
         <Contact />
       </div>
     </div>
-
-    <a
-      href="#"
-      class="btn-to-top"
-      data-aos="zoom-in"
-      data-aos-once="false"
-      data-aos-anchor="#about"
-      data-aos-duration="1000"
-    >
-      <IconArrowUp class="size-4 sm:size-6" />
-    </a>
   </div>
 </template>
 
@@ -69,11 +58,6 @@ definePageMeta({
   border-radius: 50%;
   filter: blur(300px);
   z-index: -1;
-}
-
-.btn-to-top {
-  @apply fixed p-1 md:p-2 bg-accent-soft right-9 bottom-9 rounded-xl ease-in-out
-   hover:bg-accent-soft/25 hover:duration-700 hover:transition-all hover:shadow-lg hover:bottom-12;
 }
 
 @keyframes bg-animation {

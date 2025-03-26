@@ -58,7 +58,7 @@ html {
 body {
   margin: 0;
   padding: 0;
-  background-color: var(--bg-color);
+  background-color: var(--blog-bg-color);
 }
 body::after,
 body::before {
@@ -195,8 +195,7 @@ body::before {
   @apply lg:hidden;
 }
 .accordion-body {
-  @apply px-4 mb-4 shadow
-  lg:flex-1;
+  @apply px-4 mb-4 shadow lg:flex-1;
 }
 .accordion-header__container--desktop {
   @apply flex-1 basis-2/4 hidden lg:block;

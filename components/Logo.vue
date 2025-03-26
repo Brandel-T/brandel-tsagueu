@@ -1,7 +1,7 @@
 <template>
-  <a id="logo" class="logo" href="#">
+  <NuxtLink id="logo" class="logo" to="/#">
     <span class="logo-title">Brandel-T</span>
-  </a>
+  </NuxtLink>
 </template>
 
 <style scoped>
