@@ -1,7 +1,8 @@
 <template>
   <div class="min-h-screen">
-    <header class="h-96 flex justify-start items-center bg-[url(~/assets/images/blog-cover.jpg)] bg-cover relative isolate blog-cover">
-      <h1 class="blog-page-title mx-auto font-medium text-7xl text-white z-10">Writtings</h1>
+    <header class="h-96 flex flex-col justify-center gap-6 items-center bg-[url(~/assets/images/blog-cover.jpg)] bg-cover relative isolate blog-cover">
+      <h1 class="blog-page-title mx-auto font-medium text-7xl text-white">Writtings</h1>
+      <p class="text-white! text-center w-56 md:w-fit">Here I share what I'm learning and other things that are important to me.</p>
     </header>
     <div class="container flex flex-wrap gap-2 md:gap-4 pt-10 pb-20">
       <NuxtLink v-for="i in 5" :to="`/writtings/${i}`">
@@ -30,7 +31,7 @@
   content: "";  
   width: 100%;
   height: 100%;
-  z-index: 10;
+  /* z-index: 10; */
   background: linear-gradient(75deg, var(--blog-bg-color) 15%, transparent);
 
   position: absolute;

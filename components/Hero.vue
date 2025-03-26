@@ -36,10 +36,10 @@
           </nav>
         </div>
         <div
-          class="shapes-container animate-pulse -z-20 mx-auto items-stretch align-middle justify-self-center left-32 md:-left-12 w-60 h-60! -top-52! md:top-2! md:h-80! md:w-80! ld:h-96"
+          class="shapes-container animate-pulse mx-auto items-stretch align-middle justify-self-center left-32 md:-left-12 w-60 h-60! -top-52! md:top-2! md:h-80! md:w-80! ld:h-96"
         >
-          <div class="shape-1 left-16 top-20 -z-20 md:top-32 md:left-32"></div>
-          <div class="shape-2 animate-pulse -z-20"></div>
+          <div class="shape-1 left-16 top-20 md:top-32 md:left-32"></div>
+          <div class="shape-2 animate-pulse"></div>
         </div>
       </div>
     </section>
@@ -86,7 +86,6 @@ watch(
   border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
   position: relative;
   top: -4rem;
-  z-index: 2;
   opacity: 1;
   isolation: isolate;
 }
@@ -97,7 +96,6 @@ watch(
   border-radius: 92% 8% 33% 67% / 76% 12% 88% 24%;
   position: relative;
   background-color: var(--accent-soft);
-  z-index: -1;
   opacity: 0.5;
 }
 
@@ -109,6 +107,5 @@ watch(
   top: -100%;
   left: -6rem;
   border-radius: 28% 72% 33% 67% / 76% 63% 37% 24%;
-  z-index: -1;
 }
 </style>

@@ -101,7 +101,7 @@ body::before {
 
 /* *************** SECTIONS ****************** */
 .section-title {
-  @apply font-bold text-xl md:text-2xl capitalize z-10;
+  @apply font-bold text-xl md:text-2xl capitalize;
 }
 .page-section {
   @apply min-h-screen
@@ -136,7 +136,7 @@ body::before {
   rounded-full text-xs md:text-sm
   text-secondary capitalize
   bg-tertiary
-  px-4 py-1 -z-10
+  px-4 py-1
   justify-center items-center gap-2
   hover:outline-tertiary hover:opacity-75;
 }
@@ -155,7 +155,7 @@ body::before {
   color: var(--text-color);
   height: 2rem;
   width: 2rem;
-  z-index: -1;
+  /* z-index: -1; */
 
   &:hover {
     cursor: pointer;

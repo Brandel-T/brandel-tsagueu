@@ -1,8 +1,6 @@
 <template>
-  <header class="z-10 drop-shadow-2xl">
-    <div
-      class="container md:bg-opacity-20 flex justify-between items-center h-16 relative"
-    >
+  <header class="drop-shadow-2xl">
+    <div class="container md:bg-opacity-20 flex justify-between items-center h-16 relative">
       <Logo />
       <nav class="hidden md:block">
         <ul class="flex gap-0 lg:gap-4 justify-end li-ctn">
@@ -27,10 +25,10 @@
         </ul>
       </nav>
 
-      <IconMenu v-if="!menuOpen" class="md:hidden block z-10!" @click="toggleMenu" />
-      <IconXmark v-else class="md:hidden block z-10!" @click="toggleMenu" />
+      <IconMenu v-if="!menuOpen" class="md:hidden block" @click="toggleMenu" />
+      <IconXmark v-else class="md:hidden block" @click="toggleMenu" />
     </div>
-    <nav v-if="menuOpen" class="mobile-nav-menu z-1">
+    <nav v-if="menuOpen" class="mobile-nav-menu">
       <ul class="mobile-menu-list">
         <li class="menu-item">
           <NuxtLink to="/#about">About</NuxtLink>
@@ -115,7 +113,7 @@ export default defineNuxtComponent({
 }
 
 .mobile-nav-menu {
-  @apply bg-primary h-auto py-4 shadow-md md:hidden block absolute left-0 top-16 w-full px-4;
+  @apply h-auto bg-neutral py-4 shadow-md md:hidden block absolute left-0 top-16 w-full px-4;
 }
 .mobile-nav-menu .mobile-menu-list {
   @apply grid grid-cols-1 gap-2 divide-soft;

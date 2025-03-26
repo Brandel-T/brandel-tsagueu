@@ -246,7 +246,7 @@ function isAccordionActive(index: number) {
 }
 
 .project__assets--item {
-  @apply inset-0 h-full snap-center object-center object-contain rounded-lg duration-200 z-0
-    lg:object-cover lg:object-center md:hover:scale-105 hover:z-50;
+  @apply inset-0 h-full snap-center object-center object-contain rounded-lg duration-200
+    lg:object-cover lg:object-center md:hover:scale-105
 }
 </style>
