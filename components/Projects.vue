@@ -5,17 +5,11 @@
       id="projects"
       class="projects page-section container"
     >
-      <SectionHeader
-        :title="projectSection ? 'Projects' : projectSection.title"
-      />
+      <SectionHeader :title="projectSection ? 'Projects' : projectSection.title" />
 
       <article class="section-body flex-row-reverse">
         <div class="flex-1">
-          <div
-            v-for="(project, index) in projectSection.projects"
-            :key="index"
-            class="accordion"
-          >
+          <div v-for="(project, index) in projectSection.projects" :key="index" class="accordion">
             <div
               :class="{
                 'accordion-open': isAccordionActive(index),
@@ -28,15 +22,13 @@
                 project.title
               }}</span>
               <div class="flex justify-center items-center gap-2">
-                <a
-                  v-if="isAccordionActive(index)"
-                  class="text-secondary"
-                  :href="project.url"
-                  target="_blank"
-                >
-                  <Badge value="View on GitHub ↗" icon-name="github" />
+                <a v-if="isAccordionActive(index)" :href="project.url" target="_blank">
+                  <div class="badge badge-soft">
+                    <Icon name="devicon:github" mode="svg" class="size-6" />
+                    View on GitHub ↗
+                  </div>
                 </a>
-                <div class="badge-outline">{{ project.type }}</div>
+                <div class="badge badge-dash badge-accent">{{ project.type }}</div>
               </div>
             </div>
             <div
@@ -85,7 +77,10 @@
                     class="flex flex-wrap gap-2 justify-center md:justify-start"
                   >
                     <li v-for="tech in project.technologies" :key="tech.name">
-                      <Badge :value="tech.name" :icon-name="tech.iconName" />
+                      <div class="badge badge-soft">
+                        <Icon :name="tech.iconName" mode="svg" class="size-6" />
+                        {{ tech.name }}
+                      </div>
                     </li>
                   </ul>
                 </div>
@@ -110,11 +105,13 @@
             <div class="flex justify-center items-center gap-2">
               <a
                 v-if="isAccordionActive(index)"
-                class="text-secondary"
                 :href="project.url"
                 target="_blank"
               >
-                <Badge value="View on GitHub ↗" icon-name="github" />
+                <div class="badge badge-soft">
+                  <Icon name="devicon:github" mode="svg" class="size-6" />
+                  View on GitHub ↗
+                </div>
               </a>
               <div class="badge-outline">{{ project.type }}</div>
             </div>

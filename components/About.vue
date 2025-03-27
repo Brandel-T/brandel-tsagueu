@@ -44,7 +44,7 @@
             <li
               v-for="(interest, index) in about.interests"
               :key="index"
-              class="badge-outline capitalize list-item"
+              class="badge badge-outline badge-soft capitalize list-item text-white!"
               data-aos="zoom-in-right"
             >
               {{ interest.name }}

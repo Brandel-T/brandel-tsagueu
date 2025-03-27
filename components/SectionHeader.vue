@@ -20,7 +20,7 @@ defineProps({
 <style scoped>
 .text {
   font-family: "Oregano";
-  font-size: 2rem;
+  font-size: 2.2rem;
   color: var(--text-color-3);
 }
 </style>

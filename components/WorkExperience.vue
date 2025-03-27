@@ -101,11 +101,10 @@
                     class="flex flex-wrap gap-2 justify-center md:justify-start"
                   >
                     <li v-for="(tech, j) in job.technologies_used" :key="j">
-                      <Badge
-                        :value="tech.name"
-                        :icon-name="tech.iconName"
-                        theme="outline"
-                      />
+                      <div class="badge badge-outline">
+                        <Icon :name="tech.iconName" mode="svg" class="size-6" />
+                        {{ tech.name }}
+                      </div>
                     </li>
                   </ul>
                 </div>

@@ -32,8 +32,8 @@
           </span>
         </header>
 
-        <div class="flex-1">
-          <div class="w-full lg:grid lg:grid-cols-2 lg:grid-rows-2 lg:gap-2">
+        <div class="flex-1 w-full">
+          <div class="w-full lg:grid lg:grid-cols-2 gap-3">
             <div
               v-for="(item, index) in techStacks"
               :key="item.category"
@@ -60,12 +60,10 @@
               </div>
 
               <div class="mt-4 flex flex-wrap gap-4">
-                <span
-                  v-for="tech in item.technologies"
-                  :key="tech"
-                  class="body-text text-accent!"
-                  >{{ tech.name }}</span
-                >
+                <span v-for="tech in item.technologies" :key="tech" class="tooltip" :data-tip="tech.name">
+                  <Icon v-if="tech?.iconName" :name="tech.iconName" mode="svg" class="size-18" :title="tech.name" />
+                  <span v-else>{{ tech.iconName }}</span>
+                </span>
               </div>
             </div>
           </div>
@@ -73,9 +71,13 @@
       </article>
     </section>
 
-    <template #error="{ error }">
-      <p>An error occured while loading the tech stack.</p>
-      <p>{{ error }}</p>
+    <template #error="data">
+      <div class="container">
+        <div role="alert" class="alert alert-error alert-dash my-10 flex flex-col items-start">
+          <p>An error occured while loading the tech stack.</p>
+          <p>{{ data }}</p>
+        </div>
+      </div>
     </template>
   </NuxtErrorBoundary>
 </template>
