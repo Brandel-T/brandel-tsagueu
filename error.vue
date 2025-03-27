@@ -5,7 +5,7 @@
       <div class="text-xl">{{ error!.message }}</div>
 
       <br />
-      <button class="px-4 px-2 rounded-sm bg-tertiary" @click="handleError">
+      <button class="btn btn-soft" @click="handleError">
         Back home
       </button>
     </div>
@@ -14,5 +14,5 @@
 
 <script setup lang="ts">
 const error = useError();
-const handleError = () => clearError({ redirect: "/" });
+const handleError = () => clearError({ redirect: "/#" });
 </script>

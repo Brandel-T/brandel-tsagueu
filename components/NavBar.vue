@@ -5,16 +5,10 @@
       <nav class="hidden md:block">
         <ul class="flex gap-0 lg:gap-4 justify-end li-ctn">
           <li class="menu-item">
-            <NuxtLink to="/#about">About</NuxtLink>
+            <NuxtLink to="/about">About Me</NuxtLink>
           </li>
           <li class="menu-item">
-            <NuxtLink to="/#work">Work</NuxtLink>
-          </li>
-          <li class="menu-item">
-            <NuxtLink to="/#projects">Projects</NuxtLink>
-          </li>
-          <li class="menu-item">
-            <NuxtLink to="/#tech-stack">Tech Stack</NuxtLink>
+            <NuxtLink to="/projects">Projects</NuxtLink>
           </li>
           <li class="menu-item">
             <NuxtLink to="/writtings">Writtings</NuxtLink>
@@ -31,16 +25,10 @@
     <nav v-if="menuOpen" class="mobile-nav-menu">
       <ul class="mobile-menu-list">
         <li class="menu-item">
-          <NuxtLink to="/#about">About</NuxtLink>
+          <NuxtLink to="/about">About Me</NuxtLink>
         </li>
         <li class="menu-item">
-          <NuxtLink to="/#work">Work</NuxtLink>
-        </li>
-        <li class="menu-item">
-          <NuxtLink to="/#projects">Projects</NuxtLink>
-        </li>
-        <li class="menu-item">
-          <NuxtLink to="/#tech-stack">Tech Stack</NuxtLink>
+          <NuxtLink to="/projects">Projects</NuxtLink>
         </li>
           <li class="menu-item">
             <NuxtLink to="/writtings">Writtings</NuxtLink>
@@ -113,7 +101,7 @@ export default defineNuxtComponent({
 }
 
 .mobile-nav-menu {
-  @apply h-auto bg-neutral py-4 shadow-md md:hidden block absolute left-0 top-16 w-full px-4;
+  @apply h-auto z-20 py-4 shadow-md md:hidden block absolute left-0 top-16 w-full px-4;
 }
 .mobile-nav-menu .mobile-menu-list {
   @apply grid grid-cols-1 gap-2 divide-soft;

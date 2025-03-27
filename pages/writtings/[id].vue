@@ -18,9 +18,9 @@
     <div class="container">
       <!-- <pre>{{ $route.params }}</pre> -->
       <div class="pt-10 mx-auto max-w-[55rem]">
-        <span class="text-xs border-l-3 pl-3">
+        <div class="text-xs md:border-l-3 md:pl-3 w-fit mx-auto md:ml-0">
           <time>2025-03-28</time>
-        </span>
+        </div>
 
         <h1 class="writting-title w-fit mx-auto md:ml-0 mb-8">My writting title</h1>
 

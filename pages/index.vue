@@ -1,18 +1,10 @@
 <template>
   <div>
-    <div
-      class="hero-wrapper after:animate-pulse before:animate-pulse before:delay-200 before:duration-1000"
-    >
+    <div class="hero-wrapper after:animate-pulse before:animate-pulse before:delay-200 before:duration-1000">
       <Hero id="hero" />
     </div>
-    <div>
-      <About class="section" />
-      <WorkExperience class="section" />
-      <Projects class="section" />
-      <TechStack class="section" />
-      <div class="bg-gradient section">
-        <Contact />
-      </div>
+    <div class="bg-gradient section">
+      <Contact />
     </div>
   </div>
 </template>
@@ -42,7 +34,6 @@ definePageMeta({
   background-image: var(--bg-gradient);
   background-size: 200%;
   filter: blur(130px) brightness(200%) contrast(1);
-  /* z-index: -1; */
   animation: bg-animation 10s infinite alternate;
   border-radius: 50% 50% 42% 58% / 53% 24% 76% 47%;
   overflow: hidden;
@@ -57,7 +48,6 @@ definePageMeta({
   top: 35%;
   border-radius: 50%;
   filter: blur(300px);
-  /* z-index: -1; */
 }
 
 @keyframes bg-animation {

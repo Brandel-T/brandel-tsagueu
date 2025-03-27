@@ -1,7 +1,9 @@
 @import url("./colors.css");
 
 @import "tailwindcss";
-@plugin "daisyui";
+@plugin "daisyui" {
+  themes: emerald --default, forest --prefersdark;
+}
 
 @theme {
   --color-*: initial;
@@ -104,16 +106,14 @@ body::before {
   @apply font-bold text-xl md:text-2xl capitalize;
 }
 .page-section {
-  @apply min-h-screen
-  flex flex-col gap-4 justify-center
-  sm:gap-6 md:gap-12;
+  @apply flex flex-col gap-4 justify-center sm:gap-6 md:gap-12;
 }
 
 .section-header {
   @apply mt-32 mb-6 md:mb-10 lg:mb-14 flex items-end;
 }
 .section-header__container {
-  @apply h-fit relative capitalize;
+  @apply h-fit relative capitalize isolate;
 }
 .section-header__container::after {
   content: "";
@@ -131,7 +131,7 @@ body::before {
 /* ************* components ************** */
 
 /* BADGE */
-.badge {
+/* .badge {
   @apply w-fit
   rounded-full text-xs md:text-sm
   text-secondary capitalize
@@ -148,7 +148,7 @@ body::before {
   px-4 py-1
   justify-center items-center gap-2
   hover:bg-tertiary transition-all;
-}
+} */
 
 /* ICON */
 .icon {
