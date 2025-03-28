@@ -4,26 +4,21 @@
     <NuxtLayout>
       <NuxtPage />
 
-    <a
-      href="#"
-      class="btn-to-top"
-      data-aos="zoom-in"
-      data-aos-once="false"
-      data-aos-anchor="#about"
-      data-aos-duration="1000"
-    >
-      <IconArrowUp class="size-4 sm:size-6" />
-    </a>
+      <a
+        href="#"
+        class="btn-to-top"
+        data-aos="zoom-in"
+        data-aos-once="false"
+        data-aos-anchor="#about"
+        data-aos-duration="1000"
+      >
+        <IconArrowUp class="size-4 sm:size-6" />
+      </a>
     </NuxtLayout>
   </div>
 </template>
 
 <script lang="ts" setup>
-definePageMeta({
-  layoutTransition: true,
-  pageTransition: true,
-});
-
 useSeoMeta({
   charset: "utf-8",
   title: "Brandel Tsagueu",

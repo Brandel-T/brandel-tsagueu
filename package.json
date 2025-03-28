@@ -16,19 +16,20 @@
     "@nuxt/devtools": "latest",
     "@nuxt/icon": "^1.11.0",
     "@nuxtjs/google-fonts": "^3.0.2",
+    "@nuxtjs/mdc": "^0.16.1",
     "@nuxtjs/strapi": "^1.9.3",
     "@nuxtjs/tailwindcss": "^6.13.1",
     "@types/node": "^22.13.13",
     "nuxt": "^3.7.4",
+    "sass": "^1.86.0",
     "vue3-carousel-nuxt": "^1.1.5"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.0.16",
+    "@types/markdown-it": "^14.1.2",
     "aos": "^2.3.4",
     "daisyui": "^5.0.9",
     "gsap": "3.11.5",
-    "marked": "^14.1.2",
-    "sass": "^1.67.0",
     "tailwindcss": "^4.0.16",
     "vue3-carousel": "^0.15.0"
   }

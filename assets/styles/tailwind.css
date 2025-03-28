@@ -46,7 +46,7 @@
 }
 
 *::selection {
-  background-color: var(--accent);
+  background-color: var(--color-neutral);
 }
 
 * {

@@ -22,6 +22,7 @@ export default defineNuxtConfig({
     "@nuxtjs/google-fonts",
     "vue3-carousel-nuxt",
     "@nuxt/icon",
+    "@nuxtjs/mdc",
   ],
   googleFonts: {
     families: {
@@ -36,5 +37,14 @@ export default defineNuxtConfig({
     plugins: [tailwindcss()],
   },
   css: ["~/assets/styles/tailwind.css"],
-  plugins: [{ src: "~/plugins/aos.client.js", ssr: false }],
+  plugins: [
+    { src: "~/plugins/aos.client.js", ssr: false },
+  ],
+  mdc: {
+    highlight: {
+      theme: 'material-theme-ocean',
+      langs: ['ts', 'vue', 'js', 'css', 'html', 'md', 'bash', 'yaml', 'tf', 'python', 'java', 'c', 'cpp', 'csharp', 'sql'],
+      wrapperStyle: true
+    }
+  }
 });
