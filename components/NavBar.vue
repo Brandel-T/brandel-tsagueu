@@ -1,5 +1,5 @@
 <template>
-  <header class="drop-shadow-2xl">
+  <header class="drop-shadow-xl">
     <div class="container md:bg-opacity-20 flex justify-between items-center h-16 relative">
       <Logo />
       <nav class="hidden md:block">
@@ -101,7 +101,7 @@ export default defineNuxtComponent({
 }
 
 .mobile-nav-menu {
-  @apply h-auto z-20 py-4 shadow-md md:hidden block absolute left-0 top-16 w-full px-4;
+  @apply h-auto z-200! py-4 shadow-md md:hidden block absolute left-0 top-16 w-full px-4;
 }
 .mobile-nav-menu .mobile-menu-list {
   @apply grid grid-cols-1 gap-2 divide-soft;

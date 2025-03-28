@@ -1,5 +1,9 @@
-export const useDateFormat = (date: Date): string => {
+export const useDateFormat = (date: Date | string): string => {
   if (!date) return "Today";
+  
+  if (typeof date == "string")
+    date = new Date(date)
+  
   if (date.getMonth() === new Date().getMonth()) return "Today";
 
   const months = [

@@ -4,16 +4,16 @@
     <NuxtLayout>
       <NuxtPage />
 
-    <a
-      href="#"
-      class="btn-to-top"
-      data-aos="zoom-in"
-      data-aos-once="false"
-      data-aos-anchor="#about"
-      data-aos-duration="1000"
-    >
-      <IconArrowUp class="size-4 sm:size-6" />
-    </a>
+      <a
+        href="#"
+        class="btn-to-top"
+        data-aos="zoom-in"
+        data-aos-once="false"
+        data-aos-anchor="#about"
+        data-aos-duration="1000"
+      >
+        <IconArrowUp class="size-4 sm:size-6" />
+      </a>
     </NuxtLayout>
   </div>
 </template>
@@ -28,7 +28,8 @@ useSeoMeta({
   ogImage: "https://brandel-tsagueu.dev/profil-1.jpeg",
   ogSiteName: "Brandel Tsagueu",
   ogType: "website",
-  ogLocale: "en_UK",
+  ogLocale: "en_US",
+  ogLocaleAlternate: ["fr_FR", "DE"],
   keywords:
     "Brandel Tsagueu, Brandel Tsagueu Temgoua Perez, Brandel-T, @Brandel-T, BrandelTsagueu",
   description:

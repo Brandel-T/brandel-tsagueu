@@ -15,21 +15,26 @@
       </div>
     </template>
 
-    <div class="container">
-      <!-- <pre>{{ $route.params }}</pre> -->
-      <div class="pt-10 mx-auto max-w-[55rem]">
-        <div class="text-xs md:border-l-3 md:pl-3 w-fit mx-auto md:ml-0">
-          <time>2025-03-28</time>
-        </div>
-
-        <h1 class="writting-title w-fit mx-auto md:ml-0 mb-8">My writting title</h1>
-
-        <div>
-          Where does it come from?
-          Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.
-          The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.
-        </div>
+    <div class="container md:mx-auto">
+      <div class="text-xs md:border-l-3 md:pl-3 w-fit mx-auto md:ml-0">
+        <time>2025-03-28</time>
       </div>
+
+      <h1 v-if="writting" class="writting-title w-fit mx-auto md:ml-0 mb-8">
+        {{ writting?.title ?? "My writting title" }}
+      </h1>
+      <p class="flex gap-2">
+        <span
+          v-for="tag in writting.tags"
+          :key="tag.id"
+          class="badge badge-soft badge-info"
+        ><span class="tag-hasgtag">#</span> {{ tag.name }}</span>
+      </p>
+
+      <div v-if="writting" class="md-content">
+        <MDC :value="writting?.content || ''" class="text-wrap!" />
+      </div>
+      <div v-else>Loading...</div>
     </div>
   </NuxtLayout>
 </template>
@@ -37,13 +42,140 @@
 <script lang="ts" setup>
 definePageMeta({
   layout: false,
+});
+
+useSeoMeta({
+  ogTitle: "",
+  title: "",
+  ogUrl: "https://www.brande-tsagueu.dev/writtings/::ID::",
+  articleAuthor: ["Brandel Tsagueu"],
+  articleTag: [],
+  articlePublishedTime: "",
+  articleModifiedTime: "",
 })
+
+const route = useRoute()
+const { findOne } = useStrapi()
+
+const writting = ref({})
+
+const { data } = await useAsyncData(
+  'writting',
+  () => findOne('writting-posts', route.params.id as string, { populate: '*' })
+)
+
+watch(data, (value) => {
+  if (value) {
+    writting.value = data.value?.data || {} as any
+  }
+}, { immediate: true });
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .writting-title {
   font-family: oregano,"Fira code";
   font-weight: 600;
   font-size: 2rem;
+}
+
+.md-content {
+  $vertical-gap: 1rem;
+
+  * {
+    text-wrap: wrap;
+  }
+
+  :deep(ul) {
+    margin-top: $vertical-gap;
+    margin-left: 1rem;
+    
+    li {
+      list-style: circle;
+    }
+  }
+  
+  :deep(ol) {
+    margin-top: $vertical-gap;
+    margin-left: 1rem;
+    
+    li {
+      list-style: decimal;
+    }
+  }
+
+  :deep(pre) {
+    padding: 0.5rem 1rem;
+    border-radius: 0.4rem;
+    
+    margin-top: $vertical-gap;
+    margin-bottom: $vertical-gap;
+  }
+  
+  :deep(code) {
+    margin-top: $vertical-gap;
+    margin-bottom: $vertical-gap;
+
+    * {
+      font-family: 'Fira code';
+    }
+  }
+  
+  :deep(blockquote) {
+    padding-left: 1rem;
+    margin-top: $vertical-gap;
+    margin-bottom: $vertical-gap;
+    border-left: 0.5rem solid var(--blog-bg-color-surface);
+    background-color:  var(--color-base-100);
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+
+  :deep(p) {
+    margin-bottom: 0.5rem;
+    margin-top: 0.7rem;
+
+    img {
+      max-height: 40rem;
+      margin-inline: auto;
+      object-fit: cover;
+      aspect-ratio: 16/9;
+      margin-top: $vertical-gap;
+      margin-bottom: $vertical-gap;
+      border-radius: 0.5rem;
+    }
+
+    a {
+      color: var(--color-accent);
+
+      &:hover {
+        color: var(--color-primary);
+      }
+    }
+  }
+
+  :deep(h1) {
+    margin-top: $vertical-gap * 2.5;
+    font-weight: 600;
+    font-size: 2rem;
+    font-family: Inter;
+  }
+  
+  :deep(h2) {
+    margin-top: $vertical-gap * 2;
+    font-weight: bold;
+    font-size: 1.6rem;
+    font-family: Inter;
+    color: var(--color-neutral);
+  }
+  
+  :deep(h3) {
+    margin-top: $vertical-gap;
+    margin-bottom: $vertical-gap;
+    font-weight: 400;
+    font-style: italic;
+    font-size: 1.4rem;
+    font-family: Inter;
+    color: var(--color-neutral-content);
+  }
 }
 </style>
