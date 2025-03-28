@@ -26,6 +26,24 @@
   </div>
 </template>
 
+<script lang="ts" setup>
+definePageMeta({
+  layoutTransition: true,
+  pageTransition: true,
+});
+
+useSeoMeta({
+  ogTitle: "Writtings",
+  title: "Writtings",
+  ogImage: "",
+  ogImageAlt: "",
+  description: "I also write",
+  ogDescription: "I also write",
+  ogType: "website",
+  ogUrl: "https://www.brande-tsagueu.dev/writtings",
+})
+</script>
+
 <style scoped>
 .blog-cover::before {
   content: "";  

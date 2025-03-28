@@ -37,6 +37,18 @@
 <script lang="ts" setup>
 definePageMeta({
   layout: false,
+  layoutTransition: true,
+  pageTransition: true,
+});
+
+useSeoMeta({
+  ogTitle: "",
+  title: "",
+  ogUrl: "https://www.brande-tsagueu.dev/writtings/::ID::",
+  articleAuthor: ["Brandel Tsagueu"],
+  articleTag: [],
+  articlePublishedTime: "",
+  articleModifiedTime: "",
 })
 </script>
 

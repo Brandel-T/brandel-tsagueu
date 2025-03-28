@@ -19,6 +19,11 @@
 </template>
 
 <script lang="ts" setup>
+definePageMeta({
+  layoutTransition: true,
+  pageTransition: true,
+});
+
 useSeoMeta({
   charset: "utf-8",
   title: "Brandel Tsagueu",
@@ -28,7 +33,8 @@ useSeoMeta({
   ogImage: "https://brandel-tsagueu.dev/profil-1.jpeg",
   ogSiteName: "Brandel Tsagueu",
   ogType: "website",
-  ogLocale: "en_UK",
+  ogLocale: "en_US",
+  ogLocaleAlternate: ["fr_FR", "DE"],
   keywords:
     "Brandel Tsagueu, Brandel Tsagueu Temgoua Perez, Brandel-T, @Brandel-T, BrandelTsagueu",
   description:

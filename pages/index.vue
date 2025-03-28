@@ -14,6 +14,13 @@ definePageMeta({
   layoutTransition: true,
   pageTransition: true,
 });
+
+useSeoMeta({
+  ogTitle: "Home page | Brandel Tsagueu",
+  title: "Home page | Brandel Tsagueu",
+  ogUrl: "https://www.brande-tsagueu.dev/",
+  ogType: "website",
+})
 </script>
 
 <style scoped>
