@@ -1,12 +1,14 @@
 <template>
-  <div>
-    <div class="hero-wrapper after:animate-pulse before:animate-pulse before:delay-200 before:duration-1000">
-      <Hero id="hero" />
+  <Transition mode="in-out">
+    <div>
+      <div class="hero-wrapper after:animate-pulse before:animate-pulse before:delay-200 before:duration-1000">
+        <Hero id="hero" />
+      </div>
+      <div class="bg-gradient section">
+        <Contact />
+      </div>
     </div>
-    <div class="bg-gradient section">
-      <Contact />
-    </div>
-  </div>
+  </Transition>
 </template>
 
 <script lang="ts" setup>

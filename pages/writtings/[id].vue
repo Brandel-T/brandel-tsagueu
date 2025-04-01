@@ -44,20 +44,19 @@ definePageMeta({
   layout: false,
 });
 
-useSeoMeta({
-  ogTitle: "",
-  title: "",
-  ogUrl: "https://www.brande-tsagueu.dev/writtings/::ID::",
-  articleAuthor: ["Brandel Tsagueu"],
-  articleTag: [],
-  articlePublishedTime: "",
-  articleModifiedTime: "",
-})
-
 const route = useRoute()
 const { findOne } = useStrapi()
+const writting = ref<any>({})
 
-const writting = ref({})
+useSeoMeta({
+  ogTitle: () => `${writting.value?.title} | Brandel Tsagueu`,
+  title: () => `${writting.value?.title} | Brandel Tsagueu`,
+  ogUrl: () => "https://www.brande-tsagueu.dev/writtings/" + route.params.id,
+  articleAuthor: ["Brandel Tsagueu"],
+  articleTag: () => (writting.value?.tags as Array<any>)?.map(({ name }) => name),
+  articlePublishedTime: () => writting.value?.publishedAt,
+  articleModifiedTime: () => writting.value?.updatedAt,
+})
 
 const { data } = await useAsyncData(
   'writting',
@@ -66,7 +65,7 @@ const { data } = await useAsyncData(
 
 watch(data, (value) => {
   if (value) {
-    writting.value = data.value?.data || {} as any
+    writting.value = data.value?.data || {} as AnalyserOptions
   }
 }, { immediate: true });
 </script>
@@ -122,12 +121,17 @@ watch(data, (value) => {
   
   :deep(blockquote) {
     padding-left: 1rem;
+    padding-right: 0.5rem;
     margin-top: $vertical-gap;
     margin-bottom: $vertical-gap;
     border-left: 0.5rem solid var(--blog-bg-color-surface);
     background-color:  var(--color-base-100);
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;
+
+    & > p {
+      font-style: italic;
+    }
   }
 
   :deep(p) {

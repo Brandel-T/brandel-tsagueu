@@ -34,7 +34,7 @@
             <NuxtLink to="/writtings">Writtings</NuxtLink>
           </li>
         <li class="menu-item">
-          <NuxtLink to="/#contact">Contact</NuxtLink>
+          <NuxtLink :to="{ path: '/', hash: '#contact' }">Contact</NuxtLink>
         </li>
       </ul>
     </nav>

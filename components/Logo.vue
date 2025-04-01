@@ -1,5 +1,5 @@
 <template>
-  <NuxtLink id="logo" class="logo" to="/#">
+  <NuxtLink id="logo" class="logo" to="/">
     <span class="logo-title">Brandel-T</span>
   </NuxtLink>
 </template>
