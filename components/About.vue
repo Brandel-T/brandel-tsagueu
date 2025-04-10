@@ -56,10 +56,9 @@
         >
           <img
             v-if="about.profileImage"
-            :src="
-              about.profileImage
-                ? useRuntimeImage(about.profileImage.url)
-                : '~/assets/images/profil-1.jpeg'
+            :src="about.profileImage
+              ? useRuntimeImage(about.profileImage.url)
+              : '~/assets/images/profil-1.jpeg'
             "
             alt="profile picture: Brandel Tsagueu"
             class="w-full h-full rounded-md"

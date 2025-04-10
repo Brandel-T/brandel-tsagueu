@@ -15,6 +15,9 @@
   --color-accent: #aec1f5;
   --color-accent-soft: #aec1f52b;
   --color-background: #202739;
+
+  --color-dark: var(--blog-bg-color);
+  --color-dark-surface: var(--blog-bg-color-surface);
 }
 .container {
   @apply mx-auto px-4 md:px-12 lg:px-10 max-w-[80rem] overflow-hidden;
@@ -36,6 +39,10 @@
   ::file-selector-button {
     border-color: var(--color-gray-200, currentColor);
   }
+}
+
+@utility font-oregano {
+  font-family: oregano !important;
 }
 
 * {
@@ -106,11 +113,11 @@ body::before {
   @apply font-bold text-xl md:text-2xl capitalize;
 }
 .page-section {
-  @apply flex flex-col gap-4 justify-center sm:gap-6 md:gap-12;
+  @apply h-fit pb-10;
 }
 
 .section-header {
-  @apply mt-32 mb-6 md:mb-10 lg:mb-14 flex items-end;
+  @apply mt-16 mb-6 md:mb-10 lg:mb-14 flex items-end;
 }
 .section-header__container {
   @apply h-fit relative capitalize isolate;

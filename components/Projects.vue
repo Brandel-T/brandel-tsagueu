@@ -22,13 +22,10 @@
                 project.title
               }}</span>
               <div class="flex justify-center items-center gap-2">
-                <a v-if="isAccordionActive(index)" :href="project.url" target="_blank">
-                  <div class="badge badge-soft">
-                    <Icon name="devicon:github" mode="svg" class="size-6" />
-                    View on GitHub ↗
-                  </div>
+                <a v-if="isAccordionActive(index)" :href="project.url" target="_blank" class="hover:underline">
+                  <div class="text-accent!">See more ↗</div>
                 </a>
-                <div class="badge badge-dash badge-accent">{{ project.type }}</div>
+                <div class="badge badge-accent!">{{ project.type }}</div>
               </div>
             </div>
             <div
@@ -68,14 +65,10 @@
                   </template>
                 </Carousel>
               </div>
-              <div>
-                <div class="highlight mb-2 md:mb-4 mt-4 w-fit">
-                  Technologies used
-                </div>
+              <div v-if="project.technologies.length">
+                <div class="highlight mb-2 md:mb-4 mt-4 w-fit">Technologies used</div>
                 <div class="body-text w-fit mx-auto">
-                  <ul
-                    class="flex flex-wrap gap-2 justify-center md:justify-start"
-                  >
+                  <ul class="flex flex-wrap gap-2 justify-center md:justify-start">
                     <li v-for="tech in project.technologies" :key="tech.name">
                       <div class="badge badge-soft">
                         <Icon :name="tech.iconName" mode="svg" class="size-6" />
@@ -108,10 +101,7 @@
                 :href="project.url"
                 target="_blank"
               >
-                <div class="badge badge-soft">
-                  <Icon name="devicon:github" mode="svg" class="size-6" />
-                  View on GitHub ↗
-                </div>
+                <div class="text-accent! hover:underline">See more ↗</div>
               </a>
               <div class="badge-outline">{{ project.type }}</div>
             </div>

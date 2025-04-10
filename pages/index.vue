@@ -4,6 +4,37 @@
       <div class="hero-wrapper after:animate-pulse before:animate-pulse before:delay-200 before:duration-1000">
         <Hero id="hero" />
       </div>
+      <div class="container pb-20" v-if="projects?.length">
+        <h1 class="font-oregano font-italic text-2xl mb-8 md:mb-14">Work</h1>
+        <div class="flex flex-wrap gap-2 md:gap-4 justify-center">
+          <NuxtLink
+            v-for="project in projects"
+            :key="project.documentId"
+            :to="project.url"
+          >
+            <div class="
+              card image-full before:bg-dark-surface! before:opacity-55! w-96 max-h-60 shadow-sm
+              hover:shadow-2xl hover:opacity-75! hover:relative hover:bottom-2
+              transition-all ease-in-out duration-250
+            ">
+              <figure>
+                <img :src="useRuntimeImage(project.assets[0].url)" :alt="project.assets[0].name" />
+              </figure>
+              <div class="card-body max-h-[65%] mt-auto mb-0">
+                <h2 class="card-title">{{ project.title }}</h2>
+                <p class="text-wrap truncate">
+                  {{ project.description }}
+                </p>
+              </div>
+            </div>
+          </NuxtLink>
+        </div>
+        <div class="ml-auto mr-0 mt-8">
+          <NuxtLink to="/projects" class="cursor-pointer!">
+            <button class="font-italic font-oregano underline">See all</button>
+          </NuxtLink>
+        </div>
+      </div>
       <div class="bg-gradient section">
         <Contact />
       </div>
@@ -22,6 +53,13 @@ useSeoMeta({
   title: "Home page | Brandel Tsagueu",
   ogUrl: "https://www.brande-tsagueu.dev/",
   ogType: "website",
+})
+
+const { find } = useStrapi()
+const { data: projects } = await useAsyncData('Projects', async () => {
+  return await find('projects', { populate: '*' }).then(({ data }) => {
+    return data
+  })
 })
 </script>
 
