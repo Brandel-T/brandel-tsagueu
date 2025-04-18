@@ -7,9 +7,7 @@
     >
       <SectionHeader title="Tech Stack" />
 
-      <article
-        class="section-body flex flex-col items-center justify-center pb-12"
-      >
+      <article class="section-body flex flex-col items-center justify-center pb-12">
         <header
           class="text body-text mb-8 md:mb-12"
           data-aos="fade-right"
@@ -23,11 +21,7 @@
             class="highlight"
           >
             {{ recent.name }}
-            <span
-              v-if="index == recentTechnologies.length - 2"
-              class="body-text"
-              >and
-            </span>
+            <span v-if="index == recentTechnologies.length - 2" class="body-text">and</span>
             <span v-if="index < recentTechnologies.length - 2">, </span>
           </span>
         </header>
@@ -118,6 +112,6 @@ watch(
 @reference "../assets/styles/tailwind.css";
 
 .tech-stack {
-  @apply h-screen overflow-y-hidden pb-12;
+  @apply min-h-screen overflow-y-hidden pb-12;
 }
 </style>

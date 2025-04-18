@@ -140,6 +140,7 @@ const { data } = useAsyncData(async () => {
     populate: {
       jobs: {
         populate: "*",
+        sort: ['startDate:desc', 'endDate:desc']
       },
     },
   }).then(({ data }) => data);

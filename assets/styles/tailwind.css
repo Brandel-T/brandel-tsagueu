@@ -162,7 +162,6 @@ body::before {
   color: var(--text-color);
   height: 2rem;
   width: 2rem;
-  /* z-index: -1; */
 
   &:hover {
     cursor: pointer;

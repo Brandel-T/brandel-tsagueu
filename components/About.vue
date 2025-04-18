@@ -10,7 +10,7 @@
             data-aos-easing="ease-in-out"
             data-aos-duration="600"
           >
-            <div v-if="pending">Loading ... {{ pending }}</div>
+            <div v-if="pending">Loading ...</div>
             <div v-else>
               <div v-html="about.description"></div>
             </div>
@@ -61,7 +61,7 @@
               : '~/assets/images/profil-1.jpeg'
             "
             alt="profile picture: Brandel Tsagueu"
-            class="w-full h-full rounded-md"
+            class="w-full h-full rounded-md object-cover"
             data-aos="fade-left"
           />
         </div>

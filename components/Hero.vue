@@ -28,18 +28,18 @@
             <Anchor
               v-for="anchor in hero.anchor"
               :key="anchor.url"
-              class="z-10! hero-link"
               :name="anchor.name"
               :type="anchor.type"
               :url="anchor.url"
             />
           </nav>
         </div>
-        <div
-          class="shapes-container animate-pulse mx-auto items-stretch align-middle justify-self-center left-32 md:-left-12 w-60 h-60! -top-52! md:top-2! md:h-80! md:w-80! ld:h-96"
+        <div class="shapes-container -z-0 animate-pulse mx-auto items-stretch
+          align-middle justify-self-center left-32 md:-left-12 w-60 h-60!
+          -top-52! md:top-2! md:h-80! md:w-80! ld:h-96"
         >
-          <div class="shape-1 left-16 top-20 md:top-32 md:left-32"></div>
-          <div class="shape-2 animate-pulse"></div>
+          <div class="shape-1 -z-0 left-16 top-20 md:top-32 md:left-32"></div>
+          <div class="shape-2 -z-0 animate-pulse"></div>
         </div>
       </div>
     </section>
@@ -88,6 +88,7 @@ watch(
   top: -4rem;
   opacity: 1;
   isolation: isolate;
+  z-index: 0;
 }
 
 .shapes-container .shape-1 {

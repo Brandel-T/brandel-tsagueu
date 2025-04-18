@@ -1,43 +1,55 @@
 <template>
-  <header class="drop-shadow-xl">
-    <div class="container md:bg-opacity-20 flex justify-between items-center h-16 relative">
-      <Logo />
-      <nav class="hidden md:block">
-        <ul class="flex gap-0 lg:gap-4 justify-end li-ctn">
+  <header class="drop-shadow-xl relative z-[2]">
+    <div class="drawer drawer-end">
+      <input id="my-drawer" type="checkbox" class="drawer-toggle" />
+      <div class="drawer-content flex flex-col">
+        <div class="navbar w-full">
+          <div class="w-full container flex justify-between items-center md:hidden">
+            <Logo />
+            <label for="my-drawer" aria-label="open sidebar">
+              <Icon mode="svg" name="solar:hamburger-menu-broken" class="size-10" />
+            </label>
+          </div>
+          <nav class="hidden md:flex md:justify-between container">
+            <Logo />
+            <ul class="flex gap-0 lg:gap-4 justify-end li-ctn">
+              <li class="menu-item">
+                <NuxtLink to="/about">About Me</NuxtLink>
+              </li>
+              <li class="menu-item">
+                <NuxtLink to="/projects">Projects</NuxtLink>
+              </li>
+              <li class="menu-item">
+                <NuxtLink to="/writtings">Writtings</NuxtLink>
+              </li>
+              <li class="menu-item">
+                <NuxtLink to="/#contact">Contact</NuxtLink>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+      <div class="drawer-side">
+        <label for="my-drawer" aria-label="close sidebar" class="drawer-overlay"></label>
+        <ul class="menu bg-dark/95 min-h-full w-80 p-4 justify-center h-screen">
+          <li class="menu-item">
+            <NuxtLink to="/">Home</NuxtLink>
+          </li>
           <li class="menu-item">
             <NuxtLink to="/about">About Me</NuxtLink>
           </li>
           <li class="menu-item">
             <NuxtLink to="/projects">Projects</NuxtLink>
           </li>
+            <li class="menu-item">
+              <NuxtLink to="/writtings">Writtings</NuxtLink>
+            </li>
           <li class="menu-item">
-            <NuxtLink to="/writtings">Writtings</NuxtLink>
-          </li>
-          <li class="menu-item">
-            <NuxtLink to="/#contact">Contact</NuxtLink>
+            <NuxtLink :to="{ path: '/', hash: '#contact' }">Contact</NuxtLink>
           </li>
         </ul>
-      </nav>
-
-      <IconMenu v-if="!menuOpen" class="md:hidden block" @click="toggleMenu" />
-      <IconXmark v-else class="md:hidden block" @click="toggleMenu" />
+      </div>
     </div>
-    <nav v-if="menuOpen" class="mobile-nav-menu">
-      <ul class="mobile-menu-list">
-        <li class="menu-item">
-          <NuxtLink to="/about">About Me</NuxtLink>
-        </li>
-        <li class="menu-item">
-          <NuxtLink to="/projects">Projects</NuxtLink>
-        </li>
-          <li class="menu-item">
-            <NuxtLink to="/writtings">Writtings</NuxtLink>
-          </li>
-        <li class="menu-item">
-          <NuxtLink :to="{ path: '/', hash: '#contact' }">Contact</NuxtLink>
-        </li>
-      </ul>
-    </nav>
   </header>
 </template>
 
@@ -101,7 +113,7 @@ export default defineNuxtComponent({
 }
 
 .mobile-nav-menu {
-  @apply h-auto z-200! py-4 shadow-md md:hidden block absolute left-0 top-16 w-full px-4;
+  @apply h-auto py-4 shadow-md md:hidden block left-0 top-16 w-full px-4;
 }
 .mobile-nav-menu .mobile-menu-list {
   @apply grid grid-cols-1 gap-2 divide-soft;

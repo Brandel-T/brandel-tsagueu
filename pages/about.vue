@@ -1,9 +1,9 @@
 <template>
   <Transition mode="in-out">
     <div>
-      <About class="section" />
-      <WorkExperience class="section" />
-      <TechStack class="section" />
+      <About />
+      <WorkExperience />
+      <TechStack />
     </div>
   </Transition>
 </template>

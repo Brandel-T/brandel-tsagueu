@@ -6,7 +6,7 @@
       </div>
       <div class="container pb-20" v-if="projects?.length">
         <h1 class="font-oregano font-italic text-2xl mb-8 md:mb-14">Work</h1>
-        <div class="flex flex-wrap gap-2 md:gap-4 justify-center">
+        <div class="flex flex-wrap gap-3 md:gap-4 justify-center">
           <NuxtLink
             v-for="project in projects"
             :key="project.documentId"
@@ -29,11 +29,9 @@
             </div>
           </NuxtLink>
         </div>
-        <div class="ml-auto mr-0 mt-8">
-          <NuxtLink to="/projects" class="cursor-pointer!">
-            <button class="font-italic font-oregano underline">See all</button>
-          </NuxtLink>
-        </div>
+        <NuxtLink to="/projects" class="ml-auto mr-0 mt-8">
+          <button class="font-italic font-oregano cursor-pointer hover:text-primary! underline text-lg md:text-xl">See all</button>
+        </NuxtLink>
       </div>
       <div class="bg-gradient section">
         <Contact />
