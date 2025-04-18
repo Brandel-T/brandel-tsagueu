@@ -6,7 +6,7 @@
         <div class="navbar w-full">
           <div class="w-full container flex justify-between items-center md:hidden">
             <Logo />
-            <label for="my-drawer" aria-label="open sidebar">
+            <label for="my-drawer" aria-label="open sidebar" class="cursor-pointer">
               <Icon mode="svg" name="solar:hamburger-menu-broken" class="size-10" />
             </label>
           </div>

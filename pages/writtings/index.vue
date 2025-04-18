@@ -9,12 +9,9 @@
         <p class="text-white! text-center w-56 md:w-fit">{{ writtingPage.description }}</p>
       </header>
 
-      <div
-        v-if="writtings?.length > 0"
-        class="container flex flex-wrap justify-center lg:justify-start gap-2 md:gap-4 pt-10 pb-20"
-      >
+      <div class="container flex-1 flex flex-wrap justify-center lg:justify-start gap-2 md:gap-4 pt-10 pb-20">
         <NuxtLink
-          v-if="writtings.length > 0"
+          v-if="writtings?.length > 0"
           v-for="writting in writtings"
           :key="writting.id"
           :to="`/writtings/${writting.documentId}`"
@@ -43,8 +40,12 @@
             </div>
           </div> 
         </NuxtLink>
-        <div v-else class="grid place-content-center flex-1">
-          Nothing to read for now 🙂.
+        <div
+          v-else
+          class="flex-1 grid content-stretch justify-stretch place-content-center"
+        >
+          <div class="flex-1 grid place-content-center">Nothing published yet 🙂.</div>
+          <div class="flex-1"></div>
         </div>
       </div>
     </div>
@@ -58,7 +59,7 @@ definePageMeta({
 });
 
 const { find } = useStrapi();
-const writtings = ref()
+const writtings = ref([])
 const writtingPage = ref()
 
 useSeoMeta({
