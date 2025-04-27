@@ -1,7 +1,9 @@
 <template>
-  <div>
-    <Projects class="section" />
-  </div>
+  <Transition mode="in-out">
+    <div>
+      <Projects class="section" />
+    </div>
+  </Transition>
 </template>
 
 <script lang="ts" setup>

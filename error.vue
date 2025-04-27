@@ -1,11 +1,9 @@
 <template>
   <NuxtLayout>
     <div class="h-screen flex flex-col justify-center items-center">
-      <h1 class="text-8xl">{{ error!.statusCode }}</h1>
-      <div class="text-xl">{{ error!.message }}</div>
-
-      <br />
-      <button class="btn btn-soft" @click="handleError">
+      <h1 v-if="error" class="text-8xl">{{ error?.statusCode }}</h1>
+      <div v-if="error" class="text-xl">{{ error?.message }}</div>
+      <button class="btn btn-soft mt-10" @click="handleError">
         Back home
       </button>
     </div>
