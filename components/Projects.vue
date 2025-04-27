@@ -1,9 +1,9 @@
-<template>
+accordion-open<template>
   <NuxtErrorBoundary>
     <section
       v-if="projectSection && !pending"
       id="projects"
-      class="projects page-section container"
+      class="projects page-section container mb-12"
     >
       <SectionHeader :title="projectSection ? 'Projects' : projectSection.title" />
 
@@ -36,9 +36,8 @@
               data-aos-duration="600"
               data-aos-easing="ease-in-out-sine"
             >
-              <div class="mb-4">
-                <div class="highlight mb-2 md:mb-4 mt-6 w-fit">Description</div>
-                <div class="body-text mb-4 mx-auto w-fit">
+              <div class="mb-4 pt-4">
+                <div class="body-text mb-4">
                   {{ project.description }}
                 </div>
               </div>
@@ -67,10 +66,10 @@
               </div>
               <div v-if="project.technologies.length">
                 <div class="highlight mb-2 md:mb-4 mt-4 w-fit">Technologies used</div>
-                <div class="body-text w-fit mx-auto">
-                  <ul class="flex flex-wrap gap-2 justify-center md:justify-start">
+                <div class="body-text">
+                  <ul class="flex flex-wrap gap-1">
                     <li v-for="tech in project.technologies" :key="tech.name">
-                      <div class="badge badge-soft">
+                      <div class="badge badge-outline">
                         <Icon :name="tech.iconName" mode="svg" class="size-6" />
                         {{ tech.name }}
                       </div>
@@ -180,7 +179,7 @@ function isAccordionActive(index: number) {
 @reference "../assets/styles/tailwind.css";
 
 .accordion-body {
-  @apply flex flex-col;
+  @apply flex flex-col bg-dark-surface/30 pb-4 rounded-b-md relative bottom-1 md:bottom-0 rounded-lg;
 }
 .project__assets {
   @apply flex-1 flex h-full snap-mandatory snap-x overflow-x-scroll overflow-y-hidden;
