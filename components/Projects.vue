@@ -3,19 +3,13 @@
     <section
       v-if="projectSection && !pending"
       id="projects"
-      class="projects page-section"
+      class="projects page-section container"
     >
-      <SectionHeader
-        :title="projectSection ? 'Projects' : projectSection.title"
-      />
+      <SectionHeader :title="projectSection ? 'Projects' : projectSection.title" />
 
       <article class="section-body flex-row-reverse">
         <div class="flex-1">
-          <div
-            v-for="(project, index) in projectSection.projects"
-            :key="index"
-            class="accordion"
-          >
+          <div v-for="(project, index) in projectSection.projects" :key="index" class="accordion">
             <div
               :class="{
                 'accordion-open': isAccordionActive(index),
@@ -28,15 +22,10 @@
                 project.title
               }}</span>
               <div class="flex justify-center items-center gap-2">
-                <a
-                  v-if="isAccordionActive(index)"
-                  class="text-secondary"
-                  :href="project.url"
-                  target="_blank"
-                >
-                  <Badge value="View on GitHub ↗" icon-name="github" />
+                <a v-if="isAccordionActive(index)" :href="project.url" target="_blank" class="hover:underline">
+                  <div class="text-accent!">See more ↗</div>
                 </a>
-                <div class="badge-outline">{{ project.type }}</div>
+                <div class="badge badge-accent!">{{ project.type }}</div>
               </div>
             </div>
             <div
@@ -76,16 +65,15 @@
                   </template>
                 </Carousel>
               </div>
-              <div>
-                <div class="highlight mb-2 md:mb-4 mt-4 w-fit">
-                  Technologies used
-                </div>
+              <div v-if="project.technologies.length">
+                <div class="highlight mb-2 md:mb-4 mt-4 w-fit">Technologies used</div>
                 <div class="body-text w-fit mx-auto">
-                  <ul
-                    class="flex flex-wrap gap-2 justify-center md:justify-start"
-                  >
+                  <ul class="flex flex-wrap gap-2 justify-center md:justify-start">
                     <li v-for="tech in project.technologies" :key="tech.name">
-                      <Badge :value="tech.name" :icon-name="tech.iconName" />
+                      <div class="badge badge-soft">
+                        <Icon :name="tech.iconName" mode="svg" class="size-6" />
+                        {{ tech.name }}
+                      </div>
                     </li>
                   </ul>
                 </div>
@@ -93,7 +81,7 @@
             </div>
           </div>
         </div>
-        <div class="accordion-header__container--desktop !flex-1">
+        <div class="accordion-header__container--desktop flex-1!">
           <div
             v-for="(project, index) in projectSection.projects"
             :key="index"
@@ -110,11 +98,10 @@
             <div class="flex justify-center items-center gap-2">
               <a
                 v-if="isAccordionActive(index)"
-                class="text-secondary"
                 :href="project.url"
                 target="_blank"
               >
-                <Badge value="View on GitHub ↗" icon-name="github" />
+                <div class="text-accent! hover:underline">See more ↗</div>
               </a>
               <div class="badge-outline">{{ project.type }}</div>
             </div>
@@ -189,7 +176,9 @@ function isAccordionActive(index: number) {
 }
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
+@reference "../assets/styles/tailwind.css";
+
 .accordion-body {
   @apply flex flex-col;
 }
@@ -198,53 +187,53 @@ function isAccordionActive(index: number) {
 }
 .project__assets::-webkit-scrollbar {
   height: 0.5rem;
-  border: 1px solid $accent;
+  border: 1px solid var(--accent);
   margin-top: 1rem;
   border-radius: 4rem;
   position: relative;
-
-  &::after,
-  &::before {
-    content: "";
-    display: block;
-    width: 2rem;
-    height: 100%;
-    position: absolute;
-  }
 }
 
-:deep(.carousel) {
+.project__assets::-webkit-scrollbar:after,
+.project__assets::-webkit-scrollbar:before {
+  content: "";
+  display: block;
+  width: 2rem;
+  height: 100%;
+  position: absolute;
+}
+
+.carousel {
   height: 100%;
   justify-content: center !important;
+}
 
-  .carousel__viewport {
-    height: 100%;
-    border-radius: 0.5rem;
-    background-color: $accent-soft;
+.carousel .carousel__viewport {
+  height: 100%;
+  border-radius: 0.5rem;
+  background-color: var(--accent-soft);
+}
 
-    .carousel__track {
-      height: 100%;
-      padding-bottom: 2rem;
-      margin-bottom: 1rem;
+.carousel .carousel__viewport .carousel__track {
+  height: 100%;
+  padding-bottom: 2rem;
+  margin-bottom: 1rem;
+}
 
-      .carousel__slide {
-        border-radius: 1rem !important;
-        padding: 0.5rem;
+.carousel .carousel__viewport .carousel__track .carousel__slide {
+  border-radius: 1rem !important;
+  padding: 0.5rem;
+}
 
-        @media screen and (min-width: 768px) {
-          &:hover {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-          }
-        }
-      }
-    }
+@media screen and (min-width: 768px) {
+  .carousel .carousel__viewport .carousel__track .carousel__slide:hover {
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 }
 
 .project__assets--item {
-  @apply inset-0 h-full snap-center object-center object-contain rounded-lg duration-200 z-0
-    lg:object-cover lg:object-center md:hover:scale-105 hover:z-50;
+  @apply inset-0 h-full snap-center object-center object-contain rounded-lg duration-200
+    lg:object-cover lg:object-center md:hover:scale-105
 }
 </style>

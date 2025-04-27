@@ -1,55 +1,55 @@
 <template>
-  <header class="z-10 backdrop-blur-xl shadow-xl">
-    <div
-      class="container bg-primary md:bg-opacity-20 flex justify-between items-center h-16 relative"
-    >
-      <Logo />
-      <nav class="hidden md:block">
-        <ul class="flex gap-0 lg:gap-4 justify-end li-ctn">
+  <header class="drop-shadow-xl relative z-[2]">
+    <div class="drawer drawer-end">
+      <input id="my-drawer" type="checkbox" class="drawer-toggle" />
+      <div class="drawer-content flex flex-col">
+        <div class="navbar w-full">
+          <div class="w-full container flex justify-between items-center md:hidden">
+            <Logo />
+            <label for="my-drawer" aria-label="open sidebar" class="cursor-pointer">
+              <Icon mode="svg" name="solar:hamburger-menu-broken" class="size-10" />
+            </label>
+          </div>
+          <nav class="hidden md:flex md:justify-between container">
+            <Logo />
+            <ul class="flex gap-0 lg:gap-4 justify-end li-ctn">
+              <li class="menu-item">
+                <NuxtLink to="/about">About Me</NuxtLink>
+              </li>
+              <li class="menu-item">
+                <NuxtLink to="/projects">Projects</NuxtLink>
+              </li>
+              <li class="menu-item">
+                <NuxtLink to="/writings">Writings</NuxtLink>
+              </li>
+              <li class="menu-item">
+                <NuxtLink to="/#contact">Contact</NuxtLink>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+      <div class="drawer-side">
+        <label for="my-drawer" aria-label="close sidebar" class="drawer-overlay"></label>
+        <ul class="menu bg-dark/95 min-h-full w-80 p-4 justify-center h-screen">
           <li class="menu-item">
-            <a href="#about">About</a>
+            <NuxtLink to="/">Home</NuxtLink>
           </li>
           <li class="menu-item">
-            <a href="#work">Work</a>
+            <NuxtLink to="/about">About Me</NuxtLink>
           </li>
           <li class="menu-item">
-            <a href="#projects">Projects</a>
+            <NuxtLink to="/projects">Projects</NuxtLink>
           </li>
+            <li class="menu-item">
+              <NuxtLink to="/writtings">Writtings</NuxtLink>
+            </li>
           <li class="menu-item">
-            <a href="#tech-stack">Tech Stack</a>
-          </li>
-          <li class="menu-item">
-            <a href="#contact">Contact</a>
+            <NuxtLink :to="{ path: '/', hash: '#contact' }">Contact</NuxtLink>
           </li>
         </ul>
-      </nav>
-
-      <IconMenu
-        v-if="!menuOpen"
-        class="md:hidden block !z-10"
-        @click="toggleMenu"
-      />
-      <IconXmark v-else class="md:hidden block !z-10" @click="toggleMenu" />
+      </div>
     </div>
-    <nav v-if="menuOpen" class="mobile-nav-menu z-1">
-      <ul class="mobile-menu-list">
-        <li class="menu-item">
-          <a href="#about">About</a>
-        </li>
-        <li class="menu-item">
-          <a href="#work">Work</a>
-        </li>
-        <li class="menu-item">
-          <a href="#projects">Projects</a>
-        </li>
-        <li class="menu-item">
-          <a href="#tech-stack">Tech Stack</a>
-        </li>
-        <li class="menu-item">
-          <a href="#contact">Contact</a>
-        </li>
-      </ul>
-    </nav>
   </header>
 </template>
 
@@ -94,7 +94,9 @@ export default defineNuxtComponent({
 });
 </script>
 
-<style scoped lang="scss">
+<style scoped>
+@reference "../assets/styles/tailwind.css";
+
 .li-ctn > .menu-item {
   @apply h-full flex justify-center items-center;
 }
@@ -103,33 +105,27 @@ export default defineNuxtComponent({
 }
 
 .menu-item {
-  @apply rounded-md
-    sm:text-lg md:text-xl
-    hover:text-secondary
-    transition-all duration-500 ease-in-out;
-}
-.menu-item {
-  display: block;
-  &:hover {
-    background: $bg-gradient;
-  }
+  @apply rounded-md sm:text-lg md:text-xl transition-all duration-500 ease-in-out;
 }
 
-a {
-  display: block;
+.menu-item:hover a {
+  color: var(--text-color);
 }
 
 .mobile-nav-menu {
-  @apply bg-primary h-auto py-4 shadow-md md:hidden block absolute left-0 top-16 w-full px-4;
-  .mobile-menu-list {
-    @apply grid grid-cols-1 gap-2 divide-soft;
-    .menu-item {
-      @apply h-14 flex items-center px-4 bg-accent-soft;
+  @apply h-auto py-4 shadow-md md:hidden block left-0 top-16 w-full px-4;
+}
+.mobile-nav-menu .mobile-menu-list {
+  @apply grid grid-cols-1 gap-2 divide-soft;
+}
+.mobile-nav-menu .mobile-menu-list .menu-item {
+  @apply h-14 flex items-center px-4 bg-accent-soft;
+}
+.mobile-nav-menu .mobile-menu-list .menu-item a {
+  @apply h-full w-full flex items-center;
+}
 
-      a {
-        @apply h-full w-full flex items-center;
-      }
-    }
-  }
+.router-link-exact-active {
+  @apply text-white;
 }
 </style>

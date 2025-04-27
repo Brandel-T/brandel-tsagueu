@@ -1,8 +1,8 @@
 <template>
   <NuxtErrorBoundary>
-    <section id="about" class="about page-section">
+    <section id="about" class="about page-section container">
       <SectionHeader title="About Me" />
-      <article class="section-body !-z-1">
+      <article class="section-body">
         <div class="about-content">
           <div
             data-aos="fade-up-right"
@@ -10,14 +10,14 @@
             data-aos-easing="ease-in-out"
             data-aos-duration="600"
           >
-            <div v-if="pending">Loading ... {{ pending }}</div>
+            <div v-if="pending">Loading ...</div>
             <div v-else>
               <div v-html="about.description"></div>
             </div>
           </div>
           <div class="flex justify-center md:justify-start gap-x-12 mt-6">
             <div
-              class="w-fit body-text flex items-center gap-2 -z-10"
+              class="w-fit body-text flex items-center gap-2"
               data-aos="zoom-in-right"
             >
               <strong class="text-[2.5rem] md:text-[3.5rem] font-normal">
@@ -26,11 +26,11 @@
               years experience
             </div>
             <div
-              class="w-fit body-text flex items-center gap-2 -z-10"
+              class="w-fit body-text flex items-center gap-2"
               data-aos="zoom-in-right"
             >
               <IconLocation
-                class="!w-[2.5rem] !h-[2.5rem] md:!w-[3.5rem] md:!h-[3.5rem]"
+                class="w-[2.5rem]! h-[2.5rem]! md:w-[3.5rem]! md:h-[3.5rem]!"
               />Germany, DE
             </div>
           </div>
@@ -44,7 +44,7 @@
             <li
               v-for="(interest, index) in about.interests"
               :key="index"
-              class="badge-outline capitalize list-item"
+              class="badge badge-outline badge-soft capitalize list-item text-white!"
               data-aos="zoom-in-right"
             >
               {{ interest.name }}
@@ -52,17 +52,16 @@
           </ul>
         </div>
         <div
-          class="profile max-w-[25rem] img-wrapper rounded-md after:outline after:outline-1 after:outline-tertiary hover:after:bg-tertiary mask-squircle"
+          class="profile max-w-[25rem] img-wrapper rounded-md after:outline after:outline-tertiary hover:after:bg-tertiary mask-squircle"
         >
           <img
             v-if="about.profileImage"
-            :src="
-              about.profileImage
-                ? useRuntimeImage(about.profileImage.url)
-                : '~/assets/images/profil-1.jpeg'
+            :src="about.profileImage
+              ? useRuntimeImage(about.profileImage.url)
+              : '~/assets/images/profil-1.jpeg'
             "
             alt="profile picture: Brandel Tsagueu"
-            class="w-full h-full rounded-md"
+            class="w-full h-full rounded-md object-cover"
             data-aos="fade-left"
           />
         </div>
@@ -112,7 +111,9 @@ watchEffect(() => {
 });
 </script>
 
-<style scoped lang="scss">
+<style scoped>
+@reference "../assets/styles/tailwind.css";
+
 .section-body {
   @apply grid grid-cols-12 gap-12 justify-center
     portrait:flex portrait:flex-col relative;
@@ -143,6 +144,7 @@ watchEffect(() => {
         -translate-y-4
         object-cover;
 }
+
 .mask-squircle {
   -webkit-mask-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0nMjAwJyBoZWlnaHQ9JzIwMCcgeG1sbnM9J2h0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnJz48cGF0aCBkPSdNMTAwIDBDMjAgMCAwIDIwIDAgMTAwczIwIDEwMCAxMDAgMTAwIDEwMC0yMCAxMDAtMTAwUzE4MCAwIDEwMCAwWicvPjwvc3ZnPg==);
   mask-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0nMjAwJyBoZWlnaHQ9JzIwMCcgeG1sbnM9J2h0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnJz48cGF0aCBkPSdNMTAwIDBDMjAgMCAwIDIwIDAgMTAwczIwIDEwMCAxMDAgMTAwIDEwMC0yMCAxMDAtMTAwUzE4MCAwIDEwMCAwWicvPjwvc3ZnPg==);
@@ -155,32 +157,27 @@ watchEffect(() => {
   transition: 0.4s ease-in-out transform;
   isolation: isolate;
   transition: all 1s ease-in-out;
-
-  &:hover {
-    transform: translate3d(0px, 0px, -250px);
-  }
-
-  img {
-    filter: grayscale(0%);
-
-    &:hover {
-      filter: brightness(130%);
-    }
-  }
+}
+.mask-squircle:hover {
+  transform: translate3d(0px, 0px, -250px);
+}
+.mask-squircle img {
+  filter: grayscale(0%);
+}
+.mask-squircle img:hover {
+  filter: brightness(130%);
 }
 
 @media only screen and (max-width: 768px) {
   .mask-squircle {
     transform: none !important;
     transition: none;
-
-    &:hover {
-      transform: none;
-    }
-
-    img {
-      filter: brightness(130%);
-    }
+  }
+  .mask-squircle:hover {
+    transform: none;
+  }
+  .mask-squircle img {
+    filter: brightness(130%);
   }
 }
 </style>

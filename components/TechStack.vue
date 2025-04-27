@@ -3,13 +3,11 @@
     <section
       v-if="!pending && data"
       id="tech-stack"
-      class="tech-stack page-section !h-auto"
+      class="tech-stack page-section container"
     >
       <SectionHeader title="Tech Stack" />
 
-      <article
-        class="section-body flex flex-col items-center justify-center pb-12"
-      >
+      <article class="section-body flex flex-col items-center justify-center pb-12">
         <header
           class="text body-text mb-8 md:mb-12"
           data-aos="fade-right"
@@ -23,59 +21,58 @@
             class="highlight"
           >
             {{ recent.name }}
-            <span
-              v-if="index == recentTechnologies.length - 2"
-              class="body-text"
-              >and
-            </span>
+            <span v-if="index == recentTechnologies.length - 2" class="body-text">and</span>
             <span v-if="index < recentTechnologies.length - 2">, </span>
           </span>
         </header>
 
-        <div class="flex-1">
-          <div class="w-full lg:grid lg:grid-cols-2 lg:grid-rows-2 lg:gap-2">
-            <div
-              v-for="(item, index) in techStacks"
-              :key="item.category"
-              data-aos="fade-up-right"
-              data-aos-duration="1500"
-              :data-aos-delay="index * 100"
-              class="w-full md:w-auto bg-accent-soft rounded p-6 items-stretch mb-2 lg:mb-0 shadow-lg shadow-primary"
-            >
-              <div class="flex items-end justify-between">
-                <span class="heading-2">{{ item.category }}</span>
-                <IconBackend
-                  v-if="item.category === 'Backend'"
-                  class="icon-secondary !h-12 !w-12"
-                />
-                <IconDesktop
-                  v-else-if="item.category === 'Frontend'"
-                  class="icon-secondary !h-12 !w-12"
-                />
-                <IconPhone
-                  v-else-if="item.category === 'Mobile'"
-                  class="icon-secondary !h-12 !w-12"
-                />
-                <IconSettings v-else class="icon-secondary !h-12 !w-12" />
-              </div>
+        <div class="flex-1 w-full lg:grid lg:grid-cols-2 gap-3">
+          <div
+            v-for="(item, index) in techStacks"
+            :key="item.category"
+            data-aos="fade-up-right"
+            data-aos-duration="1500"
+            :data-aos-delay="index * 100"
+            :class="[
+              'w-full bg-dark-surface/20 md:w-auto rounded-sm p-6 items-stretch mb-2 lg:mb-0 shadow-lg',
+              { 'mb-10': (techStacks.length - 1) == index }
+            ]"
+          >
+            <div class="flex items-end justify-between">
+              <span class="heading-2">{{ item.category }}</span>
+              <IconBackend
+                v-if="item.category === 'Backend'"
+                class="icon-secondary h-12! w-12!"
+              />
+              <IconDesktop
+                v-else-if="item.category === 'Frontend'"
+                class="icon-secondary h-12! w-12!"
+              />
+              <IconPhone
+                v-else-if="item.category === 'Mobile'"
+                class="icon-secondary h-12! w-12!"
+              />
+              <IconSettings v-else class="icon-secondary h-12! w-12!" />
+            </div>
 
-              <div class="mt-4 flex flex-wrap gap-4">
-                <span
-                  v-for="tech in item.technologies"
-                  :key="tech"
-                  class="body-text !text-accent"
-                  >{{ tech.name }}</span
-                >
-              </div>
+            <div class="mt-4 flex flex-wrap gap-4">
+              <span v-for="tech in item.technologies" :key="tech" class="tooltip" :data-tip="tech.name">
+                <Icon v-if="tech?.iconName" :name="tech.iconName" mode="svg" class="size-18" :title="tech.name" />
+                <span v-else>{{ tech.iconName }}</span>
+              </span>
             </div>
           </div>
         </div>
       </article>
     </section>
 
-    <template #error="{ error }">
-      <p>An error occured while loading the tech stack.</p>
-      <p>{{ error }}</p>
+    <template #error="data">
+      <div class="container">
+        <div role="alert" class="alert alert-error alert-dash my-10 flex flex-col items-start">
+          <p>An error occured while loading the tech stack.</p>
+          <p>{{ data }}</p>
+        </div>
+      </div>
     </template>
   </NuxtErrorBoundary>
 </template>
@@ -111,8 +108,10 @@ watch(
 );
 </script>
 
-<style scoped lang="scss">
+<style scoped>
+@reference "../assets/styles/tailwind.css";
+
 .tech-stack {
-  @apply h-screen overflow-y-hidden pb-12;
+  @apply min-h-screen overflow-y-hidden pb-12;
 }
 </style>

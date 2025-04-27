@@ -2,34 +2,29 @@
   <a
     :href="`${email ? 'mailto:' : ''}${url}`"
     :target="'_blank'"
-    class="anchor link relative hover:cursor-pointer w-fit z-0"
     @mouseenter="hover = true"
     @mouseleave="hover = false"
+    class="no-underline border-0 hover:cursor-pointer w-fit z-[1] link"
   >
-    <span class="flex flex-col-reverse items-center gap-1 w-fit">
-      <span class="w-fit mb-1">
-        <span v-if="type === 'internal' && hashtagVisible" class="hashtag"
-          >#</span
-        >
-        <span
-          class="text-slate-400 text-xl sm:text-2xl md:text-3xl font-light mr-2"
-        >
+    <span class="flex flex-col items-center w-fit">
+      <span class="w-fit">
+        <span v-if="type === 'internal' && hashtagVisible" class="hashtag">#</span>
+        <span class="text-slate-400 text-xl sm:text-2xl md:text-3xl font-light mr-2">
           {{ name }}
         </span>
         <span
           v-if="type === 'external' && externalIconVisible"
           class="font-bold text-xl sm:text-2xl md:text-3xl"
           :class="{ 'translate-x-1 -translate-y-1': hover }"
-          >↗</span
-        >
+        >↗</span>
       </span>
-      <span class="underline"></span>
+      <span class="my-underline"></span>
     </span>
   </a>
 </template>
 
 <script lang="ts">
-import { PropType } from "vue";
+import { type PropType } from "#imports";
 
 type LinkType = "external" | "internal";
 export default {
@@ -48,20 +43,15 @@ export default {
 };
 </script>
 
-<style scoped lang="scss">
-.anchor {
-  text-decoration: none;
-}
-
-.underline {
-  content: "";
-  position: absolute;
+<style scoped>
+.my-underline {
   width: 0;
   height: 3px;
-  background-color: $text-color;
+  background-color: var(--text-color);
   transition: width 0.5s;
 }
-.link:hover .underline {
+
+.link:hover .my-underline {
   border: none;
   width: 100%;
 }
