@@ -65,7 +65,7 @@ const { data } = await useAsyncData(
 
 watch(data, (value) => {
   if (value) {
-    writting.value = data.value?.data || {} as AnalyserOptions
+    writting.value = (data.value?.data as Writting) || {}
   }
 }, { immediate: true });
 </script>
