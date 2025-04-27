@@ -26,16 +26,10 @@ export const useDateFormat = (date: Date | string): string => {
   return monthDate + ". " + month + " " + date.getFullYear();
 };
 
-export const useImage = (pathName: string): string => {
-  const assets = import.meta.glob("~/assets/images/*", {
-    eager: true,
-    import: "default",
-  });
-  return String(assets["/assets/images/" + pathName]);
-};
-
-export const useRuntimeImage = (url: string): string => {
-  return useRuntimeConfig().public.apiUrl + url;
+export const useRuntimeImage = (filePath: string): string => {
+  if (process.env.NODE_ENV === "development")
+    return useRuntimeConfig().public.apiUrl + filePath;
+  return filePath;
 };
 
 /**
