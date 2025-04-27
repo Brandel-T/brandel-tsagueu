@@ -105,7 +105,7 @@ export default defineNuxtComponent({
 }
 
 .menu-item {
-  @apply rounded-md sm:text-lg md:text-xl transition-all duration-500 ease-in-out;
+  @apply rounded-md text-lg md:text-xl transition-all duration-500 ease-in-out;
 }
 
 .menu-item:hover a {

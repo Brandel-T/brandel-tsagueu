@@ -73,7 +73,7 @@
               <div class="">
                 <div v-if="job.technologies_used && job.technologies_used.length > 0" class="highlight mb-2">Technologies used</div>
                 <div v-if="job.technologies_used.length > 0" class="body-text">
-                  <ul class="flex flex-wrap gap-2 justify-center md:justify-start">
+                  <ul class="flex flex-wrap gap-1">
                     <li v-for="(tech, j) in job.technologies_used" :key="j">
                       <div class="badge badge-outline">
                         <Icon :name="tech.iconName" mode="svg" class="size-6" />
