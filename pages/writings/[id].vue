@@ -1,5 +1,5 @@
 <template>
-  <NuxtLayout name="writting">
+  <NuxtLayout name="writing">
     <template #breadcrumbs>
       <div class="breadcrumbs text-lg">
         <ul>
@@ -9,7 +9,7 @@
             </NuxtLink>
           </li>
           <li>
-            <NuxtLink to="/writtings">writtings</NuxtLink>
+            <NuxtLink to="/writings">writings</NuxtLink>
           </li>
         </ul>
       </div>
@@ -20,19 +20,19 @@
         <time>2025-03-28</time>
       </div>
 
-      <h1 v-if="writting" class="writting-title w-fit mx-auto md:ml-0 mb-8">
-        {{ writting?.title ?? "My writting title" }}
+      <h1 v-if="writing" class="writing-title w-fit mx-auto md:ml-0 mb-8">
+        {{ writing?.title ?? "My writing title" }}
       </h1>
       <p class="flex gap-2">
         <span
-          v-for="tag in writting.tags"
+          v-for="tag in writing.tags"
           :key="tag.id"
           class="badge badge-soft badge-info"
         ><span class="tag-hasgtag">#</span> {{ tag.name }}</span>
       </p>
 
-      <div v-if="writting" class="md-content">
-        <MDC :value="writting?.content || ''" class="text-wrap!" />
+      <div v-if="writing" class="md-content">
+        <MDC :value="writing?.content || ''" class="text-wrap!" />
       </div>
       <div v-else>Loading...</div>
     </div>
@@ -46,16 +46,16 @@ definePageMeta({
 
 const route = useRoute()
 const { findOne } = useStrapi()
-const writting = ref<any>({})
+const writing = ref<any>({})
 
 useSeoMeta({
-  ogTitle: () => `${writting.value?.title} | Brandel Tsagueu`,
-  title: () => `${writting.value?.title} | Brandel Tsagueu`,
-  ogUrl: () => "https://www.brande-tsagueu.dev/writtings/" + route.params.id,
+  ogTitle: () => `${writing.value?.title} | Brandel Tsagueu`,
+  title: () => `${writing.value?.title} | Brandel Tsagueu`,
+  ogUrl: () => "https://www.brande-tsagueu.dev/writings/" + route.params.id,
   articleAuthor: ["Brandel Tsagueu"],
-  articleTag: () => (writting.value?.tags as Array<any>)?.map(({ name }) => name),
-  articlePublishedTime: () => writting.value?.publishedAt,
-  articleModifiedTime: () => writting.value?.updatedAt,
+  articleTag: () => (writing.value?.tags as Array<any>)?.map(({ name }) => name),
+  articlePublishedTime: () => writing.value?.publishedAt,
+  articleModifiedTime: () => writing.value?.updatedAt,
 })
 
 const { data } = await useAsyncData(
@@ -65,13 +65,13 @@ const { data } = await useAsyncData(
 
 watch(data, (value) => {
   if (value) {
-    writting.value = (data.value?.data as Writting) || {}
+    writing.value = (data.value?.data as Writing) || {}
   }
 }, { immediate: true });
 </script>
 
 <style scoped lang="scss">
-.writting-title {
+.writing-title {
   font-family: oregano,"Fira code";
   font-weight: 600;
   font-size: 2rem;
