@@ -6,15 +6,11 @@ export default defineNuxtConfig({
   ssr: process.env.NODE_ENV === "production",
   runtimeConfig: {
     public: {
-      apiUrl: process.env.NODE_ENV === "development"
-          ? "http://localhost:1337"
-          : process.env.STRAPI_URL,
+      apiUrl: process.env.STRAPI_URL,
     },
   },
   strapi: {
-    url: process.env.NODE_ENV === "development"
-        ? "http://localhost:1337"
-        : process.env.STRAPI_URL,
+    url: process.env.STRAPI_URL,
     prefix: "/api",
   },
   modules: [

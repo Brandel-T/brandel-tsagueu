@@ -2,31 +2,31 @@
   <Transition mode="in-out">
     <div class="min-h-screen flex flex-col">
       <header
-        v-if="writtingPage"
-        class="writtings-cover h-96 flex flex-col justify-center gap-6 items-center bg-[url(~/assets/images/blog-cover.jpg)] bg-cover relative isolate blog-cover"
+        v-if="writingPage"
+        class="writings-cover h-96 flex flex-col justify-center gap-6 items-center bg-[url(~/assets/images/blog-cover.jpg)] bg-cover relative isolate blog-cover"
       >
-        <h1 class="blog-page-title mx-auto font-medium text-7xl text-white">{{ writtingPage.title }}</h1>
-        <p class="text-white! text-center w-56 md:w-fit">{{ writtingPage.description }}</p>
+        <h1 class="blog-page-title mx-auto font-medium text-7xl text-white">{{ writingPage.title }}</h1>
+        <p class="text-white! text-center w-56 md:w-fit">{{ writingPage.description }}</p>
       </header>
 
       <div class="container flex-1 flex flex-wrap justify-center lg:justify-start gap-2 md:gap-4 pt-10 pb-20">
         <NuxtLink
-          v-if="writtings?.length > 0"
-          v-for="writting in writtings"
-          :key="writting.id"
-          :to="`/writtings/${writting.documentId}`"
+          v-if="writings?.length > 0"
+          v-for="writing in writings"
+          :key="writing.id"
+          :to="`/writings/${writing.documentId}`"
           class="w-full md:w-[20rem] lg:w-[24rem] self-stretch items-stretch"
         >
           <div class="card bg-base-100 card-lg">
             <div class="card-body">
-              <h2 class="card-title">{{ writting.title }}</h2>
+              <h2 class="card-title">{{ writing.title }}</h2>
               <p class="text-xs border-base-300 border-l-3 pl-3 mb-2">
-                <time class="text-base-300">{{ useDateFormat(writting.createdAt) }}</time>
+                <time class="text-base-300">{{ useDateFormat(writing.createdAt) }}</time>
               </p>
-              <p v-if="writting?.description">{{ writting?.description }}</p>
+              <p v-if="writing?.description">{{ writing?.description }}</p>
               <div class="flex gap-3 flex-wrap">
                 <div
-                  v-for="tag in writting.tags"
+                  v-for="tag in writing.tags"
                   :key="tag.id"
                   class="badge badge-dash badge-secondary"
                 >{{ tag.name }}</div>
@@ -59,18 +59,18 @@ definePageMeta({
 });
 
 const { find } = useStrapi();
-const writtings = ref([])
-const writtingPage = ref()
+const writings = ref([])
+const writingPage = ref()
 
 useSeoMeta({
-  ogTitle: () => writtingPage ? capitalize(writtingPage.value?.title) : "Writtings",
-  title: () => writtingPage ? capitalize(writtingPage.value?.title) : "Writtings",
+  ogTitle: () => writingPage ? capitalize(writingPage.value?.title) : "Writings",
+  title: () => writingPage ? capitalize(writingPage.value?.title) : "Writings",
   ogImage: "~/assets/images/blog-cover.jpg",
   ogImageAlt: "Cover image of blog hero section",
-  description: () => writtingPage ? capitalize(writtingPage.value?.description) : "I also write",
-  ogDescription: () => writtingPage ? capitalize(writtingPage.value?.description) : "I also write",
+  description: () => writingPage ? capitalize(writingPage.value?.description) : "I also write",
+  ogDescription: () => writingPage ? capitalize(writingPage.value?.description) : "I also write",
   ogType: "website",
-  ogUrl: "https://www.brande-tsagueu.dev/writtings",
+  ogUrl: "https://www.brande-tsagueu.dev/writings",
 })
 
 const { data } = useAsyncData<{ articles: Array<any>, page: any }>(async () => {
@@ -84,8 +84,8 @@ const { data } = useAsyncData<{ articles: Array<any>, page: any }>(async () => {
 
 watch(data, (value) => {
   if (value) {
-    writtings.value = data.value?.articles;
-    writtingPage.value = data.value?.page;
+    writings.value = data.value?.articles;
+    writingPage.value = data.value?.page;
   }
 }, { immediate: true });
 
