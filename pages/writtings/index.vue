@@ -67,8 +67,8 @@ useSeoMeta({
   title: () => writtingPage ? capitalize(writtingPage.value?.title) : "Writtings",
   ogImage: "~/assets/images/blog-cover.jpg",
   ogImageAlt: "Cover image of blog hero section",
-  description: () => writtingPage ? capitalize(writtingPage.description) : "I also write",
-  ogDescription: () => writtingPage ? capitalize(writtingPage.description) : "I also write",
+  description: () => writtingPage ? capitalize(writtingPage.value?.description) : "I also write",
+  ogDescription: () => writtingPage ? capitalize(writtingPage.value?.description) : "I also write",
   ogType: "website",
   ogUrl: "https://www.brande-tsagueu.dev/writtings",
 })
